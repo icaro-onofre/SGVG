@@ -10,6 +10,5 @@ export default function Router() {
                 <Route path='/' element={<Home/>} />
             </Routes>
         </BrowserRouter>
-
 	);
 }

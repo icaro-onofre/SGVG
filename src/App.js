@@ -1,6 +1,6 @@
 import React from 'react';
 import Routes from './routes';
-const mongoose = require('mongoose')
+import * as mongoose from 'mongoose';
 
 main().catch(err => console.log(err));
 
