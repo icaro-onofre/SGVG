@@ -1,9 +1,9 @@
-import Funcionario from '../../database/models/funcionarioModel.js';
+import Funcionario from '../../backend/models/funcionarioModel.js';
 import React, { useState } from 'react';
 import './style.css';
 
 
-console.log(Funcionario.find({}))
+// console.log(Funcionario.find({}))
 
 export default function Home() {
     return (
