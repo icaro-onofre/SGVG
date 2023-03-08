@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3000",
-  "homepage":".",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
@@ -11,6 +11,7 @@
     "autoprefixer": "^10.4.13",
     "cors": "^2.8.5",
     "craco": "^0.0.3",
+    "download": "^8.0.0",
     "mongodb": "^4.11.0",
     "mongoose": "^6.7.0",
     "nodemon": "^2.0.20",
