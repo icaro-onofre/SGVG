@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={darkMode ? 'dark' : 'light'}>
       <button
-        className="text-3xl bg-card_red dark:bg-card_green"
+        className="text-3xl bg-red dark:bg-card_green"
         onClick={() => {
           setDarkMode(!darkMode);
         }}
@@ -19,7 +19,7 @@ export default function Home() {
           <input type="text" name="name" />
         </label>
         <input type="submit" value="submit" />
-        <h2></h2>
+        <i class="ri-admin-fill"></i>
       </form>
     </div>
   );
