@@ -7,7 +7,7 @@ export default class index extends Component {
     return (
       <div>
         <Header />
-        <Navbar />
+        <Navbar name="Jefferson Silva" email="jefferson.tsilva@gmail.com" image="https://placehold.co/64x64"/>
       </div>
     );
   }

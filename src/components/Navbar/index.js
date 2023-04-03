@@ -9,11 +9,11 @@ export default class index extends Component {
         <div className="w-fit h-screen bg-white">
           <div className="divide-jade/[0.2] divide-y divide-solid">
             <div className="flex items-center gap-4 p-6">
-              <AvatarIcon />
+              <AvatarIcon image={this.props.image} />
 
               <div>
-                <h2 className="font-heading text-sm">Jefferson Silva</h2>
-                <span className="font-body text-xs">jefferson.tsilva@gmail.com</span>
+                <h2 className="font-heading text-sm">{this.props.name}</h2>
+                <span className="font-body text-xs">{this.props.email}</span>
               </div>
             </div>
 
