@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Icon from '../Atoms/Icon';
+import Icon from 'components/Atoms/Icon';
 
 export default class index extends Component {
   render() {

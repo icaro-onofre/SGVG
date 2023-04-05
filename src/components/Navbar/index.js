@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AvatarIcon from '../Atoms/AvatarIcon';
-import NavLink from '../Atoms/NavLink';
+import AvatarIcon from 'components/Atoms/AvatarIcon';
+import NavLink from 'components/Atoms/NavLink';
 
 export default class index extends Component {
   render() {
