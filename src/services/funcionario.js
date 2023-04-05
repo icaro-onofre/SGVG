@@ -1,6 +1,21 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
+function signIn() {
+	console.log("teste");
+	axios
+		.post('/signin', {
+			nome: email,
+			senha: senha,
+		})
+		.then(function(response) {
+			localStorage.setItem(response);
+		})
+		.catch(function(error) {
+			console.log(error);
+		});
+}
+
 export default function Home() {
 	const [darkMode, setDarkMode] = useState(false);
 
@@ -10,20 +25,6 @@ export default function Home() {
 		setNome(event.target.value);
 	}
 
-	function signIn() {
-		console.log('teste');
-		axios
-			.post('/signin', {
-				nome: nome,
-				senha: senha,
-			})
-			.then(function(response) {
-				localStorage.setItem(response);
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
-	}
 	return (
 		<div className={darkMode ? 'dark' : 'light'}>
 			<button
