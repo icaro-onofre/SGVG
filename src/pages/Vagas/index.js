@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import VagaCard from '../../components/VagaCard'
+import Legenda from '../../components/VagaCard/Legenda'
+
 
 let vagas = [
   'A1',
@@ -37,18 +39,32 @@ let vagas = [
   'A33',
   'A34',
   'A35',
+  'A36',
+  'A37',
+  'A38',
+  'A39',
+  'A40',
 ]
-//A navbar não precisa ser implementada agora pois ela será um componente padrão para todas as telas.
-// Voce pode fazer a task de tela de vagas e do componente do card da vaga na mesma branch!
-// Só colocar o nome da branch de acordo pra sinalizar.
+
 export default function Vagas() {
+ 
+  
+
   return (
-    <div className="grid grid-cols-12">
-      <div className="flex flex-row flex-wrap col-start-2  col-end-11  space-x-3 h-screen">
+    <>
+    <p className="mx-32 my-5 font-bold">STATUS DAS VAGAS</p>
+    <div className="grid grid-cols-12 ">
+    
+      <div className="flex flex-row flex-wrap col-start-2  col-end-12 h-screen">
+        
         {vagas.map((k, i) => {
           return <VagaCard nome={k} />
         })}
+      
       </div>
+      
     </div>
+    <Legenda />
+    </>
   )
 }

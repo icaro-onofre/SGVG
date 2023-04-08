@@ -6,7 +6,6 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        {/*Definindo  rota */}
         <Route path="/vagas" element={<Vagas />} />
       </Routes>
     </BrowserRouter>
