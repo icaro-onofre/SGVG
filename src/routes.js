@@ -1,15 +1,15 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Home from './pages/Home';
-import TesteComponentes from './pages/TesteComponentes';
+import Cadastro from "./pages/Cadastro";
+import Home from "./pages/Home";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/teste" element={<TesteComponentes />} />
+        <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
     </BrowserRouter>
   );

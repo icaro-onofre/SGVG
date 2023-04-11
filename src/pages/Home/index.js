@@ -1,59 +1,29 @@
-import signIn from '../../services/funcionario';
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import Funcionario from '../../backend/models/funcionarioModel.js';
+import React, { useState } from 'react';
+
+// console.log(Funcionario.find({}))
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false);
+    return (
+        <div> <main  class="mx-auto flex min-h-screen w-full items-center justify-center bg-white text-green-900">{/*fundo branco e cor do texto verde escuro*/}
+  <section class="flex w-[30rem] flex-col space-y-10"> {/*seção de login*/}
+  <img class="mx-auto h-40 w-auto" src="login.png" /> {/*logo do aplicativo escrito login e alinhado*/}
 
-  const [nome, setNome] = useState('');
-  const [senha, setSenha] = useState('');
+     <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-green-900">{/*caixa de texto, campo de login/ mais efeito mudando de cor quando clicar no campo*/}
+      <input type="text" placeholder="Nome de Usuário" class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"/>
+    </div> 
 
-  function handleSetSenha(e) {
-    e.preventDefault();
-    setSenha(e.target.value);
-  }
-
-  function handleSetNome(e) {
-    e.preventDefault();
-    setNome(e.target.value);
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-    signIn(nome,senha);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  return (
-    <div className={darkMode ? 'dark' : 'light'}>
-      <button
-        className="text-3xl bg-card_red dark:bg-card_green"
-        onClick={() => {
-          setDarkMode(!darkMode);
-        }}
-      >
-        Hello World
-      </button>
-
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" name="name" onChange={handleSetNome} />
-        </label>
-        <label>
-          Senha:
-          <input type="text" name="name" onChange={handleSetSenha} />
-        </label>
-
-        <input type="submit" value="Botão" className="h-12 w-12 bg-card_red" />
-      </form>
-	  <div className="text-3xl text-dark_red">
-	  {console.log(localStorage.getItem('token'))}
-
-	  </div>
+    <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-green-900" >{/*caixa de texto, campo de senha/ mais efeito mudando de cor quando clica no campo*/}
+      <input  type="password"  placeholder="Senha"  class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none" />
     </div>
-  );
+
+    <a   href="http://localhost:3000/Cadastro" button class="transform rounded-sm bg-green-900 py-2 font-bold duration-300 hover:bg-green-700 text-white text-center">Conecte-se</a> {/*botão de login*/}
+
+    <a   href="http://localhost:3000/Cadastro"   class="transform text-center font-semibold text-gray-500 duration-300 hover:text-green-900">ESQUECEU A SENHA?</a>{/*link para cadastro não definido ainda*/}
+
+   
+  </section>
+</main>
+        </div>
+    )
 }
