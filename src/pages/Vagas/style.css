@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+}
+
+/*=== VARIÁVEIS ===*/   
+:root {
+    --white: #FFFFFF;
+    --black: #1A1A1A;
+    --grey:#5B5B5B;
+    --grey_light:#DCDCDC;
+    --green_ligth:#B1E7C4;
+    --card_red: #B13E53;
+    --card_green: #38B764;
+    --card_blue: #3B5DC9;
+    --card_orange: #EF7D57;
+}
+
+
+
+nav {
+    background-color: var(--grey_light);
+    height: 40px;
+    width: 100vw;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    
+  }
+
+  .section {
+    width: 100vw;
+    height: 90vh;
+    
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+   
+    }
+  
+    .container {
+        margin: 10px;
+    }
+
+    .logo {
+        text-decoration: none;
+        font-size: 30px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: black;
+    }
+
+    span.size-20 {
+        font-size: 32px;
+        font-variation-settings: 'OPSZ' 20;
+      }
+
+h1 {
+    margin-left: 15px;
+}
+  .setor  {
+    display: flex;
+    
+    
+  }
+
+  .vaga {
+    
+    height: 15px;
+    width: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px;
+    border: 1px solid black;
+  }
+
+  .legenda {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .legenda div {
+    
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    margin: 0 5px 0 15px;
+  }
+
+  .legenda p  {
+    padding-right: 10px;
+  }
+
+.livre {
+    background-color: var(--card_green);
+}
+
+.ocupado {
+    background-color: var(--card_red);
+}
+
+.agendado {
+    background-color: var(--card_blue);
+}
+
+.vencimento {
+    background-color: var(--card_orange);
+}
+
+.desativado{
+    background-color: var(--grey_light);
+}

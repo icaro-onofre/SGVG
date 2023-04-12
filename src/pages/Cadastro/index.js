@@ -1,6 +1,4 @@
-import Funcionario from '../../backend/models/funcionarioModel.js';
 import React, { useState } from 'react';
-import './style.css';
 
 // console.log(Funcionario.find({}))
 
