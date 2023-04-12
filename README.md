@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SGVG Parking System
 
-## Available Scripts
+![Last Commit](https://img.shields.io/github/last-commit/icaro-onofre/SGVG) ![Top Language](https://img.shields.io/github/languages/top/icaro-onofre/SGVG) ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
 
-In the project directory, you can run:
+> 🚘 Sistema de Gerenciamento para Vagas de Garagem e Estacionamento 🚘
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🔗 Links Diretos
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Acesse aos tópicos desejados clicando nos links abaixo:
 
-### `npm test`
+- [SGVG Parking System](#sgvg-parking-system)
+  - [🔗 Links Diretos](#-links-diretos)
+  - [⚙️ Instalação e Configuração](#️-instalação-e-configuração)
+  - [📋 Sobre o Projeto](#-sobre-o-projeto)
+  - [🖼️ Interface Gráfica (UI)](#️-interface-gráfica-ui)
+  - [👥 Desenvolvedores](#-desenvolvedores)
+  - [✨ Agradecimentos](#-agradecimentos)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ⚙️ Instalação e Configuração
 
-### `npm run build`
+Para instalar, configurar e rodar este projeto em sua máquina, você deverá ter instalado em seu computador o [Git](https://git-scm.com/downloads) e [NodeJS](https://nodejs.org/pt-br). Após sua instalação, siga os passos:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone este repositório em algum local de seu armazenamento. Rode o comando abaixo no local escolhido. Ex: `C:/Users/{user}/Documentos`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```git
+git clone https://github.com/icaro-onofre/SGVG.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Feita a clonagem deste repositório, rode o comando para instalar as dependências do NodeJS
 
-### `npm run eject`
+```git
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Em seguida, execute o comando abaixo para iniciar a aplicação localmente, na porta 3000
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```git
+npm start
+``` 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📋 Sobre o Projeto 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Este sistema tem o objetivo de auxiliar os donos de estacionamentos na administração de vagas e clientes com mais praticidade, automatizando o processo através do sistema de sensores instalado paralelamente. Pode ser implementado em qualquer tipo de estabelecimento, seja gratuito ou pago, aberto ou fechado, de pequeno, médio ou grande porte. A aplicação estará disposta na web ou desktop.
 
-## Learn More
+O usuário tem acesso ao sistema onde é possível incluir, alterar e excluir o cadastro de clientes, funcionários e agendamentos, assim como administrar as vagas cadastradas.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+O funcionário pode acompanhar o funcionamento do estacionamento bem como manipular elementos a fim de gerar resultados estruturados e consistentes que servirão como guia para a tomada de decisões.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🖼️ Interface Gráfica (UI)
 
-### Code Splitting
+Você pode verificar o projeto de interface gráfica através do [Figma](https://www.figma.com/proto/RfWgmRd1Fto2r9zCFqg7Vt/TCC?node-id=478-5371)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![UI Components]()
 
-### Analyzing the Bundle Size
+## 👥 Desenvolvedores
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<table>
+    <tr>
+        <td><img src="https://github.com/bellsalim.png" alt="Bell Salim" width="56" style="border-radius: 50%"></td>
+        <td width="150">Bell Salim</td>
+        <td><img src="https://github.com/icaro-onofre.png" alt="Icaro Onofre" width="56" style="border-radius: 50%"></td>
+        <td width="150">Icaro Onofre</td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/dannesx.png" alt="Daniel Antunes" width="56" style="border-radius: 50%"></td>
+        <td width="150">Daniel Antunes</td>
+        <td><img src="https://github.com/tailli.png" alt="Daniel Antunes" width="56" style="border-radius: 50%"></td>
+        <td width="150">Tailli Tozetto</td>
+    </tr>
+</table>
 
-### Making a Progressive Web App
+## ✨ Agradecimentos
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Queremos agradecer especialmente ao exelentíssimo Prof. Me. Peter Jandl Junior por nos orientar neste projeto, nos auxiliando e nos guiando pelos caminhos percorridos, sem o senhor não teríamos chegado até aqui.
 
-### Advanced Configuration
+Agradecemos ao nossos amigos e familiares que estiveram sempre ao nosso lado, nos apoiando nos momentos difíceis e celebrando nossas conquistas.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Agradecemos a você por acompanhar este projeto até, nosso singelo muito obrigado!
