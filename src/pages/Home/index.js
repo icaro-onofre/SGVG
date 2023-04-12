@@ -1,11 +1,13 @@
 import signIn from 'services/funcionario';
+import { useNavigate } from "react-router-dom";
 
-import {Link} from 'react-router-dom';
 import React, { useState } from 'react';
 
 export default function Home() {
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
+
+  let navigate = useNavigate();
 
   function handleSetNome(e) {
     e.preventDefault();
@@ -21,6 +23,7 @@ export default function Home() {
     e.preventDefault();
     try {
       signIn(nome, senha);
+      navigate('/cadastro');
     } catch (error) {
       console.log(error);
     }
@@ -53,18 +56,14 @@ export default function Home() {
               onChange={handleSetSenha}
             />
           </div>
-          <Link 
-	  className="transform rounded-sm bg-green py-2 font-bold duration-300 hover:bg-green text-white text-center" 
-	  type="submit"
-	  to="/cadastro"
-	  >
-            Conecte-se
-          </Link>{' '}
-          {/*botão de login*/}
-          <a
-            className="transform text-center font-semibold text-gray-500 duration-300 hover:text-green"
-            onSubmit={handleSubmit}
+          <button
+            className="transform rounded-sm bg-green py-2 font-bold duration-300 hover:bg-green text-white text-center"
+            type="submit"
           >
+            Conecte-se
+          </button>
+          {/*botão de login*/}
+          <a className="transform text-center font-semibold text-gray-500 duration-300 hover:text-green">
             ESQUECEU A SENHA?
           </a>
           {/*link para cadastro não definido ainda*/}
