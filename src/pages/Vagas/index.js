@@ -47,9 +47,6 @@ let vagas = [
 ]
 
 export default function Vagas() {
- 
-  
-
   return (
     <>
     <p className="mx-32 my-5 font-bold">STATUS DAS VAGAS</p>
