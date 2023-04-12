@@ -54,7 +54,11 @@ O funcionário pode acompanhar o funcionamento do estacionamento bem como manipu
 
 Você pode verificar o projeto de interface gráfica através do [Figma](https://www.figma.com/proto/RfWgmRd1Fto2r9zCFqg7Vt/TCC?node-id=478-5371)
 
-![UI Components]()
+<div align="center">
+
+![UI Components](https://raw.githubusercontent.com/icaro-onofre/SGVG/dev/public/repository/UI%20Components.png)
+
+</div>
 
 ## 👥 Desenvolvedores
 
