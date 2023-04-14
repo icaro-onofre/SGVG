@@ -5,11 +5,11 @@ import RouteGuard from 'components/RouteGuard/RouteGuard.js';
 
 import Cadastro from './pages/Cadastro';
 import Home from './pages/Home';
+import Login from './pages/Login';
 
 let token = JSON.parse(localStorage.getItem('token'));
 
 export default function Router() {
-
   function hasJWT() {
     let flag = false;
 
@@ -22,16 +22,17 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-	  <Route path="/cadastro"
-	  element={
-		  <RouteGuard token={hasJWT()}>
-			  <Cadastro/>
-		  </RouteGuard>
-	  	}
-	  />
-        
+        <Route path="/" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route
+          path="/vagas"
+          element={
+            <RouteGuard token={hasJWT()}>
+              <Home/>
+            </RouteGuard>
+          }
+        />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
