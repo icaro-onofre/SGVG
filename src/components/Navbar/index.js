@@ -1,19 +1,30 @@
-import React, { Component } from 'react';
+import React, { useState, Component } from 'react';
+import { useAtom } from 'jotai';
+import { colapsed } from 'store.js'; 
 import AvatarIcon from 'components/Atoms/AvatarIcon';
 import NavLink from 'components/Atoms/NavLink';
 
-export default class index extends Component {
-  render() {
-    return (
-      <div className="absolute w-screen h-screen bg-black/[0.85] z-100 inset-0">
+export default function Navbar(props) {
+
+const [fold, setFold] = useAtom(colapsed);
+const handleSetFold = () => setFold(!fold);
+
+  return (
+    <div className={"absolute w-screen h-screen z-100 inset-0"+ fold ? 'bg-black/[0.85]': '' } >
+      {fold ? (
+        <div></div>
+      ) : (
         <div className="w-fit h-screen bg-white">
+	      <button className="w-5 h-5 rounded-full bg-black"
+	      onClick={handleSetFold}
+	      > </button>
           <div className="divide-jade/[0.2] divide-y divide-solid">
             <div className="flex items-center gap-4 p-6">
-              <AvatarIcon image={this.props.image} />
+              <AvatarIcon image={props.image} />
 
               <div>
-                <h2 className="font-heading text-sm">{this.props.name}</h2>
-                <span className="font-body text-xs">{this.props.email}</span>
+                <h2 className="font-heading text-sm">{props.name}</h2>
+                <span className="font-body text-xs">{props.email}</span>
               </div>
             </div>
 
@@ -26,7 +37,7 @@ export default class index extends Component {
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 }
