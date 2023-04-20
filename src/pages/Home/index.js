@@ -20,9 +20,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="overflow-hidden h-screen">
+      <Navbar/>
       <Header />
-      <Navbar />
       <p className="mx-32 my-5 font-bold">STATUS DAS VAGAS</p>
       <div className="grid grid-cols-12 ">
         <div className="flex flex-row flex-wrap col-start-2  col-end-12 h-screen">
