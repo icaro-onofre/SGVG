@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class index extends Component {
-  render() {
-    return (
-      <div className="w-8 h-8 flex justify-center items-center rounded-lg cursor-pointer hover:bg-black/[0.08] ease-in duration-75">
-        <i className={`ri-${this.props.icon}-${this.props.line ? 'line' : 'fill'} ri-lg `}></i>
-      </div>
-    );
-  }
+export default function Icon(props) {
+  return (
+    <button
+      className="w-8 h-8 flex justify-center items-center rounded-lg cursor-pointer hover:bg-black/[0.08] ease-in duration-75"
+      onClick={props.onClick}
+    >
+      <i className={`ri-${props.icon}-${props.line ? 'line' : 'fill'} ri-lg `}></i>
+    </button>
+  );
 }

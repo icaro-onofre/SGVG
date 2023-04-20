@@ -22,10 +22,14 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={
+            <RouteGuard token={hasJWT()}>
+              <Home/>
+            </RouteGuard>
+	} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route
-          path="/vagas"
+          path="/"
           element={
             <RouteGuard token={hasJWT()}>
               <Home/>

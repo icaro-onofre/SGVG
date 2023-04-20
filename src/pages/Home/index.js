@@ -8,7 +8,6 @@ import axiosInstance from 'services/axios';
 
 export default function Home() {
   const [vagas, setVagas] = useState([]);
-
   const getVagas = () => {
     axiosInstance
       .get('/vaga')
@@ -21,7 +20,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div>
       <Header />
       <Navbar />
       <p className="mx-32 my-5 font-bold">STATUS DAS VAGAS</p>
@@ -33,6 +32,6 @@ export default function Home() {
         </div>
       </div>
       <Legenda />
-    </>
+    </div>
   );
 }

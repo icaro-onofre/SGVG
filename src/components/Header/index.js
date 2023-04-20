@@ -6,7 +6,7 @@ import { colapsed } from 'store.js';
 export default function Header(props) {
 
 const [fold, setFold] = useAtom(colapsed);
-const handleSetFold = () => setFold(!fold);
+const handleSetFold = () => setFold(!fold)
 
     return (
       <header className="bg-black/[.04] px-4 py-2 flex justify-between z-50">

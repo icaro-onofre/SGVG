@@ -4,7 +4,6 @@ import { atom } from 'jotai';
 const colapsed = atom(false);
 
 function App() {
-
   return <Routes />;
 }
 
