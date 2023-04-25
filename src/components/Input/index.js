@@ -1,13 +1,17 @@
 /**
  * @author dannesx
- * 
+ *
  * Componente input seguindo os padrões definidos do Figma (12/04/23).
- * 
+ *
  * Props:
  * - type : String              Tipo do input. Ex: text, password, number etc
+ * - value : String | null      Valor do input.
  * - placeholder : String       Mensagem que aparecerá no placeholder do input
  * - leftIcon : String | null   Se !null, renderiza o icone da biblioteca Remix Icon no canto esquerdo do input
  * - rightIcon : String | null   Se !null, renderiza o icone da biblioteca Remix Icon no canto direito do input
+ *
+ * Atributos:
+ * - disabled:    Desabilita o input
  */
 
 import React from 'react';
@@ -22,6 +26,8 @@ export default function Input(props) {
       )}
       <input
         type={props.type}
+        disabled={props.disabled}
+        value={props.value}
         className="block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
         placeholder={props.placeholder}
       />
