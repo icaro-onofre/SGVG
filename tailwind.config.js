@@ -4,6 +4,8 @@ module.exports = {
   darkMode: 'class',
   theme: {
     colors: {
+      orange: '#EF7D57',
+      grey: '#D9D9D9',
       white: '#f6f6f6',
       black: '#161616',
       jade: '#52a675',
