@@ -11,14 +11,11 @@ export default function ModalVaga(props) {
 
   const [vagas, setVagas] = useState([]);
 
-  const [vagaId, setVagaId] = useState('');
-
   const getVagas = () => {
     axiosInstance
-      .post('/vaga/filter', { id: _id })
+      .get('/vaga/filter')
       .then((res) => setVagas(res.data))
       .catch((err) => console.log(err));
-      }
   };
 
   useEffect(() => {
@@ -33,10 +30,10 @@ export default function ModalVaga(props) {
         <div className="absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
           <div className="  w-72 h-72 bg-white rounded-xl ">
             <h1 className="text-1xl font-bold ml-5 mt-5">{props.vagaNome}</h1>
-            <h2 className="text-sm  ml-5 mt-3">{props.status}</h2>
+            <h2 className="text-lg  ml-5 mt-3">{props.status}</h2>
 
             <div className="ml-8">
-              <div className=" w-44 h-32 mt-5 ">
+              <div className=" w-44 h-32 mt-8 ">
                 <Input placeholder="Cliente" />
                 <Input placeholder="Placa" />
               </div>
