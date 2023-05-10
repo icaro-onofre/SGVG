@@ -13,10 +13,7 @@ export default function Home() {
   const [vagas, setVagas] = useState([]);
 
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
-  const handleSetFoldVaga = () => {
-    setFoldVaga(!foldVaga);
-    console.log('teste');
-  };
+  const handleSetFoldVaga = () => setFoldVaga(!foldVaga);
 
   const getVagas = () => {
     axiosInstance
@@ -33,7 +30,7 @@ export default function Home() {
     <div className="overflow-hidden h-screen">
       <Navbar />
       <Header />
-      <ModalVaga vagaNome="A3" status="livre"/>
+      <ModalVaga vagaNome="A3" status="Livre"/>
 
       <p className="mx-32 my-5 font-bold">STATUS DAS VAGAS</p>
       <div className="grid grid-cols-12 ">
