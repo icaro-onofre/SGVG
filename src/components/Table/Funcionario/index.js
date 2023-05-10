@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAtom, atom } from 'jotai';
+import { colapsedFuncionario } from 'store.js';
 import axiosInstance from 'services/axios.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -24,8 +25,10 @@ export default function TableFuncionario(props) {
 
   const [funcionarios, setFuncionario] = useAtom(funcionario);
 
-  function editarFuncionario() {
-  }
+  function editarFuncionario() {}
+
+  const [foldFuncioario, setFoldFuncioario] = useAtom(colapsedFuncionario);
+  const handleSetFoldFuncioario = () => setFoldFuncioario(!foldFuncioario);
 
   return (
     <>
@@ -45,7 +48,7 @@ export default function TableFuncionario(props) {
           <TableBody>
             {funcionarios.map((dados) => (
               <TableRow
-		    onClick={() => editarFuncionario()}
+                onClick={handleSetFoldFuncioario}
                 key={dados.name}
                 sx={{
                   '&:last-child td, &:last-child th': { border: 0 },
