@@ -41,7 +41,16 @@ export default function TableVaga(props) {
           </TableHead>
           <TableBody>
             {vagas.map((dados) => (
-              <TableRow key={dados.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow
+                key={dados.name}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  '&:hover': {
+                    color: 'gray',
+                    backgroundColor: 'lightblue',
+                  },
+                }}
+              >
                 <TableCell align="right">{dados._id}</TableCell>
                 <TableCell align="right">{dados.preco}</TableCell>
                 <TableCell align="right">{dados.setor}</TableCell>
