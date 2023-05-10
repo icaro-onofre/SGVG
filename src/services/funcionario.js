@@ -1,7 +1,6 @@
 import axiosInstance from '../services/axios';
 import React, { useState, useEffect } from 'react';
 
-
 function signIn(nome, senha) {
   axiosInstance
     .post(
