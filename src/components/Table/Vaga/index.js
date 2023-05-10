@@ -11,18 +11,18 @@ import Paper from '@mui/material/Paper';
 
 const vaga = atom([]);
 export default function TableVaga(props) {
-  const getFuncionario = () => {
+  const getVaga = () => {
     axiosInstance
       .get('/vaga')
-      .then((res) => setFuncionario(res.data))
+      .then((res) => setVaga(res.data))
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    getFuncionario();
+    getVaga();
   }, []);
 
-  const [vagas, setFuncionario] = useAtom(vaga);
+  const [vagas, setVaga] = useAtom(vaga);
 
   return (
     <>
@@ -31,24 +31,23 @@ export default function TableVaga(props) {
           <TableHead>
             <TableRow>
               <TableCell align="right">ID</TableCell>
-              <TableCell align="right">Nome</TableCell>
-              <TableCell align="right">CPF</TableCell>
-              <TableCell align="right">Senha</TableCell>
-              <TableCell align="right">Idade</TableCell>
-              <TableCell align="right">Data Nasc</TableCell>
-              <TableCell align="right">Cargo</TableCell>
+              <TableCell align="right">Preço</TableCell>
+              <TableCell align="right">Setor</TableCell>
+              <TableCell align="right">Status</TableCell>
+              <TableCell align="right">Tipo</TableCell>
+              <TableCell align="right">Data Locação</TableCell>
+              <TableCell align="right">Cliente</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {vagas.map((dados) => (
               <TableRow key={dados.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell align="right">{dados._id}</TableCell>
-                <TableCell align="right">{dados.nome}</TableCell>
-                <TableCell align="right">{dados.cpf}</TableCell>
-                <TableCell align="right" sx={{ maxWidth: 50,overflow:'hidden' }}>{dados.senha}</TableCell>
-                <TableCell align="right">{dados.idade}</TableCell>
-                <TableCell align="right">{dados.data_nasc}</TableCell>
-                <TableCell align="right">{dados.cargo}</TableCell>
+                <TableCell align="right">{dados.preco}</TableCell>
+                <TableCell align="right">{dados.setor}</TableCell>
+                <TableCell align="right">{dados.status}</TableCell>
+                <TableCell align="right">{dados.dataLocacao}</TableCell>
+                <TableCell align="right">{dados.clienteId}</TableCell>
               </TableRow>
             ))}
           </TableBody>

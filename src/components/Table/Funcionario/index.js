@@ -24,6 +24,9 @@ export default function TableFuncionario(props) {
 
   const [funcionarios, setFuncionario] = useAtom(funcionario);
 
+  function editarFuncionario() {
+  }
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -41,11 +44,23 @@ export default function TableFuncionario(props) {
           </TableHead>
           <TableBody>
             {funcionarios.map((dados) => (
-              <TableRow key={dados.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow
+		    onClick={() => editarFuncionario()}
+                key={dados.name}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  '&:hover': {
+                    color: 'gray',
+                    backgroundColor: 'lightblue',
+                  },
+                }}
+              >
                 <TableCell align="right">{dados._id}</TableCell>
                 <TableCell align="right">{dados.nome}</TableCell>
                 <TableCell align="right">{dados.cpf}</TableCell>
-                <TableCell align="right" sx={{ maxWidth: 50,overflow:'hidden' }}>{dados.senha}</TableCell>
+                <TableCell align="right" sx={{ maxWidth: 50, overflow: 'hidden' }}>
+                  {dados.senha}
+                </TableCell>
                 <TableCell align="right">{dados.idade}</TableCell>
                 <TableCell align="right">{dados.data_nasc}</TableCell>
                 <TableCell align="right">{dados.cargo}</TableCell>
