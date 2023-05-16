@@ -26,25 +26,13 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-<<<<<<< HEAD
-        <Route
-          path="/login"
-          element={
-            <RouteGuard token={hasJWT()}>
-              <Home />
-            </RouteGuard>
-          }
-        />
-=======
         <Route path="/login" element={<Login />} />
->>>>>>> fix-routes
         <Route path="/cadastro" element={<Cadastro />} />
         <Route
           path="/"
           element={
             <RouteGuard token={hasJWT()}>
               <Home />
-<<<<<<< HEAD
             </RouteGuard>
           }
         />
@@ -77,8 +65,6 @@ export default function Router() {
           element={
             <RouteGuard token={hasJWT()}>
               <Cliente />
-=======
->>>>>>> fix-routes
             </RouteGuard>
           }
         />
