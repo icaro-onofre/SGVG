@@ -30,7 +30,7 @@ export default function Router() {
           path="/login"
           element={
             <RouteGuard token={hasJWT()}>
-              <Home />
+              <Login />
             </RouteGuard>
           }
         />

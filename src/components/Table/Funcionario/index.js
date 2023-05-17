@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+import axiosInstance from 'services/axios.js';
 import { useAtom, atom } from 'jotai';
 import { colapsedFuncionario } from 'store.js';
-import axiosInstance from 'services/axios.js';
+import { funcionarioId } from 'store.js';
+import { funcionario } from 'store.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,11 +12,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const funcionario = atom([]);
 export default function TableFuncionario(props) {
   const getFuncionario = () => {
     axiosInstance
-      .get('/funcionario')
+      .post('/funcionario/filter')
       .then((res) => setFuncionario(res.data))
       .catch((err) => console.log(err));
   };
@@ -24,11 +25,13 @@ export default function TableFuncionario(props) {
   }, []);
 
   const [funcionarios, setFuncionario] = useAtom(funcionario);
-
-  function editarFuncionario() {}
-
+  const [selectedFuncionarioId, setSelectedFuncionarioId] = useAtom(funcionarioId);
   const [foldFuncioario, setFoldFuncioario] = useAtom(colapsedFuncionario);
-  const handleSetFoldFuncioario = () => setFoldFuncioario(!foldFuncioario);
+
+  // Handler para abrir o modal
+  const handleSetFoldFuncioario = (_id) => {
+    setFoldFuncioario(!foldFuncioario);
+  };
 
   return (
     <>
@@ -48,8 +51,11 @@ export default function TableFuncionario(props) {
           <TableBody>
             {funcionarios.map((dados) => (
               <TableRow
-                onClick={handleSetFoldFuncioario}
-                key={dados.name}
+                onClick={() => {
+                  handleSetFoldFuncioario(dados.id);
+          	  setSelectedFuncionarioId(dados.id);
+                }}
+                key={dados.id}
                 sx={{
                   '&:last-child td, &:last-child th': { border: 0 },
                   '&:hover': {
@@ -58,7 +64,7 @@ export default function TableFuncionario(props) {
                   },
                 }}
               >
-                <TableCell align="right">{dados._id}</TableCell>
+                <TableCell align="right">{dados.id}</TableCell>
                 <TableCell align="right">{dados.nome}</TableCell>
                 <TableCell align="right">{dados.cpf}</TableCell>
                 <TableCell align="right" sx={{ maxWidth: 50, overflow: 'hidden' }}>
