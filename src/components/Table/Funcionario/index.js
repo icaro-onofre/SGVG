@@ -15,8 +15,8 @@ import Paper from '@mui/material/Paper';
 export default function TableFuncionario(props) {
   const getFuncionario = () => {
     axiosInstance
-      .post('/funcionario/filter')
-      .then((res) => setFuncionario(res.data))
+      .get('/funcionario/')
+      .then((res) => setFuncionarios(res.data))
       .catch((err) => console.log(err));
   };
 
@@ -24,7 +24,7 @@ export default function TableFuncionario(props) {
     getFuncionario();
   }, []);
 
-  const [funcionarios, setFuncionario] = useAtom(funcionario);
+  const [funcionarios, setFuncionarios] = useAtom(funcionario);
   const [selectedFuncionarioId, setSelectedFuncionarioId] = useAtom(funcionarioId);
   const [foldFuncioario, setFoldFuncioario] = useAtom(colapsedFuncionario);
 
@@ -33,6 +33,7 @@ export default function TableFuncionario(props) {
     setFoldFuncioario(!foldFuncioario);
   };
 
+    console.log(funcionarios);
   return (
     <>
       <TableContainer component={Paper}>
@@ -41,6 +42,8 @@ export default function TableFuncionario(props) {
             <TableRow>
               <TableCell align="right">ID</TableCell>
               <TableCell align="right">Nome</TableCell>
+              <TableCell align="right">Telefone</TableCell>
+              <TableCell align="right">Email</TableCell>
               <TableCell align="right">CPF</TableCell>
               <TableCell align="right">Senha</TableCell>
               <TableCell align="right">Idade</TableCell>
@@ -53,7 +56,7 @@ export default function TableFuncionario(props) {
               <TableRow
                 onClick={() => {
                   handleSetFoldFuncioario(dados.id);
-          	  setSelectedFuncionarioId(dados.id);
+                  setSelectedFuncionarioId(dados.id);
                 }}
                 key={dados.id}
                 sx={{
@@ -66,6 +69,8 @@ export default function TableFuncionario(props) {
               >
                 <TableCell align="right">{dados.id}</TableCell>
                 <TableCell align="right">{dados.nome}</TableCell>
+                <TableCell align="right">{dados.telefone}</TableCell>
+                <TableCell align="right">{dados.email}</TableCell>
                 <TableCell align="right">{dados.cpf}</TableCell>
                 <TableCell align="right" sx={{ maxWidth: 50, overflow: 'hidden' }}>
                   {dados.senha}
