@@ -38,7 +38,7 @@ export default function ModalFuncionario(props) {
       {!foldFuncionario ? (
         <div></div>
       ) : (
-        <div className="absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
+        <div className=" absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
           {selectedFuncionarioDataFiltered.length === 0 ? (
             <>
               <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldFuncionario} />
@@ -68,26 +68,25 @@ export default function ModalFuncionario(props) {
           ) : (
             <>
               <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldFuncionario} />
-              <div className=" w-1/2 h-1/2 bg-white rounded-xl z-20">
-                <h1 className="text-2xl font-bold ml-5 mt-4">Editar funcionario</h1>
-                <div className="ml-8">
-                  <div className=" space-y-1 h-90 mt-8 ">
-                    <div className="flex flex-row space-x-5">
-                      <Input placeholder={selectedFuncionarioDataFiltered[0].id} />
-                      <Input placeholder={selectedFuncionarioDataFiltered[0].cpf} />
-                    </div>
-                    <div className="flex flex-row space-x-5">
-                      <Input placeholder={selectedFuncionarioDataFiltered[0].senha} />
-                      <Input placeholder={selectedFuncionarioDataFiltered[0].idade} />
-                    </div>
-                    <div className="flex flex-row space-x-5">
-                      <Input placeholder={selectedFuncionarioDataFiltered[0].data_nasc} />
-                      <Input placeholder="Cargo" />
-                    </div>
+              <div className="flex flex-col items-center justify-center w-1/2 h-1/2 bg-white rounded-xl z-20">
+                <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Editar funcionario</h1>
+
+                <div className="flex flex-col space-y-4 h-90 mt-8 ">
+                  <div className="flex flex-row space-x-5">
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].id} />
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].cpf} />
                   </div>
-                  <div className="mt-7 ml-72">
-                    <Button value="Editar funcionario" />
+                  <div className="flex flex-row space-x-5">
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].senha} />
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].idade} />
                   </div>
+                  <div className="flex flex-row space-x-5">
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].data_nasc} />
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].cargo} />
+                  </div>
+                <div className="self-end">
+                  <Button value="Editar funcionario" />
+                </div>
                 </div>
               </div>
             </>
