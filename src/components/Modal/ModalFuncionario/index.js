@@ -12,12 +12,14 @@ export default function ModalFuncionario(props) {
   const [selectedFuncionarioId, setSelectedFuncionarioId] = useAtom(funcionarioId);
   const [selectedFuncionarioDataFiltered, setSelectedFuncionarioDataFiltered] = useAtom(funcionarioDataFiltered);
 
-  const [nome, setNome] = useState('');
-  const [senha, setSenha] = useState('');
-  const [cargo, setCargo] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [datanasc, setDataNasc] = useState('');
-  const [idade, setIdade] = useState('');
+  const [nome, setNome] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [telefone, setTelefone] = useState(null);
+  const [senha, setSenha] = useState(null);
+  const [cargo, setCargo] = useState(null);
+  const [cpf, setCpf] = useState(null);
+  const [datanasc, setDataNasc] = useState(null);
+  const [idade, setIdade] = useState(null);
 
   const [funcionarios, setFuncionarios] = useState([]);
 
@@ -26,45 +28,55 @@ export default function ModalFuncionario(props) {
   };
 
   //Handlers
-  const handleSubmit = (nome, cargo, cpf, datanasc, idade) => {
+
+  const handleSetNome = (e) => {
+    e.preventDefault();
+    setNome(e.target.value);
+  };
+  const handleSetEmail = (e) => {
+    e.preventDefault();
+    setNome(e.target.value);
+  };
+  const handleSetTelefone = (e) => {
+    e.preventDefault();
+    setTelefone(e.target.value);
+  };
+  const handleSetCpf = (e) => {
+    e.preventDefault();
+    setCpf(e.target.value);
+  };
+  const handleSetSenha = (e) => {
+    e.preventDefault();
+    setSenha(e.target.value);
+  };
+  const handleSetIdade = (e) => {
+    e.preventDefault();
+    setIdade(e.target.value);
+  };
+  const handleSetDataNasc = (e) => {
+    e.preventDefault();
+    setDataNasc(e.target.value);
+  };
+  const handleSetCargo = (e) => {
+    e.preventDefault();
+    setCargo(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    console.log(nome, telefone, cargo, cpf, datanasc, idade);
     axiosInstance
       .post('/funcionario/update', {
+        nome: nome,
+        telefone: telefone,
         id: selectedFuncionarioId,
         cargo: cargo,
         cpf: cpf,
         data_nasc: datanasc,
         idade: idade,
-        nome: nome,
         root: null,
       })
       .then((res) => setSelectedFuncionarioDataFiltered(res.data))
       .catch((err) => console.log(err));
-  };
-
-  const handleSetCpf = (e) => {
-    e.preventDefault();
-    setCpf(e.target.value);
-    console.log(cpf);
-  };
-  const handleSetSenha = (e) => {
-    console.log(senha);
-    e.preventDefault();
-    setSenha(e.target.value);
-  };
-  const handleSetIdade = (e) => {
-    console.log(idade);
-    e.preventDefault();
-    setIdade(e.target.value);
-  };
-  const handleSetDataNasc = (e) => {
-    console.log(datanasc);
-    e.preventDefault();
-    setDataNasc(e.target.value);
-  };
-  const handleSetCargo = (e) => {
-    console.log(cargo);
-    e.preventDefault();
-    setCargo(e.target.value);
   };
 
   useEffect(() => {
@@ -125,11 +137,11 @@ export default function ModalFuncionario(props) {
                 <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Editar funcionario</h1>
                 <div className="flex flex-col space-y-5 h-90 mt-8 ">
                   <div className="flex flex-row space-x-5">
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].nome}/>
-                    <Input placeholder="Telefone" />
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].nome} onChange={handleSetNome} />
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].telefone} onChange={handleSetTelefone} />
                   </div>
-		  <div className="flex flex-row space-x-5">
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].id} />
+                  <div className="flex flex-row space-x-5">
+                    <Input placeholder={selectedFuncionarioDataFiltered[0].email} onChange={handleSetEmail} />
                     <Input placeholder={selectedFuncionarioDataFiltered[0].cpf} onChange={handleSetCpf} />
                   </div>
                   <div className="flex flex-row space-x-5">
