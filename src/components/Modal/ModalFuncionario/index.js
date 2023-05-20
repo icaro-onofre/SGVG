@@ -1,4 +1,5 @@
 import React, { useState, Component, useEffect } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
 import { colapsedFuncionario } from 'store.js';
@@ -20,6 +21,7 @@ export default function ModalFuncionario(props) {
   const [cpf, setCpf] = useState(null);
   const [datanasc, setDataNasc] = useState(null);
   const [idade, setIdade] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const [funcionarios, setFuncionarios] = useState([]);
 
@@ -63,7 +65,6 @@ export default function ModalFuncionario(props) {
   };
 
   const handleSubmit = () => {
-    console.log(nome, telefone, cargo, cpf, datanasc, idade);
     axiosInstance
       .post('/funcionario/update', {
         nome: nome,
@@ -75,8 +76,9 @@ export default function ModalFuncionario(props) {
         idade: idade,
         root: null,
       })
-      .then((res) => setSelectedFuncionarioDataFiltered(res.data))
       .catch((err) => console.log(err));
+    setSelectedFuncionarioDataFiltered([]);
+    setFoldFuncionario(!foldFuncionario);
   };
 
   useEffect(() => {
@@ -92,7 +94,10 @@ export default function ModalFuncionario(props) {
         email: null,
         root: null,
       })
-      .then((res) => setSelectedFuncionarioDataFiltered(res.data))
+      .then((res) => {
+        setSelectedFuncionarioDataFiltered(res.data);
+        setLoading(false);
+      })
       .catch((err) => console.log(err));
   }, [foldFuncionario]);
 
@@ -102,68 +107,60 @@ export default function ModalFuncionario(props) {
         <div></div>
       ) : (
         <div className=" absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
-          {selectedFuncionarioDataFiltered.length === 0 ? (
-            <>
-              <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldFuncionario} />
-              <div className="flex flex-col items-center justify-center w-1/2 bg-white rounded-xl z-20 pt-5 pb-5">
-                <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Editar funcionario</h1>
-                <div className="flex flex-col space-y-5 h-90 mt-8 ">
-                  <div className="flex flex-row space-x-5">
-                    <Input placeholder="Nome" />
-                    <Input placeholder="Telefone" />
-                  </div>
-                  <div className="flex flex-row space-x-5">
-                    <Input placeholder="Id" />
-                    <Input placeholder="CPF" />
-                  </div>
-                  <div className="flex flex-row space-x-5">
-                    <Input placeholder="Senha" />
-                    <Input placeholder="Idade" />
-                  </div>
-                  <div className="flex flex-row space-x-5">
-                    <Input placeholder="Data nascimento" />
-                    <Input placeholder="Cargo" />
-                  </div>
-                  <div className="self-end">
-                    <Button value="Editar funcionario" />
-                  </div>
-                </div>
+          <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldFuncionario} />
+          <div className="flex flex-col items-center justify-center w-1/2 bg-white rounded-xl z-20 pt-5 pb-5">
+            <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Editar funcionario</h1>
+            <div className="flex flex-col space-y-5 h-90 mt-8 ">
+              <div className="flex flex-row space-x-5">
+                <Input
+                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].nome}
+                  onChange={handleSetNome}
+                />
+                <Input
+                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].telefone}
+                  onChange={handleSetTelefone}
+                />
               </div>
-            </>
-          ) : (
-            <>
-              <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldFuncionario} />
-              <div className="flex flex-col items-center justify-center w-1/2 bg-white rounded-xl z-20 pt-5 pb-5">
-                <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Editar funcionario</h1>
-                <div className="flex flex-col space-y-5 h-90 mt-8 ">
-                  <div className="flex flex-row space-x-5">
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].nome} onChange={handleSetNome} />
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].telefone} onChange={handleSetTelefone} />
-                  </div>
-                  <div className="flex flex-row space-x-5">
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].email} onChange={handleSetEmail} />
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].cpf} onChange={handleSetCpf} />
-                  </div>
-                  <div className="flex flex-row space-x-5">
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].senha} onChange={handleSetSenha} />
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].idade} onChange={handleSetIdade} />
-                  </div>
-                  <div className="flex flex-row space-x-5">
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].data_nasc} onChange={handleSetDataNasc} />
-                    <Input placeholder={selectedFuncionarioDataFiltered[0].cargo} onChange={handleSetCargo} />
-                  </div>
-                  <div className="self-end">
-                    <Button
-                      value="Editar funcionario"
-                      onClick={() => {
-                        handleSubmit();
-                      }}
-                    />
-                  </div>
-                </div>
+              <div className="flex flex-row space-x-5">
+                <Input
+                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].email}
+                  onChange={handleSetEmail}
+                />
+                <Input
+                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].cpf}
+                  onChange={handleSetCpf}
+                />
               </div>
-            </>
-          )}
+              <div className="flex flex-row space-x-5">
+                <Input
+                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].senha}
+                  onChange={handleSetSenha}
+                />
+                <Input
+                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].idade}
+                  onChange={handleSetIdade}
+                />
+              </div>
+              <div className="flex flex-row space-x-5">
+                <Input
+                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].data_nasc}
+                  onChange={handleSetDataNasc}
+                />
+                <Input
+                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].cargo}
+                  onChange={handleSetCargo}
+                />
+              </div>
+              <div className="self-end">
+                <Button
+                  value="Editar funcionario"
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
