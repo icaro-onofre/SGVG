@@ -38,7 +38,16 @@ export default function TableCliente(props) {
           </TableHead>
           <TableBody>
             {clientes.map((dados) => (
-              <TableRow key={dados.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow
+                key={dados.name}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  '&:hover': {
+                    color: 'gray',
+                    backgroundColor: 'lightblue',
+                  },
+                }}
+              >
                 <TableCell align="right">{dados._id}</TableCell>
                 <TableCell align="right">{dados.nome}</TableCell>
                 <TableCell align="right">{dados.email}</TableCell>

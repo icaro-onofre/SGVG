@@ -24,6 +24,7 @@ export default function Input(props) {
         type={props.type}
         className="block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
         placeholder={props.placeholder}
+        onChange={props.onChange}
       />
       {props.rightIcon ? (
         <i className={`ri-${props.rightIcon} absolute inset-y-0 right-0 pr-3 flex items-center text-black/[.6]`}></i>

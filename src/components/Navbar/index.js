@@ -29,11 +29,11 @@ export default function Navbar(props) {
               </div>
 
               <div className="p-4">
-                <NavLink icon="group" category="Funcionários" route="funcionarios" />
-                <NavLink icon="group" category="Clientes" route="clientes" />
-                <NavLink icon="car" category="Veículos" route="veiculos" />
-                <NavLink icon="parking-box" category="Vagas" route="vagas" />
-                <NavLink icon="remote-control" category="Sensores" route="sensores" />
+                <NavLink icon="group" category="Funcionários" route="funcionario" />
+                <NavLink icon="group" category="Clientes" route="cliente" />
+                <NavLink icon="car" category="Veículos" route="veiculo" />
+                <NavLink icon="parking-box" category="Vagas" route="vaga" />
+                <NavLink icon="remote-control" category="Sensores" route="sensore" />
               </div>
             </div>
           </div>

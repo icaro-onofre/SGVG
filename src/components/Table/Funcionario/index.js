@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
-import { useAtom, atom } from 'jotai';
 import axiosInstance from 'services/axios.js';
+import { useAtom, atom } from 'jotai';
+import { colapsedFuncionario } from 'store.js';
+import { funcionarioId } from 'store.js';
+import { funcionario } from 'store.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,12 +12,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const funcionario = atom([]);
 export default function TableFuncionario(props) {
   const getFuncionario = () => {
     axiosInstance
-      .get('/funcionario')
-      .then((res) => setFuncionario(res.data))
+      .get('/funcionario/')
+      .then((res) => setFuncionarios(res.data))
       .catch((err) => console.log(err));
   };
 
@@ -22,8 +24,16 @@ export default function TableFuncionario(props) {
     getFuncionario();
   }, []);
 
-  const [funcionarios, setFuncionario] = useAtom(funcionario);
+  const [funcionarios, setFuncionarios] = useAtom(funcionario);
+  const [selectedFuncionarioId, setSelectedFuncionarioId] = useAtom(funcionarioId);
+  const [foldFuncioario, setFoldFuncioario] = useAtom(colapsedFuncionario);
 
+  // Handler para abrir o modal
+  const handleSetFoldFuncioario = (_id) => {
+    setFoldFuncioario(!foldFuncioario);
+  };
+
+    console.log(funcionarios);
   return (
     <>
       <TableContainer component={Paper}>
@@ -32,6 +42,8 @@ export default function TableFuncionario(props) {
             <TableRow>
               <TableCell align="right">ID</TableCell>
               <TableCell align="right">Nome</TableCell>
+              <TableCell align="right">Telefone</TableCell>
+              <TableCell align="right">Email</TableCell>
               <TableCell align="right">CPF</TableCell>
               <TableCell align="right">Senha</TableCell>
               <TableCell align="right">Idade</TableCell>
@@ -41,11 +53,28 @@ export default function TableFuncionario(props) {
           </TableHead>
           <TableBody>
             {funcionarios.map((dados) => (
-              <TableRow key={dados.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="right">{dados._id}</TableCell>
+              <TableRow
+                onClick={() => {
+                  handleSetFoldFuncioario(dados.id);
+                  setSelectedFuncionarioId(dados.id);
+                }}
+                key={dados.id}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  '&:hover': {
+                    color: 'gray',
+                    backgroundColor: 'lightblue',
+                  },
+                }}
+              >
+                <TableCell align="right">{dados.id}</TableCell>
                 <TableCell align="right">{dados.nome}</TableCell>
+                <TableCell align="right">{dados.telefone}</TableCell>
+                <TableCell align="right">{dados.email}</TableCell>
                 <TableCell align="right">{dados.cpf}</TableCell>
-                <TableCell align="right" sx={{ maxWidth: 50,overflow:'hidden' }}>{dados.senha}</TableCell>
+                <TableCell align="right" sx={{ maxWidth: 50, overflow: 'hidden' }}>
+                  {dados.senha}
+                </TableCell>
                 <TableCell align="right">{dados.idade}</TableCell>
                 <TableCell align="right">{dados.data_nasc}</TableCell>
                 <TableCell align="right">{dados.cargo}</TableCell>
