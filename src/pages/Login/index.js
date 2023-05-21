@@ -32,40 +32,59 @@ export default function Login() {
   return (
     <div>
       {' '}
-      <main className="mx-auto flex min-h-screen w-full items-center justify-center bg-white text-green">
+      <main className="mx-auto flex min-h-screen w-full items-center justify-center bg-white text-jade">
         {/*fundo branco e cor do texto verde escuro*/}
         <form onSubmit={handleSubmit} className="flex w-[30rem] flex-col space-y-10">
           {' '}
           {/*seção de login*/}
-          <img className="mx-auto h-40 w-auto" src="login.png" /> {/*logo do aplicativo escrito login e alinhado*/}
-          <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-green">
-            {/*caixa de texto, campo de login/ mais efeito mudando de cor quando clicar no campo*/}
+          <img className="mx-auto h-40 w-auto" src="logo.jpg" /> {/*logo do aplicativo escrito login e alinhado*/}
+          <div class="relative mb-3" data-te-input-wrapper-init>
             <input
               type="text"
-              placeholder="Nome de Usuário"
-              className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
-              onChange={handleSetNome}
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="Usuário"
+              placeholder="Usuário"
             />
+            <label
+              for="Usuário"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+            >
+              <i class="ri-user-line"></i>Usuário
+            </label>
           </div>
-          <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-green">
-            {/*caixa de texto, campo de senha/ mais efeito mudando de cor quando clica no campo*/}
+          <div class="relative mb-3" data-te-input-wrapper-init>
             <input
               type="password"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="Senha"
               placeholder="Senha"
-              className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
-              onChange={handleSetSenha}
             />
+            <label
+              for="Senha"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+            >
+              <i class="ri-lock-fill"></i> Senha
+            </label>
           </div>
           <button
-            className="transform rounded-sm bg-green py-2 font-bold duration-300 hover:bg-green text-white text-center"
+            className="transform rounded-sm bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
             type="submit"
           >
-            Conecte-se
+            <i class="ri-login-box-line"></i> Entrar
           </button>
+          <div class="w-full text-center mx-auto">
+            <a className="transform text-center font-semibold text-gray-500 duration-300 hover:text-dark_green">
+              ESQUECEU A SENHA?
+            </a>
+
+            <button
+              class="border border-jade bg-jade text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-dark_green focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Cadastrar
+            </button>
+          </div>
           {/*botão de login*/}
-          <a className="transform text-center font-semibold text-gray-500 duration-300 hover:text-green">
-            ESQUECEU A SENHA?
-          </a>
           {/*link para cadastro não definido ainda*/}
         </form>
       </main>
