@@ -23,7 +23,7 @@ export default function Login() {
     e.preventDefault();
     try {
       signIn(nome, senha);
-      navigate('/vagas');
+      navigate('/');
     } catch (error) {
       console.log(error);
     }

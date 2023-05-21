@@ -5,6 +5,10 @@ import { useAtom } from 'jotai';
 import { colapsedFuncionario } from 'store.js';
 import { funcionarioId } from 'store.js';
 import { funcionarioDataFiltered } from 'store.js';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Input from 'components/Input';
 import Button from 'components/Button';
 
@@ -29,51 +33,18 @@ export default function ModalFuncionario(props) {
     setFoldFuncionario(!foldFuncionario);
   };
 
-  //Handlers
-
-  const handleSetNome = (e) => {
-    e.preventDefault();
-    setNome(e.target.value);
-  };
-  const handleSetEmail = (e) => {
-    e.preventDefault();
-    setNome(e.target.value);
-  };
-  const handleSetTelefone = (e) => {
-    e.preventDefault();
-    setTelefone(e.target.value);
-  };
-  const handleSetCpf = (e) => {
-    e.preventDefault();
-    setCpf(e.target.value);
-  };
-  const handleSetSenha = (e) => {
-    e.preventDefault();
-    setSenha(e.target.value);
-  };
-  const handleSetIdade = (e) => {
-    e.preventDefault();
-    setIdade(e.target.value);
-  };
-  const handleSetDataNasc = (e) => {
-    e.preventDefault();
-    setDataNasc(e.target.value);
-  };
-  const handleSetCargo = (e) => {
-    e.preventDefault();
-    setCargo(e.target.value);
-  };
-
   const handleSubmit = () => {
     axiosInstance
       .post('/funcionario/update', {
         nome: nome,
         telefone: telefone,
         id: selectedFuncionarioId,
+        email: email,
         cargo: cargo,
         cpf: cpf,
         data_nasc: datanasc,
-        idade: idade,
+        idade: null,
+        senha: null,
         root: null,
       })
       .catch((err) => console.log(err));
@@ -109,46 +80,44 @@ export default function ModalFuncionario(props) {
         <div className=" absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
           <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldFuncionario} />
           <div className="flex flex-col items-center justify-center w-1/2 bg-white rounded-xl z-20 pt-5 pb-5">
-            <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Editar funcionario</h1>
+            <h1 className="text-2xl font-bold ml-5 mt-1 self-start">{loading ? <Skeleton /> : 'Editar funcionario'}</h1>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex flex-row space-x-5">
                 <Input
-                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].nome}
-                  onChange={handleSetNome}
+                  placeholder="Nome"
+                  onChange={(e) => setNome(e.target.value)}
                 />
                 <Input
-                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].telefone}
-                  onChange={handleSetTelefone}
-                />
-              </div>
-              <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].email}
-                  onChange={handleSetEmail}
-                />
-                <Input
-                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].cpf}
-                  onChange={handleSetCpf}
+                  placeholder="Telefone"
+                  onChange={(e) => setTelefone(e.target.value)}
                 />
               </div>
               <div className="flex flex-row space-x-5">
                 <Input
-                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].senha}
-                  onChange={handleSetSenha}
+                  placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <Input
-                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].idade}
-                  onChange={handleSetIdade}
+                  placeholder="CPF"
+                  onChange={(e) => setCpf(e.target.value)}
                 />
               </div>
               <div className="flex flex-row space-x-5">
+                <Input placeholder="Senha"/>
+              </div>
+              <div className="flex flex-row space-x-5">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={['DatePicker']}>
+                    <DatePicker
+                      label="Data de nascimento"
+                      onChange={(e) => setDataNasc(e)}
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
+
                 <Input
-                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].data_nasc}
-                  onChange={handleSetDataNasc}
-                />
-                <Input
-                  placeholder={loading ? <Skeleton /> : selectedFuncionarioDataFiltered[0].cargo}
-                  onChange={handleSetCargo}
+                  placeholder={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].cargo}
+                  onChange={(e) => setCargo(e.target.value)}
                 />
               </div>
               <div className="self-end">

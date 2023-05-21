@@ -3,7 +3,8 @@ import Header from 'components/Header';
 import Navbar from 'components/Navbar';
 import Table from 'components/Table/Funcionario/';
 import Button from 'components/Button';
-import ModalFuncionario from 'components/Modal/ModalFuncionario';
+import ModalFuncionarioAlterar from 'components/Modal/ModalFuncionario/Alterar';
+import ModalFuncionarioAdicionar from 'components/Modal/ModalFuncionario/Adicionar';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
 import { colapsedFuncionario } from 'store.js';
@@ -17,7 +18,7 @@ export default function Funcionario() {
           <div></div>
         ) : (
           <div>
-            <ModalFuncionario />
+            <ModalFuncionarioAlterar />
           </div>
         )}
         <Header />
