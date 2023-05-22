@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axiosInstance from 'services/axios.js';
 import { useAtom, atom } from 'jotai';
-import { colapsedFuncionario } from 'store.js';
+import { colapsedFuncionarioAlterar } from 'store.js';
 import { funcionarioId } from 'store.js';
 import { funcionario } from 'store.js';
 import Table from '@mui/material/Table';
@@ -26,18 +26,18 @@ export default function TableFuncionario(props) {
 
   const [funcionarios, setFuncionarios] = useAtom(funcionario);
   const [selectedFuncionarioId, setSelectedFuncionarioId] = useAtom(funcionarioId);
-  const [foldFuncioario, setFoldFuncioario] = useAtom(colapsedFuncionario);
+  const [foldFuncioarioAlterar, setFoldFuncionarioAlterar] = useAtom(colapsedFuncionarioAlterar);
 
   // Handler para abrir o modal
   const handleSetFoldFuncioario = (_id) => {
-    setFoldFuncioario(!foldFuncioario);
+    setFoldFuncionarioAlterar(!foldFuncioarioAlterar);
   };
 
     console.log(funcionarios);
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <TableContainer component={Paper} style={{maxHeight:500}}>
+        <Table stickyHeader sx={{ minWidth: 750 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
               <TableCell align="right">ID</TableCell>

@@ -2,7 +2,7 @@ import React, { useState, Component, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { colapsedFuncionario } from 'store.js';
+import { colapsedFuncionarioAlterar } from 'store.js';
 import { funcionarioId } from 'store.js';
 import { funcionarioDataFiltered } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -13,7 +13,7 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 
 export default function ModalFuncionario(props) {
-  const [foldFuncionario, setFoldFuncionario] = useAtom(colapsedFuncionario);
+  const [foldFuncionarioAlterar, setFoldFuncionarioAlterar] = useAtom(colapsedFuncionarioAlterar);
   const [selectedFuncionarioId, setSelectedFuncionarioId] = useAtom(funcionarioId);
   const [selectedFuncionarioDataFiltered, setSelectedFuncionarioDataFiltered] = useAtom(funcionarioDataFiltered);
 
@@ -30,7 +30,7 @@ export default function ModalFuncionario(props) {
   const [funcionarios, setFuncionarios] = useState([]);
 
   const handleSetFoldFuncionario = () => {
-    setFoldFuncionario(!foldFuncionario);
+    setFoldFuncionarioAlterar(!foldFuncionarioAlterar);
   };
 
   const handleSubmit = () => {
@@ -49,7 +49,7 @@ export default function ModalFuncionario(props) {
       })
       .catch((err) => console.log(err));
     setSelectedFuncionarioDataFiltered([]);
-    setFoldFuncionario(!foldFuncionario);
+    setFoldFuncionarioAlterar(!foldFuncionarioAlterar);
   };
 
   useEffect(() => {
@@ -67,16 +67,14 @@ export default function ModalFuncionario(props) {
       })
       .then((res) => {
         setSelectedFuncionarioDataFiltered(res.data);
-        console.log(Date() - Date(selectedFuncionarioDataFiltered[0].data_nasc));
-
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [foldFuncionario]);
+  }, [foldFuncionarioAlterar]);
 
   return (
-    <div className={' inset-0' + foldFuncionario ? 'bg-opacity-40' : ''}>
-      {!foldFuncionario ? (
+    <div className={' inset-0' + foldFuncionarioAlterar ? 'bg-opacity-40' : ''}>
+      {!foldFuncionarioAlterar ? (
         <div></div>
       ) : (
         <div className=" absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
