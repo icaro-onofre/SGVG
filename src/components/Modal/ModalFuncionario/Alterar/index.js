@@ -33,7 +33,19 @@ export default function ModalFuncionario(props) {
     setFoldFuncionarioAlterar(!foldFuncionarioAlterar);
   };
 
+  const handleDelete = () => {
+    axiosInstance
+      .post('/funcionario/delete', {
+        id: selectedFuncionarioId,
+      })
+      .catch((err) => console.log(err));
+    setSelectedFuncionarioDataFiltered([]);
+    setFoldFuncionarioAlterar(!foldFuncionarioAlterar);
+  };
   const handleSubmit = () => {
+    if (!datanasc == null) {
+      datanasc = datanasc.toISOString();
+    }
     axiosInstance
       .post('/funcionario/update', {
         nome: nome,
@@ -122,7 +134,14 @@ export default function ModalFuncionario(props) {
                 />
               </div>
 
-              <div className="self-end">
+              <div className="space-x-44">
+                <Button
+                  value="Deletar"
+                  onClick={() => {
+                    handleDelete();
+                  }}
+                />
+
                 <Button
                   value="Editar funcionario"
                   onClick={() => {
