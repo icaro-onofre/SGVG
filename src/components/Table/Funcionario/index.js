@@ -46,7 +46,6 @@ export default function TableFuncionario(props) {
               <TableCell align="right">Email</TableCell>
               <TableCell align="right">CPF</TableCell>
               <TableCell align="right">Senha</TableCell>
-              <TableCell align="right">Idade</TableCell>
               <TableCell align="right">Data Nasc</TableCell>
               <TableCell align="right">Cargo</TableCell>
             </TableRow>
@@ -75,7 +74,6 @@ export default function TableFuncionario(props) {
                 <TableCell align="right" sx={{ maxWidth: 50, overflow: 'hidden' }}>
                   {dados.senha}
                 </TableCell>
-                <TableCell align="right">{dados.idade}</TableCell>
                 <TableCell align="right">{dados.data_nasc}</TableCell>
                 <TableCell align="right">{dados.cargo}</TableCell>
               </TableRow>

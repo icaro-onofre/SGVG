@@ -25,7 +25,6 @@ export default function ModalFuncionario(props) {
   const [cargo, setCargo] = useState(null);
   const [cpf, setCpf] = useState(null);
   const [datanasc, setDataNasc] = useState(null);
-  const [idade, setIdade] = useState(null);
 
   const [funcionarios, setFuncionarios] = useState([]);
 

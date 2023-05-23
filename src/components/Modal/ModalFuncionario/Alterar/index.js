@@ -24,7 +24,6 @@ export default function ModalFuncionario(props) {
   const [cargo, setCargo] = useState(null);
   const [cpf, setCpf] = useState(null);
   const [datanasc, setDataNasc] = useState(null);
-  const [idade, setIdade] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const [funcionarios, setFuncionarios] = useState([]);
@@ -55,7 +54,6 @@ export default function ModalFuncionario(props) {
         cargo: cargo,
         cpf: cpf,
         data_nasc: datanasc,
-        idade: null,
         senha: null,
         root: null,
       })
@@ -71,7 +69,6 @@ export default function ModalFuncionario(props) {
         cargo: null,
         cpf: null,
         data_nasc: null,
-        idade: null,
         nome: null,
         telefone: null,
         email: null,
@@ -116,7 +113,6 @@ export default function ModalFuncionario(props) {
               </div>
               <div className="flex flex-row space-x-5">
                 <Input placeholder={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].senha} />
-                <Input placeholder={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].idade} />
               </div>
               <div className="flex flex-row space-x-5">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
