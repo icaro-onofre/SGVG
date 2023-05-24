@@ -45,7 +45,6 @@ export default function ModalFuncionario(props) {
         root: false,
       })
       .catch((err) => console.log(err));
-    console.log(cargo);
     setFoldFuncionarioAdicionar(!foldFuncionarioAdicionar);
   };
 

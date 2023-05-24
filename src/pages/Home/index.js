@@ -24,25 +24,19 @@ export default function Home() {
 
   useEffect(() => {
     getVagas();
-  }, []);
+  }, [vagas]);
 
   return (
     <div className="overflow-hidden h-screen">
       <Navbar />
       <Header />
-      <ModalVaga vagaNome="A3" status="Livre"/>
+      <ModalVaga vagaNome="A3" status="Livre" />
 
       <p className="mx-32 my-5 font-bold">STATUS DAS VAGAS</p>
       <div className="grid grid-cols-12 ">
         <div className="flex flex-row flex-wrap col-start-2  col-end-12 h-screen">
           {vagas.map((key, vaga) => {
-            return (
-              <VagaCard
-                key={key}
-                nome={vagas[vaga].setor}
-                vaga_ocupada={vagas[vaga].vaga_ocupada}
-              />
-            );
+            return <VagaCard key={key} nome={vagas[vaga].nome} vaga_ocupada={vagas[vaga].vaga_ocupada} />;
           })}
         </div>
       </div>

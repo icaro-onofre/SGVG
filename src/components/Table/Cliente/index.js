@@ -48,7 +48,7 @@ export default function TableCliente(props) {
                   },
                 }}
               >
-                <TableCell align="right">{dados._id}</TableCell>
+                <TableCell align="right">{dados.id}</TableCell>
                 <TableCell align="right">{dados.nome}</TableCell>
                 <TableCell align="right">{dados.email}</TableCell>
                 <TableCell align="right">{dados.telefone}</TableCell>

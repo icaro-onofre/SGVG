@@ -7,8 +7,7 @@ import ModalFuncionarioAlterar from 'components/Modal/ModalFuncionario/Alterar';
 import ModalFuncionarioAdicionar from 'components/Modal/ModalFuncionario/Adicionar';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { colapsedFuncionarioAdicionar } from 'store.js';
-import { colapsedFuncionarioAlterar } from 'store.js';
+import { colapsedFuncionarioAdicionar, colapsedFuncionarioAlterar } from 'store.js';
 
 export default function Funcionario() {
   const [foldFuncionarioAlterar, setFoldFuncionarioAlterar] = useAtom(colapsedFuncionarioAlterar);
@@ -37,7 +36,12 @@ export default function Funcionario() {
         <h1 className="text-2xl text-black font-bold mb-8">Funcionários</h1>
         <Table />
         <div className="self-end mt-5">
-          <Button value="Novo funcionário" onClick={()=>{setFoldFuncionarioAdicionar(!foldFuncionarioAdicionar)}}/>
+          <Button
+            value="Novo funcionário"
+            onClick={() => {
+              setFoldFuncionarioAdicionar(!foldFuncionarioAdicionar);
+            }}
+          />
         </div>
       </div>
     </div>
