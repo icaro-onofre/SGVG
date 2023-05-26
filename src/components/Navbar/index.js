@@ -12,9 +12,9 @@ export default function Navbar(props) {
 
   return (
     <div>
-      <div className={`absolute opacity-25 bg-black h-full w-full ${!fold ? 'hidden' : ''}`} onClick={handleSetFold} />
+      <div className={`absolute z-40 opacity-40 bg-black h-full w-full ${!fold ? 'hidden' : ''}`} onClick={handleSetFold} />
       <Slide left when={fold}>
-        <div className={`absolute z-10 h-full w-80 z-50 bg-white ${!fold ? 'hidden' : ''}`}>
+        <div className={`absolute z-50 h-full w-80 bg-white ${!fold ? 'hidden' : ''}`}>
           <div className="relative w-full">
             <i
               className="absolute ri-arrow-left-s-line ri-lg top-3 right-3 p-2 cursor-pointer"
@@ -22,7 +22,7 @@ export default function Navbar(props) {
             ></i>
           </div>
           <div className="divide-jade/[0.2] divide-y divide-solid">
-            <div className="flex items-center gap-4 p-6">
+            <div className="flex items-center gap-4 px-6 mt-6">
               <AvatarIcon image={props.image} />
 
               <div>
@@ -30,8 +30,11 @@ export default function Navbar(props) {
                 <span className="font-body text-xs">{props.email}</span>
               </div>
             </div>
+            <div className='px-4 mt-6'>
+              <NavLink icon="home-3" category="Página Inicial" route="" line />
+            </div>
 
-            <div className="p-4">
+            <div className="px-4">
               <NavLink icon="group" category="Funcionários" route="funcionario" line />
               <NavLink icon="group" category="Clientes" route="cliente" line />
               <NavLink icon="car" category="Veículos" route="veiculo" line />
