@@ -13,6 +13,7 @@ import Funcionario from './pages/Funcionario';
 import Vaga from './pages/Vaga';
 import Veiculo from './pages/Veiculo';
 import Cliente from './pages/Cliente';
+import Recuperacao from './pages/Recuperacao';
 
 let token = JSON.parse(localStorage.getItem('token'));
 
@@ -36,6 +37,7 @@ export default function Router() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
+<<<<<<< HEAD
         <Route
           path="/"
           element={
@@ -46,6 +48,10 @@ export default function Router() {
             </RouteGuard>
           }
         />
+=======
+        <Route path="/recuperacao" element={<Recuperacao />} />
+        <Route path="/" element={<Home />} />
+>>>>>>> fix-ui
         <Route
           path="/funcionario"
           element={
