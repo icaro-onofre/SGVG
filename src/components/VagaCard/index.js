@@ -1,12 +1,14 @@
+
 import React, { useState } from 'react';
 import { useAtom } from 'jotai';
-import { colapsedVaga } from 'store.js';
+import { colapsed } from 'store.js';
 
 export default function VagaCard(props) {
   let estilo = '';
 
-  const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
+  const [foldVaga, setFoldVaga] = useAtom(colapsed);
   const handleSetFoldVaga = () => setFoldVaga(!foldVaga);
+
 
   switch (props.vaga_ocupada) {
     case 'ocupada':
@@ -25,6 +27,7 @@ export default function VagaCard(props) {
       estilo = ' bg-orange  h-16  w-16  rounded-lg m-4';
       break;
   }
+  
   return (
     <div className={estilo} onClick={() => handleSetFoldVaga}>
       <div className={'flex items-center justify-center m-5 text-center text-white'}>{props.nome}</div>
