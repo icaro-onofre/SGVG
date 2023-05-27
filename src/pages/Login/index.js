@@ -53,7 +53,10 @@ export default function Login() {
             <i class="ri-login-box-line"></i> Entrar
           </button>
           <div class="w-full text-center mx-auto">
-            <a href="/login" className="transform text-center font-semibold text-gray-500 duration-300 hover:text-dark_green">
+            <a
+              href="http://localhost:3000/Recuperacao"
+              className="transform text-center font-semibold text-gray-500 duration-300 hover:text-dark_green"
+            >
               ESQUECEU A SENHA?
             </a>
 
