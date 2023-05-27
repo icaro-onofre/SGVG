@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Header from 'components/Header';
-import Navbar from 'components/Navbar';
 import VagaCard from 'components/VagaCard';
 import ModalVaga from 'components/Modal/ModalVaga/';
 import Legenda from 'components/VagaCard/Legenda';
@@ -27,10 +25,8 @@ export default function Home() {
   }, [vagas]);
 
   return (
-    <div className="overflow-hidden h-screen">
-      <Navbar />
-      <Header />
-      <ModalVaga vagaNome="A3" status="Livre" />
+    <div className="overflow-hidden h-screen pt-20">
+      <ModalVaga vagaNome="A3" status="Livre"/>
 
       <p className="mx-32 my-5 font-bold">STATUS DAS VAGAS</p>
       <div className="grid grid-cols-12 ">

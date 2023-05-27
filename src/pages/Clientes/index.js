@@ -8,7 +8,7 @@ import axiosInstance from 'services/axios';
 export default function Cliente() {
 
   return (
-    <div className="overflow-hidden h-screen  grid grid-cols-12">
+    <div className="overflow-hidden h-screen  grid grid-cols-12 pt-20">
       <div className="col-start-1 col-end-13">
         <Header />
         <Navbar />

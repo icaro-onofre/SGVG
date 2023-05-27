@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Header from 'components/Header';
-import Navbar from 'components/Navbar';
 import Table from 'components/Table/Vaga/';
 import Button from 'components/Button';
 import ModalVagaAlterar from 'components/Modal/ModalVaga/Alterar/';
