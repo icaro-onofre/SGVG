@@ -38,42 +38,29 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="flex w-[30rem] flex-col space-y-10">
           {' '}
           {/*seção de login*/}
-          <img className="mx-auto h-40 w-auto" src="logo.jpg" /> {/*logo do aplicativo escrito login e alinhado*/}
+          <img className="mx-auto h-40 w-auto" src="logo.jpg" alt="Logo" />{' '}
+          {/*logo do aplicativo escrito login e alinhado*/}
           <div className="relative">
-            <input
-              id="user"
-              type="user"
-              class="ri-user-line"
-              className="'ri-user-line' block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
-              onChange={Input.onChange}
-              placeholder="Usuário"
-            />
+            <Input icon="user-line" type="text" placeholder="Usuário" />
           </div>
           <div class="relative mb-3" data-te-input-wrapper-init>
-            <input
-              id="senha"
-              type="password"
-              className="block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
-              placeholder="Senha"
-              onChange={Input.onChange}
-            />
+            <Input icon="lock-line" type="password" placeholder="Senha" password/>
           </div>
           <button
-            className="transform rounded-sm bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
+            className="transform rounded bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
             type="submit"
           >
             <i class="ri-login-box-line"></i> Entrar
           </button>
           <div class="w-full text-center mx-auto">
-            <a className="transform text-center font-semibold text-gray-500 duration-300 hover:text-dark_green">
+            <a href="/login" className="transform text-center font-semibold text-gray-500 duration-300 hover:text-dark_green">
               ESQUECEU A SENHA?
             </a>
 
-            <a href="http://localhost:3000/Cadastro">
+            <a href="/cadastro">
               {' '}
               <button
                 class="border border-jade bg-jade text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-dark_green focus:outline-none focus:shadow-outline"
-                type="submit"
               >
                 Cadastrar
               </button>
