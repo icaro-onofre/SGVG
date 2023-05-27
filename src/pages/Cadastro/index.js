@@ -18,10 +18,9 @@ export default function Cadastro() {
             <span class="w-1/2">
               {/*caixa de texto, / mais efeito mudando de cor quando clicar no campo*/}
               <div className="relative">
-                <input
+                <Input
                   id="name"
                   type="text"
-                  class="ri-user-line"
                   className="'ri-user-line' block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
                   onChange={Input.onChange}
                   placeholder="Nome Completo"
@@ -30,10 +29,9 @@ export default function Cadastro() {
             </span>
             <span class="w-2/2">
               <div className="relative">
-                <input
+                <Input
                   id="user"
                   type="user"
-                  class="ri-user-line"
                   className="'ri-user-line' block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
                   onChange={Input.onChange}
                   placeholder="Nome de Usuário"
@@ -44,13 +42,13 @@ export default function Cadastro() {
           <div class="flex justify-between gap-3">
             {/*caixa de texto, / mais efeito mudando de cor quando clicar no campo*/}
             <span class="w-1/2">
-              <input
+              <Input
                 id="cpf"
                 type="text"
                 required="required"
                 name="cpf"
                 pattern="[0-9]+$"
-                placeholder="CPF:___.___.___-__"
+                placeholder="CPF"
                 autocomplete="cpf"
                 class="block w-full p-3 mt-2 text-gray-700 appearance-none focus:shadow-inner  focus:outline-none block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
                 onChange={Input.onChange}
@@ -58,7 +56,7 @@ export default function Cadastro() {
             </span>
             <span class="w-2/2">
               <div className="relative">
-                <input
+                <Input
                   id="password"
                   type="password"
                   class="block w-full p-3 mt-2 text-gray-700 appearance-none focus:shadow-inner  focus:outline-none block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
@@ -71,12 +69,12 @@ export default function Cadastro() {
           <div class="flex justify-between gap-3">
             {/*caixa de texto, / mais efeito mudando de cor quando clicar no campo*/}
             <span class="w-1/2">
-              <input
+              <Input
                 id="email"
                 type="email"
                 required="required"
                 name="email"
-                placeholder="E-mail@companhia.com"
+                placeholder="E-mail"
                 autocomplete="email"
                 class="block w-full p-3 mt-2 text-gray-700 appearance-none focus:shadow-inner  focus:outline-none block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
                 onChange={Input.onChange}
@@ -84,7 +82,7 @@ export default function Cadastro() {
             </span>
             <span class="w-2/2">
               <div className="relative">
-                <input
+                <Input
                   id="password"
                   type="password"
                   class="block w-full p-3 mt-2 text-gray-700 appearance-none focus:shadow-inner  focus:outline-none block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
@@ -98,12 +96,12 @@ export default function Cadastro() {
             <span class="w-1/2">
               {/*caixa de texto, / mais efeito mudando de cor quando clicar no campo*/}
               <div className="relative">
-                <input
+                <Input
                   id="phone"
                   type="phone"
                   class="block w-full p-3 mt-2 text-gray-700 appearance-none focus:shadow-inner  focus:outline-none block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
                   onChange={Input.onChange}
-                  placeholder="Telefone: ( )_____-____"
+                  placeholder="Telefone"
                 />
               </div>{' '}
             </span>

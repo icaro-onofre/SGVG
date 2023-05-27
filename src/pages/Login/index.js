@@ -44,7 +44,7 @@ export default function Login() {
             <Input icon="user-line" type="text" placeholder="Usuário" />
           </div>
           <div class="relative mb-3" data-te-input-wrapper-init>
-            <Input icon="lock-line" type="password" placeholder="Senha" password/>
+            <Input icon="lock-line" type="password" placeholder="Senha" password />
           </div>
           <button
             className="transform rounded bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
@@ -54,7 +54,7 @@ export default function Login() {
           </button>
           <div class="w-full text-center mx-auto">
             <a
-              href="http://localhost:3000/Recuperacao"
+              href="/recuperacao"
               className="transform text-center font-semibold text-gray-500 duration-300 hover:text-dark_green"
             >
               ESQUECEU A SENHA?
@@ -62,9 +62,7 @@ export default function Login() {
 
             <a href="/cadastro">
               {' '}
-              <button
-                class="border border-jade bg-jade text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-dark_green focus:outline-none focus:shadow-outline"
-              >
+              <button class="border border-jade bg-jade text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-dark_green focus:outline-none focus:shadow-outline">
                 Cadastrar
               </button>
             </a>
