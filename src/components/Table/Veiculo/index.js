@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
-import { useAtom, atom } from 'jotai';
 import axiosInstance from 'services/axios.js';
+import { useAtom, atom } from 'jotai';
+import { colapsedVeiculoAlterar } from 'store.js';
+import { veiculoId, veiculo } from 'store.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,27 +11,35 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const veiculo = atom([]);
-export default function TableVaga(props) {
-  const getFuncionario = () => {
+export default function TableVeiculo(props) {
+  const getVeiculo = () => {
     axiosInstance
-      .get('/veiculo')
-      .then((res) => setFuncionario(res.data))
+      .get('/veiculo/')
+      .then((res) => setVeiculos(res.data))
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    getFuncionario();
+    getVeiculo();
   }, []);
 
-  const [veiculos, setFuncionario] = useAtom(veiculo);
+  const [veiculos, setVeiculos] = useAtom(veiculo);
+  const [selectedVeiculoId, setSelectedVeiculoId] = useAtom(veiculoId);
+  const [foldFuncioarioAlterar, setFoldVeiculoAlterar] = useAtom(colapsedVeiculoAlterar);
 
+  // Handler para abrir o modal
+  const handleSetFoldFuncioario = (_id) => {
+    setFoldVeiculoAlterar(!foldFuncioarioAlterar);
+  };
+
+  console.log(veiculos);
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <TableContainer component={Paper} style={{ maxHeight: 500 }}>
+        <Table stickyHeader sx={{ minWidth: 750 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
+              <TableCell align="right">CPF</TableCell>
               <TableCell align="right">Placa</TableCell>
               <TableCell align="right">Categoria</TableCell>
               <TableCell align="right">Cor</TableCell>
@@ -39,7 +49,11 @@ export default function TableVaga(props) {
           <TableBody>
             {veiculos.map((dados) => (
               <TableRow
-                key={dados.name}
+                onClick={() => {
+                  handleSetFoldFuncioario(dados.id);
+                  setSelectedVeiculoId(dados.id);
+                }}
+                key={dados.id}
                 sx={{
                   '&:last-child td, &:last-child th': { border: 0 },
                   '&:hover': {
@@ -48,7 +62,8 @@ export default function TableVaga(props) {
                   },
                 }}
               >
-                <TableCell align="right">{dados._id}</TableCell>
+                <TableCell align="right">{dados.cpf}</TableCell>
+                <TableCell align="right">{dados.placa}</TableCell>
                 <TableCell align="right">{dados.categoria}</TableCell>
                 <TableCell align="right">{dados.cor}</TableCell>
                 <TableCell align="right">{dados.modelo}</TableCell>

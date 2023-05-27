@@ -19,6 +19,17 @@ export const colapsedFuncionarioAlterar = atom(false);
 // Estado do modal do modal de funcionario adicionar
 export const colapsedFuncionarioAdicionar = atom(false);
 
+// Lista de funcionarios retornados do banco de dados
+export const veiculo = atom([]);
+// Estado do modal do modal de veiculo alterar
+export const colapsedVeiculoAlterar = atom(false);
+// Estado do modal do modal de veiculo adicionar
+export const colapsedVeiculoAdicionar = atom(false);
+// Id do veiculo selecionado
+export const veiculoId = atom(false);
+// Veiculo data filtered
+export const veiculoDataFiltered=atom([]);
+
 // Id do funcionario selecionado na tabela
 export const funcionarioId = atom('');
 
