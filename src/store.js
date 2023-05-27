@@ -47,3 +47,14 @@ export const colapsedClienteAdicionar = atom(false);
 export const cliente = atom([]);
 //Dados filtrados do cliente
 export const clienteDataFiltered = atom([]);
+
+// Id do ocupacao selecionado na tabela
+export const ocupacaoId = atom('');
+// Estado do modal do modal de ocupacao alterar
+export const colapsedOcupacaoAlterar = atom(false);
+// Estado do modal do modal de ocupacao adicionar
+export const colapsedOcupacaoAdicionar = atom(false);
+// Lista de ocupacaos retornados do banco de dados
+export const ocupacao = atom([]);
+//Dados filtrados do ocupacao
+export const ocupacaoDataFiltered = atom([]);

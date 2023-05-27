@@ -13,6 +13,7 @@ import Funcionario from './pages/Funcionario';
 import Vaga from './pages/Vaga';
 import Veiculo from './pages/Veiculo';
 import Cliente from './pages/Cliente';
+import Ocupacao from './pages/Ocupacao';
 import Recuperacao from './pages/Recuperacao';
 
 let token = JSON.parse(localStorage.getItem('token'));
@@ -93,10 +94,11 @@ export default function Router() {
             <RouteGuard token={hasJWT()}>
               <Navbar name={userName} email={userEmail} image={userImage} />
               <Header />
-              {/* Componente Agendamento */}
+              <Ocupacao/>
             </RouteGuard>
           }
         />
+
       </Routes>
     </BrowserRouter>
   );
