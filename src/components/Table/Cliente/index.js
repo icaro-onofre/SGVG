@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAtom, atom } from 'jotai';
+import { colapsedClienteAlterar, clienteId, cliente } from 'store.js';
 import axiosInstance from 'services/axios.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,20 +10,21 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const cliente = atom([]);
 export default function TableCliente(props) {
   const getFuncionario = () => {
     axiosInstance
       .get('/cliente')
-      .then((res) => setFuncionario(res.data))
+      .then((res) => setClientes(res.data))
       .catch((err) => console.log(err));
   };
+  const [clientes, setClientes] = useAtom(cliente);
+  const [selectedClienteId, setSelectedClienteId] = useAtom(clienteId);
+  const [foldClienteAlterar, setFoldClienteAlterar] = useAtom(colapsedClienteAlterar);
 
   useEffect(() => {
     getFuncionario();
   }, []);
 
-  const [clientes, setFuncionario] = useAtom(cliente);
 
   return (
     <>
@@ -30,7 +32,7 @@ export default function TableCliente(props) {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">ID</TableCell>
+              <TableCell align="right">CPF</TableCell>
               <TableCell align="right">Nome</TableCell>
               <TableCell align="right">E-mail</TableCell>
               <TableCell align="right">Telefone</TableCell>
@@ -40,6 +42,10 @@ export default function TableCliente(props) {
             {clientes.map((dados) => (
               <TableRow
                 key={dados.name}
+                onClick={() => {
+                  setFoldClienteAlterar(!foldClienteAlterar);
+                  setSelectedClienteId(dados.id);
+                }}
                 sx={{
                   '&:last-child td, &:last-child th': { border: 0 },
                   '&:hover': {
@@ -48,7 +54,7 @@ export default function TableCliente(props) {
                   },
                 }}
               >
-                <TableCell align="right">{dados.id}</TableCell>
+                <TableCell align="right">{dados.cpf}</TableCell>
                 <TableCell align="right">{dados.nome}</TableCell>
                 <TableCell align="right">{dados.email}</TableCell>
                 <TableCell align="right">{dados.telefone}</TableCell>

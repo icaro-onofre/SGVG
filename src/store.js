@@ -14,10 +14,6 @@ export const colapsedVagaAdicionar = atom(false);
 // Dados filtrados da vaga
 export const vagaDataFiltered = atom([]);
 
-// Estado do modal do modal de funcionario alterar
-export const colapsedFuncionarioAlterar = atom(false);
-// Estado do modal do modal de funcionario adicionar
-export const colapsedFuncionarioAdicionar = atom(false);
 
 // Lista de funcionarios retornados do banco de dados
 export const veiculo = atom([]);
@@ -32,8 +28,22 @@ export const veiculoDataFiltered=atom([]);
 
 // Id do funcionario selecionado na tabela
 export const funcionarioId = atom('');
-
+// Estado do modal do modal de funcionario alterar
+export const colapsedFuncionarioAlterar = atom(false);
+// Estado do modal do modal de funcionario adicionar
+export const colapsedFuncionarioAdicionar = atom(false);
 // Lista de funcionarios retornados do banco de dados
 export const funcionario = atom([]);
-
+//Dados filtrados do funcionario
 export const funcionarioDataFiltered = atom([]);
+
+// Id do cliente selecionado na tabela
+export const clienteId = atom('');
+// Estado do modal do modal de cliente alterar
+export const colapsedClienteAlterar = atom(false);
+// Estado do modal do modal de cliente adicionar
+export const colapsedClienteAdicionar = atom(false);
+// Lista de clientes retornados do banco de dados
+export const cliente = atom([]);
+//Dados filtrados do cliente
+export const clienteDataFiltered = atom([]);

@@ -37,7 +37,6 @@ export default function Router() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
-<<<<<<< HEAD
         <Route
           path="/"
           element={
@@ -48,10 +47,6 @@ export default function Router() {
             </RouteGuard>
           }
         />
-=======
-        <Route path="/recuperacao" element={<Recuperacao />} />
-        <Route path="/" element={<Home />} />
->>>>>>> fix-ui
         <Route
           path="/funcionario"
           element={

@@ -10,6 +10,7 @@ import { colapsedFuncionarioAdicionar, colapsedFuncionarioAlterar } from 'store.
 export default function Funcionario() {
   const [foldFuncionarioAlterar, setFoldFuncionarioAlterar] = useAtom(colapsedFuncionarioAlterar);
   const [foldFuncionarioAdicionar, setFoldFuncionarioAdicionar] = useAtom(colapsedFuncionarioAdicionar);
+
   return (
     <div className="overflow-hidden h-screen  grid grid-cols-12 pt-20">
       <div className="">
