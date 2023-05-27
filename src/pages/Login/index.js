@@ -1,7 +1,8 @@
 import signIn from 'services/funcionario';
 import { useNavigate } from 'react-router-dom';
-
+import Input from 'components/Input';
 import React, { useState } from 'react';
+import Icon from 'components/Atoms/Icon';
 
 export default function Login() {
   const [nome, setNome] = useState('');
@@ -38,33 +39,24 @@ export default function Login() {
           {' '}
           {/*seção de login*/}
           <img className="mx-auto h-40 w-auto" src="logo.jpg" /> {/*logo do aplicativo escrito login e alinhado*/}
-          <div class="relative mb-3" data-te-input-wrapper-init>
+          <div className="relative">
             <input
-              type="text"
-              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              id="Usuário"
+              id="user"
+              type="user"
+              class="ri-user-line"
+              className="'ri-user-line' block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
+              onChange={Input.onChange}
               placeholder="Usuário"
             />
-            <label
-              for="Usuário"
-              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-            >
-              <i class="ri-user-line"></i>Usuário
-            </label>
           </div>
           <div class="relative mb-3" data-te-input-wrapper-init>
             <input
+              id="senha"
               type="password"
-              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              id="Senha"
+              className="block w-full rounded-xl px-9 py-4 leading-none font-body text-sm bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none"
               placeholder="Senha"
+              onChange={Input.onChange}
             />
-            <label
-              for="Senha"
-              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-            >
-              <i class="ri-lock-fill"></i> Senha
-            </label>
           </div>
           <button
             className="transform rounded-sm bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
@@ -77,12 +69,15 @@ export default function Login() {
               ESQUECEU A SENHA?
             </a>
 
-            <button
-              class="border border-jade bg-jade text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-dark_green focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Cadastrar
-            </button>
+            <a href="http://localhost:3000/Cadastro">
+              {' '}
+              <button
+                class="border border-jade bg-jade text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-dark_green focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Cadastrar
+              </button>
+            </a>
           </div>
           {/*botão de login*/}
           {/*link para cadastro não definido ainda*/}
