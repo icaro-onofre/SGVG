@@ -31,6 +31,7 @@ export default function Input(props) {
       )}
       <input
         id={props.placeholder}
+        name={props.placeholder}
         type={props.password ? (hidden ? 'password' : 'text') : props.type}
         className="block w-full rounded-lg px-9 py-4 leading-none font-body text bg-jade/[.15] focus:bg-white text-black/[.6]focus:text-black  focus:ring-solid focus:ring-4 focus:ring-jade ring-inset ease-in duration-100 focus:outline-none peer"
         onChange={props.onChange}
@@ -38,7 +39,7 @@ export default function Input(props) {
       />
       <label
         className="absolute left-0 -top-3 scale-75 px-3 rounded-lg bg-jade text-white duration-300 peer-focus:bg-white peer-focus:text-jade peer-focus:left-2 peer-placeholder-shown:top-3 peer-placeholder-shown:scale-100 peer-placeholder-shown:left-2 peer-placeholder-shown:bg-jade/[0] peer-placeholder-shown:text-jade"
-        for={props.placeholder}
+        htmlFor={props.placeholder}
       >
         {props.icon ? <i className={`ri-${props.icon} mr-1`}></i> : ''}
         {props.placeholder}
