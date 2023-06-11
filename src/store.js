@@ -13,6 +13,10 @@ export const colapsedVagaAlterar = atom(false);
 export const colapsedVagaAdicionar = atom(false);
 // Dados filtrados da vaga
 export const vagaDataFiltered = atom([]);
+// Vagas retornadas
+export const vagaData = atom([]);
+
+export const vagaIdHome = atom('');
 
 
 // Lista de funcionarios retornados do banco de dados

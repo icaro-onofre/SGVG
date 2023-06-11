@@ -3,6 +3,9 @@ import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
 import { ocupacaoDataFiltered, colapsedOcupacaoAlterar, ocupacaoId } from 'store.js';
 import Input from 'components/Input';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Button from 'components/Button';
 
 export default function ModalOcupacao(props) {
@@ -36,9 +39,9 @@ export default function ModalOcupacao(props) {
         dataLocacao: dataLocacao,
         dataLocacaoFim: dataLocacaoFim,
       })
-      .then((res) => {
-        setSelectedOcupacaoDataFiltered(res.data);
-        setLoading(false);
+      .then(() => {
+        setFoldOcupacaoAlterar(!foldOcupacaoAlterar);
+        setSelectedOcupacaoDataFiltered('');
       })
       .catch((err) => console.log(err));
   };
@@ -79,17 +82,27 @@ export default function ModalOcupacao(props) {
                   placeholder={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].placa}
                   onChange={(e) => setPlaca(e.target.value)}
                 />
-                <Input
-                  placeholder={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao}
-                  onChange={(e) => setDataLocacao(e.target.value)}
-                />
               </div>
-              <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacaoFim}
-                  onChange={(e) => setDataLocacaoFim(e.target.value)}
-                />
+
+              <div className="flex justify-between">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao}
+                    onChange={(e) => {
+                      setDataLocacao(e);
+                    }}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao}
+                    onChange={(e) => {
+                      setDataLocacaoFim(e);
+                    }}
+                  />
+                </LocalizationProvider>
               </div>
+
               <div className="flex flex-row space-x-5 self-end">
                 <Button
                   value="Editar agendamento"

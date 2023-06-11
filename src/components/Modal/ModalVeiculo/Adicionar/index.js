@@ -20,7 +20,6 @@ export default function ModalVeiculo(props) {
   const [cor, setCor] = useState(null);
   const [modelo, setModelo] = useState(null);
   const [placa, setPlaca] = useState(null);
-  const [cliente, setCliente] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const handleSubmit = () => {
@@ -30,7 +29,6 @@ export default function ModalVeiculo(props) {
         cor: cor,
         modelo: modelo,
         placa: placa,
-        clienteId: cliente,
       })
       .catch((err) => console.log(err));
     setFoldVeiculoAdicionar(!foldVeiculoAdicionar);
@@ -56,7 +54,6 @@ export default function ModalVeiculo(props) {
                 <Input placeholder="Cor" onChange={(e) => setCor(e.target.value)} />
               </div>
               <div className="flex flex-row space-x-5">
-                <Input placeholder="ClienteId" onChange={(e) => setCliente(e.target.value)} />
                 <Input placeholder="Modelo" onChange={(e) => setModelo(e.target.value)} />
               </div>
               <div className="flex flex-row space-x-5">

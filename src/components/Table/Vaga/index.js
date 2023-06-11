@@ -27,7 +27,6 @@ export default function TableVaga(props) {
   const [selectedVagaId, setSelectedVagaId] = useAtom(vagaId);
   const [foldVagaAlterar, setFoldVagaAlterar] = useAtom(colapsedVagaAlterar);
 
-
   const handleSetFoldVaga = () => {
     setFoldVagaAlterar(!foldVagaAlterar);
   };
@@ -40,13 +39,8 @@ export default function TableVaga(props) {
             <TableRow>
               <TableCell align="right">ID</TableCell>
               <TableCell align="right">Nome</TableCell>
-              <TableCell align="right">Preço</TableCell>
               <TableCell align="right">Setor</TableCell>
-              <TableCell align="right">Estado da vaga</TableCell>
               <TableCell align="right">Tipo</TableCell>
-              <TableCell align="right">Inicio da locação</TableCell>
-              <TableCell align="right">Fim da locação</TableCell>
-              <TableCell align="right">Cliente</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -67,13 +61,10 @@ export default function TableVaga(props) {
               >
                 <TableCell align="right">{dados.id}</TableCell>
                 <TableCell align="right">{dados.nome}</TableCell>
-                <TableCell align="right">{dados.preco}</TableCell>
                 <TableCell align="right">{dados.setor}</TableCell>
-                <TableCell align="right">{dados.vaga_ocupada}</TableCell>
-                <TableCell align="right" sx={{ maxWidth: 50, overflow: 'hidden' }}>{dados.tipo}</TableCell>
-                <TableCell align="right">{dados.dataLocacao}</TableCell>
-                <TableCell align="right">{dados.dataLocacaoFim}</TableCell>
-                <TableCell align="right">{dados.clienteId}</TableCell>
+                <TableCell align="right" sx={{ maxWidth: 50, overflow: 'hidden' }}>
+                  {dados.tipo}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

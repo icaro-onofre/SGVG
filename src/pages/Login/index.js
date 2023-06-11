@@ -10,16 +10,6 @@ export default function Login() {
 
   let navigate = useNavigate();
 
-  function handleSetNome(e) {
-    e.preventDefault();
-    setNome(e.target.value);
-  }
-
-  function handleSetSenha(e) {
-    e.preventDefault();
-    setSenha(e.target.value);
-  }
-
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -41,10 +31,10 @@ export default function Login() {
           <img className="mx-auto h-40 w-auto" src="logo.jpg" alt="Logo" />{' '}
           {/*logo do aplicativo escrito login e alinhado*/}
           <div className="relative">
-            <Input icon="user-line" type="text" placeholder="Usuário" />
+            <Input icon="user-line" type="text" placeholder="Usuário" onChange={(e)=>{setSenha(e)}}/>
           </div>
           <div class="relative mb-3" data-te-input-wrapper-init>
-            <Input icon="lock-line" type="password" placeholder="Senha" password />
+            <Input icon="lock-line" type="password" placeholder="Senha" password onChange={(e)=>{setNome(e)}} />
           </div>
           <button
             className="transform rounded bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
