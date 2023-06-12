@@ -4,7 +4,7 @@ import ModalVaga from 'components/Modal/ModalVaga/';
 import Legenda from 'components/VagaCard/Legenda';
 import { getVagas } from 'services/vaga.js';
 import axiosInstance from 'services/axios';
-import { colapsedVaga, vagaIdHome, vagaData, ocupacao } from 'store.js';
+import { colapsedVaga, vagaIdHome, vagaData, ocupacao, vagaSelectedStatus } from 'store.js';
 import { useAtom } from 'jotai';
 
 export default function Home() {
@@ -12,6 +12,13 @@ export default function Home() {
   const [ocupacaos, setOcupacaos] = useAtom(ocupacao);
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
+  const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
+
+  const handleSetVagaClose = (id, status) => {
+    setFoldVaga(!foldVaga);
+    setSelectedId(id);
+    setSelectedStatus(status);
+  };
 
   useEffect(() => {
     axiosInstance
@@ -24,11 +31,6 @@ export default function Home() {
       .then((res) => setOcupacaos(res.data))
       .catch((err) => console.log(err));
   }, []);
-
-  const handleSetVagaClose = (id) => {
-    setFoldVaga(!foldVaga);
-    setSelectedId(id);
-  };
 
   let currentDay = new Date();
 
@@ -53,7 +55,7 @@ export default function Home() {
     if (vagasOcupadas.includes(vagas[b].nome)) vagas[b].status = 'ocupada';
     if (vagasAgendadas.includes(vagas[b].nome)) vagas[b].status = 'agendada';
     if (vagasLivres.includes(vagas[b].nome)) vagas[b].status = 'livre';
-    if (vagas[b].status==undefined) vagas[b].status = 'livre';
+    if (vagas[b].status == undefined) vagas[b].status = 'livre';
   });
 
   return (
@@ -70,7 +72,7 @@ export default function Home() {
                 status={vagas[vaga].status}
                 nome={vagas[vaga].nome}
                 onClick={() => {
-                  handleSetVagaClose(vagas[vaga].id);
+                  handleSetVagaClose(vagas[vaga].id, vagas[vaga].status);
                 }}
               />
             );

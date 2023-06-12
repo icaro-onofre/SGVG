@@ -1,7 +1,7 @@
 import React, { useState, Component, useEffect } from 'react';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { colapsedVaga, vagaIdHome } from 'store.js';
+import { colapsedVaga, vagaIdHome, vagaSelectedStatus } from 'store.js';
 import { vagaId } from 'store.js';
 import { vagaDataFiltered } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -16,6 +16,7 @@ export default function ModalVagaLivre(props) {
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
   const [vagas, setVagas] = useAtom(vagaDataFiltered);
+  const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
 
   const handleSubmit = () => {
     axiosInstance.post('/ocupacao/create', {}).catch((err) => console.log(err));
@@ -23,6 +24,7 @@ export default function ModalVagaLivre(props) {
   const handleSetClose = () => {
     setFoldVaga(!foldVaga);
     setSelectedId('');
+    setSelectedStatus('');
   };
 
   return (
@@ -53,10 +55,7 @@ export default function ModalVagaLivre(props) {
               </div>
 
               <div className="flex justify-between mt-10">
-                <Button
-                  value="Agendar"
-                  
-                />
+                <Button value="Agendar" />
                 <Button
                   value="Ocupar"
                   onClick={() => {

@@ -5,6 +5,8 @@ export const colapsed = atom(false);
 
 // Id da vaga selecionada
 export const vagaId = atom('');
+// Estado da vaga selecionada
+export const vagaSelectedStatus = atom('');
 // Estado do modal do modal de vaga na home
 export const colapsedVaga = atom(false);
 // Estado do modal do modal de vaga Alterar

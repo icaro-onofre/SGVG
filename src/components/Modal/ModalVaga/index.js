@@ -1,7 +1,7 @@
 import React, { useState, Component, useEffect } from 'react';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { colapsedVaga, vagaIdHome,vagaDataFiltered } from 'store.js';
+import { colapsedVaga, vagaIdHome, vagaDataFiltered, vagaSelectedStatus } from 'store.js';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import ModalVagaLivre from 'components/Modal/ModalVagaHome/Livre';
@@ -12,13 +12,13 @@ export default function ModalVaga(props) {
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
   const handleSetFoldVaga = () => setFoldVaga(!foldVaga);
 
+  const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
   const [vagas, setVagas] = useAtom(vagaDataFiltered);
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
 
   const [loading, setLoading] = useState(true);
 
-
-  const getVagas = () => {
+  useEffect(() => {
     axiosInstance
       .post('/vaga/filter', { id: selectedId })
       .then((res) => {
@@ -26,20 +26,16 @@ export default function ModalVaga(props) {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    getVagas();
   }, []);
 
   if (loading == false) {
-    switch (vagas[0].status) {
+    switch (selectedStatus) {
       case 'livre':
         return <ModalVagaLivre />;
       case 'ocupada':
         return <ModalVagaOcupada />;
       case 'agendada':
-        return <ModalVagaAgendada/>;
+        return <ModalVagaAgendada />;
     }
   }
 }

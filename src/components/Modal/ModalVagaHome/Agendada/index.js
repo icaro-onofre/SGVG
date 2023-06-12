@@ -3,7 +3,7 @@ import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
 import { colapsedVaga, vagaIdHome } from 'store.js';
 import { vagaId } from 'store.js';
-import { vagaDataFiltered } from 'store.js';
+import { vagaDataFiltered, vagaSelectedStatus } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -16,6 +16,7 @@ export default function ModalVagaAgendada(props) {
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
   const [vagas, setVagas] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
 
   const handleSubmit = () => {
     axiosInstance.post('/ocupacao/create', {}).catch((err) => console.log(err));
@@ -23,6 +24,7 @@ export default function ModalVagaAgendada(props) {
   const handleSetClose = () => {
     setFoldVaga(!foldVaga);
     setSelectedId('');
+    setSelectedStatus('');
   };
 
   return (
