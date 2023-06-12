@@ -50,9 +50,10 @@ export default function Home() {
   });
 
   vagas.map((a, b) => {
+    if (vagasOcupadas.includes(vagas[b].nome)) vagas[b].status = 'ocupada';
+    if (vagasAgendadas.includes(vagas[b].nome)) vagas[b].status = 'agendada';
     if (vagasLivres.includes(vagas[b].nome)) vagas[b].status = 'livre';
-    if (vagasOcupadas.includes(vagas[b].nome)) vagas[b].status = 'ocupadas';
-    if (vagasAgendadas.includes(vagas[b].nome)) vagas[b].status = 'agendadas';
+    if (vagas[b].status==undefined) vagas[b].status = 'livre';
   });
 
   return (
