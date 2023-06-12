@@ -20,7 +20,7 @@ export default class index extends Component {
   render() {
     return this.props.link ? (
       <button
-        className="leading-none font-heading  font-extrabold text-jade hover:brightness-125 ease-in duration-100 focus:brightness-125 focus:outline-none"
+        className="leading-none font-heading  font-extrabold text-jade dark:text-dark_jade hover:brightness-125 ease-in duration-100 focus:brightness-125 focus:outline-none"
         onClick={this.props.onClick}
       >
         {this.props.value}
@@ -28,7 +28,7 @@ export default class index extends Component {
     ) : (
       <button
         className={`rounded-xl  px-9 py-4 leading-none font-heading  font-extrabold ${
-          this.props.outlined ? 'bg-transparent text-jade ring-solid ring-4 ring-jade ring-inset' : 'bg-jade text-white'
+          this.props.outlined ? 'bg-transparent text-jade dark:text-dark_jade ring-solid ring-4 ring-jade dark:ring-dark_jade ring-inset' : 'bg-jade dark:bg-dark_jade text-white'
         } hover:brightness-125 ease-in duration-100 focus:brightness-125 focus:outline-none`}
         onClick={this.props.onClick}
       >

@@ -12,22 +12,22 @@ export default function Navbar(props) {
 
   return (
     <div>
-      <div className={`absolute z-40 opacity-40 bg-black h-full w-full ${!fold ? 'hidden' : ''}`} onClick={handleSetFold} />
+      <div className={`absolute z-40 opacity-40 bg-black dark:opacity-75 h-full w-full ${!fold ? 'hidden' : ''}`} onClick={handleSetFold} />
       <Slide left when={fold}>
-        <div className={`absolute z-50 h-full w-80 bg-white ${!fold ? 'hidden' : ''}`}>
+        <div className={`absolute z-50 h-full w-80 bg-white dark:bg-dark_black ${!fold ? 'hidden' : ''} dark:ring-1 ring-dark_white/[0.2]`}>
           <div className="relative w-full">
             <i
-              className="absolute ri-arrow-left-s-line ri-lg top-3 right-3 p-2 cursor-pointer"
+              className="absolute ri-arrow-left-s-line ri-lg top-3 right-3 p-2 cursor-pointer text-black dark:text-dark_white"
               onClick={handleSetFold}
             ></i>
           </div>
-          <div className="divide-jade/[0.2] divide-y divide-solid">
+          <div className="divide-jade/[0.2] dark:divide-dark_white/[0.2] divide-y divide-solid">
             <div className="flex items-center gap-4 px-6 mt-6">
               <AvatarIcon image={props.image} />
 
               <div>
-                <h2 className="font-heading text-sm">{props.name}</h2>
-                <span className="font-body text-xs">{props.email}</span>
+                <h2 className="font-heading text-sm text-black dark:text-dark_white">{props.name}</h2>
+                <span className="font-body text-xs text-black dark:text-dark_white">{props.email}</span>
               </div>
             </div>
             <div className='px-4 mt-6'>

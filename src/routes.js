@@ -15,6 +15,7 @@ import Veiculo from './pages/Veiculo';
 import Cliente from './pages/Cliente';
 import Ocupacao from './pages/Ocupacao';
 import Recuperacao from './pages/Recuperacao';
+import Config from 'pages/Config';
 
 let token = JSON.parse(localStorage.getItem('token'));
 
@@ -94,11 +95,20 @@ export default function Router() {
             <RouteGuard token={hasJWT()}>
               <Navbar name={userName} email={userEmail} image={userImage} />
               <Header />
-              <Ocupacao/>
+              <Ocupacao />
             </RouteGuard>
           }
         />
-
+        <Route
+          path="/config"
+          element={
+            <RouteGuard token={hasJWT()}>
+              <Navbar name={userName} email={userEmail} image={userImage} />
+              <Header />
+              <Config />
+            </RouteGuard>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

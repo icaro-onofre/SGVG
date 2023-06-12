@@ -1,11 +1,15 @@
 import { React, useState } from 'react';
 import Routes from './routes';
-import { atom } from 'jotai';
-
-const colapsed = atom(false);
+import { darkMode as dm } from 'store';
+import { useAtom } from 'jotai';
 
 function App() {
-  return <Routes />;
+  const [darkMode] = useAtom(dm);
+  return (
+    <div className={darkMode ? 'dark' : 'light'}>
+      <Routes />
+    </div>
+  );
 }
 
 export default App;

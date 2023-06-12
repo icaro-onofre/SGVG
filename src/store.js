@@ -1,7 +1,9 @@
-import { atom } from 'jotai'; 
+import { atom } from 'jotai';
 
 // Estado do modal do modal do menu colapsável da home.
 export const colapsed = atom(false);
+// Estado que controla o dark mode do sistema
+export const darkMode = atom(false);
 
 // Id da vaga selecionada
 export const vagaId = atom('');
@@ -14,7 +16,6 @@ export const colapsedVagaAdicionar = atom(false);
 // Dados filtrados da vaga
 export const vagaDataFiltered = atom([]);
 
-
 // Lista de funcionarios retornados do banco de dados
 export const veiculo = atom([]);
 // Estado do modal do modal de veiculo alterar
@@ -24,7 +25,7 @@ export const colapsedVeiculoAdicionar = atom(false);
 // Id do veiculo selecionado
 export const veiculoId = atom(false);
 // Veiculo data filtered
-export const veiculoDataFiltered=atom([]);
+export const veiculoDataFiltered = atom([]);
 
 // Id do funcionario selecionado na tabela
 export const funcionarioId = atom('');
