@@ -1,14 +1,10 @@
 import signIn from 'services/funcionario';
-import { useNavigate } from 'react-router-dom';
 import Input from 'components/Input';
 import React, { useState } from 'react';
-import Icon from 'components/Atoms/Icon';
 
 export default function Login() {
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
-
-  let navigate = useNavigate();
 
   function handleSetNome(e) {
     e.preventDefault();
@@ -23,8 +19,8 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      signIn(nome, senha);
-      navigate('/');
+      await signIn(nome, senha);
+      window.location.pathname = "/"
     } catch (error) {
       console.log(error);
     }
