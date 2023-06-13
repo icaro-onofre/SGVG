@@ -41,61 +41,61 @@ export default function Router() {
         <Route
           path="/"
           element={
-            <div token={hasJWT()}>
+            <RouteGuard token={hasJWT()}>
               <Navbar name={userName} email={userEmail} image={userImage} />
               <Header />
               <Home />
-            </div>
+            </RouteGuard>
           }
         />
         <Route
           path="/funcionario"
           element={
-            <div token={hasJWT()}>
+            <RouteGuard token={hasJWT()}>
               <Navbar name={userName} email={userEmail} image={userImage} />
               <Header />
               <Funcionario />
-            </div>
+            </RouteGuard>
           }
         />
         <Route
           path="/vaga"
           element={
-            <div token={hasJWT()}>
+            <RouteGuard token={hasJWT()}>
               <Navbar name={userName} email={userEmail} image={userImage} />
               <Header />
               <Vaga />
-            </div>
+            </RouteGuard>
           }
         />
         <Route
           path="/veiculo"
           element={
-            <div token={hasJWT()}>
+            <RouteGuard token={hasJWT()}>
               <Navbar name={userName} email={userEmail} image={userImage} />
               <Header />
               <Veiculo />
-            </div>
+            </RouteGuard>
           }
         />
         <Route
           path="/cliente"
           element={
-            <div token={hasJWT()}>
+            <RouteGuard token={hasJWT()}>
               <Navbar name={userName} email={userEmail} image={userImage} />
               <Header />
               <Cliente />
-            </div>
+            </RouteGuard>
           }
         />
         <Route
           path="/agendamento"
           element={
-            <div token={hasJWT()}>
+            <RouteGuard token={hasJWT()}>
               <Navbar name={userName} email={userEmail} image={userImage} />
               <Header />
               <Ocupacao/>
-            </div>
+            </RouteGuard>
           }
         />
 

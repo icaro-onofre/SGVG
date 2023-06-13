@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import VagaCard from 'components/VagaCard';
 import ModalVaga from 'components/Modal/ModalVaga/';
+import ModalOcupacaoAdicionar from 'components/Modal/ModalOcupacao/Adicionar';
 import Legenda from 'components/VagaCard/Legenda';
 import { getVagas } from 'services/vaga.js';
 import axiosInstance from 'services/axios';
-import { colapsedVaga, vagaIdHome, vagaData, ocupacao, vagaSelectedStatus } from 'store.js';
+import { colapsedVaga, vagaIdHome, vagaData, ocupacao, vagaSelectedStatus, colapsedOcupacaoAdicionar } from 'store.js';
 import { useAtom } from 'jotai';
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
+  const [foldOcupacaoAdicionar, setFoldOcupacaoAdicionar] = useAtom(colapsedOcupacaoAdicionar);
 
   const handleSetVagaClose = (id, status) => {
     setFoldVaga(!foldVaga);
@@ -61,6 +63,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden h-screen pt-20">
       {foldVaga ? <ModalVaga /> : <div></div>}
+      {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar /> : <div></div>}
 
       <p className="mx-32 my-5 font-bold">STATUS DAS VAGAS</p>
       <div className="grid grid-cols-12 ">

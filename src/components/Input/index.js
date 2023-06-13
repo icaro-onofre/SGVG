@@ -30,6 +30,7 @@ export default function Input(props) {
         ''
       )}
       <input
+        required
         id={props.placeholder}
         name={props.placeholder}
         type={props.password ? (hidden ? 'password' : 'text') : props.type}
