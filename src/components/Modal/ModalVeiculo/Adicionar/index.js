@@ -48,15 +48,17 @@ export default function ModalVeiculo(props) {
               setFoldVeiculoAdicionar(!foldVeiculoAdicionar);
             }}
           />
-          <div className="flex flex-col items-center justify-center w-1/2 bg-white rounded-xl z-20 pt-5 pb-5">
-            <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Adicionar veiculo</h1>
+          <div className="flex flex-col items-center justify-center w-1/2 bg-white dark:bg-dark_grey rounded-xl z-20 pt-5 pb-5">
+            <h1 className="text-2xl font-bold ml-5 mt-1 self-start text-black dark:text-dark_white">
+              Adicionar veiculo
+            </h1>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex flex-row space-x-5">
                 <Input placeholder="Categoria" onChange={(e) => setCategoria(e.target.value)} />
                 <Input placeholder="Cor" onChange={(e) => setCor(e.target.value)} />
               </div>
               <div className="flex flex-row space-x-5">
-                <Input placeholder="ClienteId" onChange={(e) => setCliente(e.target.value)} />
+                <Input placeholder="Cliente" onChange={(e) => setCliente(e.target.value)} />
                 <Input placeholder="Modelo" onChange={(e) => setModelo(e.target.value)} />
               </div>
               <div className="flex flex-row space-x-5">

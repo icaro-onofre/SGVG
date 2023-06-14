@@ -6,27 +6,30 @@ export default function VagaCard(props) {
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
   const handleSetFoldVaga = () => setFoldVaga(!foldVaga);
 
-  let estilo = '';
+  let cor = '';
 
   switch (props.vaga_ocupada) {
     case 'ocupada':
-      estilo = ' bg-red  h-16  w-16  rounded-lg m-4 hover:border-2 hover:border-black';
+      cor = 'bg-red dark:bg-dark_red';
       break;
     case 'agendada':
-      estilo = ' bg-blue  h-16  w-16  rounded-lg m-4 hover:border-2 hover:border-black';
+      cor = 'bg-blue dark:bg-dark_blue';
       break;
     case 'livre':
-      estilo = ' bg-green  h-16  w-16  rounded-lg m-4 hover:border-2 hover:border-black';
+      cor = 'bg-green dark:bg-dark_green';
       break;
     case 'desativada':
-      estilo = ' bg-grey  h-16  w-16  rounded-lg m-4 hover:border-2 hover:border-black';
+      cor = 'bg-grey dark:bg-dark_grey';
       break;
     case 'vencendo':
-      estilo = ' bg-orange  h-16  w-16  rounded-lg m-4 hover:border-2 hover:border-black';
+      cor = 'bg-yellow dark:bg-dark_yellow';
       break;
   }
   return (
-    <button className={estilo} onClick={handleSetFoldVaga}>
+    <button
+      className={`bg-grey dark:bg-dark_grey ${cor} h-16 w-16 rounded-lg hover:border-2 hover:border-black dark:hover:border-dark_white duration-75`}
+      onClick={handleSetFoldVaga}
+    >
       <div className={'flex items-center justify-center m-5 text-center text-white '}>{props.nome}</div>
     </button>
   );

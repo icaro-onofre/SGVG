@@ -1,9 +1,10 @@
 import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 
 // Estado do modal do modal do menu colapsável da home.
 export const colapsed = atom(false);
 // Estado que controla o dark mode do sistema
-export const darkMode = atom(false);
+export const darkModeAtom = atomWithStorage('darkMode', false);
 
 // Id da vaga selecionada
 export const vagaId = atom('');

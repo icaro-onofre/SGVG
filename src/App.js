@@ -1,10 +1,10 @@
 import { React, useState } from 'react';
 import Routes from './routes';
-import { darkMode as dm } from 'store';
+import { darkModeAtom } from 'store';
 import { useAtom } from 'jotai';
 
 function App() {
-  const [darkMode] = useAtom(dm);
+  const [darkMode] = useAtom(darkModeAtom);
   return (
     <div className={darkMode ? 'dark' : 'light'}>
       <Routes />

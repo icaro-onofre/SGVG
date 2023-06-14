@@ -28,18 +28,18 @@ export default function ModalVaga(props) {
         <div></div>
       ) : (
         <div className="absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
-		
           <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldVaga} />
 
-          <div className=" w-80 h-80 bg-white rounded-xl z-20">
-            <h1 className="text-2xl font-bold ml-5 mt-4">{props.vagaNome}</h1>
-            <h2 className="text-lg  ml-8 mt-3">{props.status}</h2>
-            <div className="ml-8">
-              <div className=" space-y-4 w-52 h-32 mt-4 ">
-                <Input placeholder="Cliente" />
-                <Input placeholder="Placa" />
-              </div>
-	      <Button value="Ocupar vaga"/>
+          <div className="w-80 p-10 bg-white dark:bg-dark_grey rounded-xl z-20">
+            <div className='text-center mb-5'>
+              <h1 className="text-2xl font-bold text-black dark:text-dark_white">
+                Vaga {props.vagaNome}
+              </h1>
+              <span className="text-sm italic text-black dark:text-dark_white">Status: {props.status}</span>
+            </div>
+            <div className="flex flex-col gap-5">
+              <Input placeholder="Placa" />
+              <Button value="Ocupar vaga" />
             </div>
           </div>
         </div>

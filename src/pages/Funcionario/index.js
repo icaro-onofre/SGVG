@@ -12,7 +12,7 @@ export default function Funcionario() {
   const [foldFuncionarioAdicionar, setFoldFuncionarioAdicionar] = useAtom(colapsedFuncionarioAdicionar);
 
   return (
-    <div className="overflow-hidden h-screen  grid grid-cols-12 pt-20">
+    <div className="overflow-hidden h-screen grid grid-cols-12 pt-20 dark:bg-dark_black">
       <div className="">
         {!foldFuncionarioAlterar ? (
           <div></div>
@@ -30,7 +30,7 @@ export default function Funcionario() {
         )}
       </div>
       <div className="col-start-2 col-end-12">
-        <h1 className="text-2xl text-black font-bold mb-8">Funcionários</h1>
+        <h1 className="text-2xl text-black dark:text-dark_white font-bold mb-8">Funcionários</h1>
         <Table />
         <div className="self-end mt-5">
           <Button
