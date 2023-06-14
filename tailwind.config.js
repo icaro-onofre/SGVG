@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     colors: {
       orange: '#EF7D57',
-      grey: '#D9D9D9',
+      grey: '#c3c3c3',
       white: '#f6f6f6',
       black: '#161616',
       jade: '#52a675',
@@ -20,9 +20,10 @@ module.exports = {
       dark_red: '#ff7377',
       dark_yellow: '#ffd154',
       dark_green: '#98D831',
-      dark_jade: '#61b182',
+      dark_jade: '#4D8D68',
       dark_blue: '#1c92db',
       dark_violet: '#7655a4',
+      dark_grey: '#232323',
     },
     extend: {
       fontFamily: {

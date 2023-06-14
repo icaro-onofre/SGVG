@@ -35,20 +35,31 @@ export default function TableVeiculo(props) {
   console.log(veiculos);
   return (
     <>
-      <TableContainer component={Paper} style={{ maxHeight: 500 }}>
+      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey" style={{ maxHeight: 500 }}>
         <Table stickyHeader sx={{ minWidth: 750 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">CPF</TableCell>
-              <TableCell align="right">Placa</TableCell>
-              <TableCell align="right">Categoria</TableCell>
-              <TableCell align="right">Cor</TableCell>
-              <TableCell align="right">Modelo</TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                CPF
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Placa
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Categoria
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Cor
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Modelo
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {veiculos.map((dados) => (
               <TableRow
+                className="dark:hover:bg-dark_blue duration-75"
                 onClick={() => {
                   handleSetFoldFuncioario(dados.id);
                   setSelectedVeiculoId(dados.id);
@@ -62,11 +73,21 @@ export default function TableVeiculo(props) {
                   },
                 }}
               >
-                <TableCell align="right">{dados.cpf}</TableCell>
-                <TableCell align="right">{dados.placa}</TableCell>
-                <TableCell align="right">{dados.categoria}</TableCell>
-                <TableCell align="right">{dados.cor}</TableCell>
-                <TableCell align="right">{dados.modelo}</TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.cpf}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.placa}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.categoria}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.cor}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.modelo}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

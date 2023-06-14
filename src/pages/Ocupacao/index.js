@@ -12,7 +12,7 @@ export default function Ocupacao() {
   const [foldOcupacaoAdicionar, setFoldOcupacaoAdicionar] = useAtom(colapsedOcupacaoAdicionar);
 
   return (
-    <div className="overflow-hidden h-screen  grid grid-cols-12 pt-20">
+    <div className="overflow-hidden h-screen grid grid-cols-12 pt-20 dark:bg-dark_black">
       <div className="">
         {!foldOcupacaoAlterar ? (
           <div></div>
@@ -30,7 +30,7 @@ export default function Ocupacao() {
         )}
       </div>
       <div className="col-start-2 col-end-12">
-        <h1 className="text-2xl text-black font-bold mb-8">Agendamentos</h1>
+        <h1 className="text-2xl text-black font-bold mb-8 dark:text-dark_white">Agendamentos</h1>
         <Table />
         <div className="self-end mt-5">
           <Button

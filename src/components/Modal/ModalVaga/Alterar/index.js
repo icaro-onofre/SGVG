@@ -51,12 +51,11 @@ export default function ModalVaga(props) {
         setor: setor,
         dataLocacao: dataLocacao,
         dataLocacaoFim: dataLocacaoFim,
-        preco: 16.60,
+        preco: 16.6,
         tipo: tipo,
         vaga_ocupada: vagaOcupada,
       })
       .catch((err) => console.log(err));
-
 
     setSelectedVagaDataFiltered([]);
 
@@ -82,7 +81,6 @@ export default function ModalVaga(props) {
       .catch((err) => console.log(err));
   }, [foldVagaAlterar]);
 
-
   return (
     <div className={' inset-0' + foldVagaAlterar ? 'bg-opacity-40' : ''}>
       {!foldVagaAlterar ? (
@@ -90,26 +88,30 @@ export default function ModalVaga(props) {
       ) : (
         <div className=" absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
           <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldVaga} />
-          <div className="flex flex-col items-center justify-center w-1/2 bg-white rounded-xl z-20 pt-5 pb-5">
-            <h1 className="text-2xl font-bold ml-5 mt-1 self-start">{loading ? <Skeleton /> : 'Editar vaga'}</h1>
+          <div className="flex flex-col items-center justify-center w-1/2 bg-white dark:bg-dark_grey rounded-xl z-20 pt-5 pb-5">
+            <h1 className="text-2xl font-bold ml-5 mt-1 self-start text-black dark:text-dark_white">Editar Vaga</h1>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex flex-row space-x-5">
                 <Input
-                  placeholder={loading ? 'Loading...' : selectedVagaDataFiltered[0].nome}
+                  placeholder="Nome"
+                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].nome}
                   onChange={(e) => setNome(e.target.value)}
                 />
                 <Input
-                  placeholder={loading ? 'Loading...' : selectedVagaDataFiltered[0].tipo}
+                  placeholder="Tipo"
+                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].tipo}
                   onChange={(e) => setTipo(e.target.value)}
                 />
               </div>
               <div className="flex flex-row space-x-5">
                 <Input
-                  placeholder={loading ? 'Loading...' : selectedVagaDataFiltered[0].setor}
+                  placeholder="Setor"
+                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].setor}
                   onChange={(e) => setSetor(e.target.value)}
                 />
                 <Input
-                  placeholder={loading ? 'Loading...' : selectedVagaDataFiltered[0].vaga_ocupada}
+                  placeholder="Status"
+                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].vaga_ocupada}
                   onChange={(e) => setVagaOcupada(e.target.value)}
                 />
               </div>
@@ -117,7 +119,8 @@ export default function ModalVaga(props) {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={['DatePicker']}>
                     <DatePicker
-                      label={loading ? 'Loading...' : selectedVagaDataFiltered[0].dataLocacao}
+                      label="Data Início"
+                      defaultValue={loading ? 'Loading...' : selectedVagaDataFiltered[0].dataLocacao}
                       onChange={(e) => setDataLocacao(e)}
                     />
                   </DemoContainer>
@@ -125,7 +128,8 @@ export default function ModalVaga(props) {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={['DatePicker']}>
                     <DatePicker
-                      label={loading ? 'Loading...' : selectedVagaDataFiltered[0].dataLocacaoFim}
+                      label="Data Fim"
+                      defaultValue={loading ? 'Loading...' : selectedVagaDataFiltered[0].dataLocacaoFim}
                       onChange={(e) => setDataLocacaoFim(e)}
                     />
                   </DemoContainer>
@@ -133,21 +137,27 @@ export default function ModalVaga(props) {
               </div>
               <div className="flex flex-row space-x-5">
                 <Input
-                  placeholder={loading ? 'Loading...' : selectedVagaDataFiltered[0].preco}
+                  placeholder="Preço"
+                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].preco}
                   onChange={(e) => setPreco(e.target.value)}
                 />
-                <Input placeholder={loading ? 'Loading...' : selectedVagaDataFiltered[0].clienteId}onChange={(e) => setClienteId(e.target.value)} />
+                <Input
+                  placeholder="Cliente"
+                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].clienteId}
+                  onChange={(e) => setClienteId(e.target.value)}
+                />
               </div>
-              <div className="space-x-52">
+              <div className="flex flex-row space-x-5 self-end">
                 <Button
                   value="Deletar"
+                  outlined
                   onClick={() => {
                     handleDelete();
                   }}
                 />
 
                 <Button
-                  value="Editar vaga"
+                  value="Editar Vaga"
                   onClick={() => {
                     handleSubmit();
                   }}

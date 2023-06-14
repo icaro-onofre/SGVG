@@ -11,7 +11,7 @@ export default function Vaga() {
   const [foldVagaAlterar, setFoldVagaAlterar] = useAtom(colapsedVagaAlterar);
   const [foldVagaAdicionar, setFoldVagaAdicionar] = useAtom(colapsedVagaAdicionar);
   return (
-    <div className="overflow-hidden h-screen  grid grid-cols-12">
+    <div className="overflow-hidden h-screen grid grid-cols-12 dark:bg-dark_black">
       <div className="col-start-1 col-end-13">
         {!foldVagaAlterar ? (
           <div></div>

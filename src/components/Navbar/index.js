@@ -14,7 +14,7 @@ export default function Navbar(props) {
     <div>
       <div className={`absolute z-40 opacity-40 bg-black dark:opacity-75 h-full w-full ${!fold ? 'hidden' : ''}`} onClick={handleSetFold} />
       <Slide left when={fold}>
-        <div className={`absolute z-50 h-full w-80 bg-white dark:bg-dark_black ${!fold ? 'hidden' : ''} dark:ring-1 ring-dark_white/[0.2]`}>
+        <div className={`absolute z-50 h-full w-80 bg-white dark:bg-dark_grey ${!fold ? 'hidden' : ''}`}>
           <div className="relative w-full">
             <i
               className="absolute ri-arrow-left-s-line ri-lg top-3 right-3 p-2 cursor-pointer text-black dark:text-dark_white"

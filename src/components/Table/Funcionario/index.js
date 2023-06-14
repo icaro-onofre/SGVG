@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axiosInstance from 'services/axios.js';
 import { useAtom, atom } from 'jotai';
 import { colapsedFuncionarioAlterar } from 'store.js';
-import { funcionarioId,funcionario } from 'store.js';
+import { funcionarioId, funcionario } from 'store.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -32,26 +32,43 @@ export default function TableFuncionario(props) {
     setFoldFuncionarioAlterar(!foldFuncioarioAlterar);
   };
 
-    console.log(funcionarios);
+  console.log(funcionarios);
   return (
     <>
-      <TableContainer component={Paper} style={{maxHeight:500}}>
+      <TableContainer component={Paper} style={{ maxHeight: 500 }} className="bg-white dark:bg-dark_grey">
         <Table stickyHeader sx={{ minWidth: 750 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">ID</TableCell>
-              <TableCell align="right">Nome</TableCell>
-              <TableCell align="right">Telefone</TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell align="right">CPF</TableCell>
-              <TableCell align="right">Senha</TableCell>
-              <TableCell align="right">Data Nasc</TableCell>
-              <TableCell align="right">Cargo</TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                ID
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Nome
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Telefone
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Email
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                CPF
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Senha
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Data Nasc
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Cargo
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {funcionarios.map((dados) => (
               <TableRow
+                className="dark:hover:bg-dark_blue duration-75"
                 onClick={() => {
                   handleSetFoldFuncioario(dados.id);
                   setSelectedFuncionarioId(dados.id);
@@ -65,16 +82,34 @@ export default function TableFuncionario(props) {
                   },
                 }}
               >
-                <TableCell align="right">{dados.id}</TableCell>
-                <TableCell align="right">{dados.nome}</TableCell>
-                <TableCell align="right">{dados.telefone}</TableCell>
-                <TableCell align="right">{dados.email}</TableCell>
-                <TableCell align="right">{dados.cpf}</TableCell>
-                <TableCell align="right" sx={{ maxWidth: 50, overflow: 'hidden' }}>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.id}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.nome}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.telefone}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.email}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.cpf}
+                </TableCell>
+                <TableCell
+                  align="right"
+                  className="text-black dark:text-dark_white"
+                  sx={{ maxWidth: 50, overflow: 'hidden' }}
+                >
                   {dados.senha}
                 </TableCell>
-                <TableCell align="right">{dados.data_nasc}</TableCell>
-                <TableCell align="right">{dados.cargo}</TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.data_nasc}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.cargo}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

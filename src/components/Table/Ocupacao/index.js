@@ -25,23 +25,33 @@ export default function TableOcupacao(props) {
     getOcupacacao();
   }, []);
 
-
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey">
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">CPF</TableCell>
-              <TableCell align="right">Vaga</TableCell>
-              <TableCell align="right">Placa</TableCell>
-              <TableCell align="right">Data Locação</TableCell>
-              <TableCell align="right">Data Locação Fim</TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                CPF
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Vaga
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Placa
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Data Locação
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Data Locação Fim
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {ocupacacaos.map((dados) => (
               <TableRow
+                className="dark:hover:bg-dark_blue duration-75"
                 key={dados.name}
                 onClick={() => {
                   setFoldOcupacaoAlterar(!foldOcupacaoAlterar);
@@ -55,11 +65,21 @@ export default function TableOcupacao(props) {
                   },
                 }}
               >
-                <TableCell align="right">{dados.cpf}</TableCell>
-                <TableCell align="right">{dados.vaga}</TableCell>
-                <TableCell align="right">{dados.placa}</TableCell>
-                <TableCell align="right">{dados.dataLocacao}</TableCell>
-                <TableCell align="right">{dados.dataLocacaoFim}</TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.cpf}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.vaga}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.placa}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.dataLocacao}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.dataLocacaoFim}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

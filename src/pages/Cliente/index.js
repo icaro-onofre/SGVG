@@ -12,7 +12,7 @@ export default function Cliente() {
   const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAlterar);
 
   return (
-    <div className="overflow-hidden h-screen  grid grid-cols-12 pt-20">
+    <div className="overflow-hidden h-screen grid grid-cols-12 pt-20 dark:bg-dark_black">
       {!foldClienteAlterar ? (
         <div></div>
       ) : (
@@ -28,12 +28,15 @@ export default function Cliente() {
         </div>
       )}
       <div className="col-start-2 col-end-12">
-        <h1 className="text-2xl text-black font-bold mb-8">Clientes</h1>
+        <h1 className="text-2xl text-black font-bold mb-8 dark:text-dark_white">Clientes</h1>
         <Table />
         <div className="self-end mt-5">
-          <Button value="Novo cliente" 
-	  onClick={()=>{setFoldClienteAdicionar(!foldClienteAdicionar)}}
-	  />
+          <Button
+            value="Novo cliente"
+            onClick={() => {
+              setFoldClienteAdicionar(!foldClienteAdicionar);
+            }}
+          />
         </div>
       </div>
     </div>

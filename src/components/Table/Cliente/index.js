@@ -25,22 +25,30 @@ export default function TableCliente(props) {
     getFuncionario();
   }, []);
 
-
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey">
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">CPF</TableCell>
-              <TableCell align="right">Nome</TableCell>
-              <TableCell align="right">E-mail</TableCell>
-              <TableCell align="right">Telefone</TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                CPF
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Nome
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                E-mail
+              </TableCell>
+              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Telefone
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {clientes.map((dados) => (
               <TableRow
+                className="dark:hover:bg-dark_blue duration-75"
                 key={dados.name}
                 onClick={() => {
                   setFoldClienteAlterar(!foldClienteAlterar);
@@ -54,10 +62,18 @@ export default function TableCliente(props) {
                   },
                 }}
               >
-                <TableCell align="right">{dados.cpf}</TableCell>
-                <TableCell align="right">{dados.nome}</TableCell>
-                <TableCell align="right">{dados.email}</TableCell>
-                <TableCell align="right">{dados.telefone}</TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.cpf}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.nome}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.email}
+                </TableCell>
+                <TableCell align="right" className="text-black dark:text-dark_white">
+                  {dados.telefone}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
