@@ -8,6 +8,7 @@ import {
   vagaId,
   vagaDataFiltered,
   colapsedOcupacaoAdicionar,
+  colapsedClienteAdicionar,
 } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -25,6 +26,7 @@ export default function ModalVagaLivre(props) {
   const [vagas, setVagas] = useAtom(vagaDataFiltered);
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
   const [foldOcupacaoAdicionar, setFoldOcupacaoAdicionar] = useAtom(colapsedOcupacaoAdicionar);
+  const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAdicionar);
 
   const handleSubmit = () => {
     //axiosInstance.post('/ocupacao/create', {}).catch((err) => console.log(err));
@@ -61,7 +63,13 @@ export default function ModalVagaLivre(props) {
                 <Input placeholder="CPF" />
                 <Input placeholder="Vaga" />
               </div>
-              <button className="flex self-end " onClick={() => {}}>
+              <button
+                className="flex self-end "
+                onClick={() => {
+                  setFoldClienteAdicionar(!foldClienteAdicionar);
+                  setFoldVaga(!foldVaga);
+                }}
+              >
                 <p className="text-sm text-green">Cadastrar cliente</p>
               </button>
               <div className="flex flex-row space-x-5">

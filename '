@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import VagaCard from 'components/VagaCard';
 import ModalVaga from 'components/Modal/ModalVaga/';
 import ModalOcupacaoAdicionar from 'components/Modal/ModalOcupacao/Adicionar';
-import ModalClienteAdicionar from 'components/Modal/ModalCliente/Adicionar';
 import Legenda from 'components/VagaCard/Legenda';
 import { getVagas } from 'services/vaga.js';
 import axiosInstance from 'services/axios';
@@ -24,7 +23,6 @@ export default function Home() {
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
   const [foldOcupacaoAdicionar, setFoldOcupacaoAdicionar] = useAtom(colapsedOcupacaoAdicionar);
-  const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAdicionar);
 
   const handleSetVagaClose = (id, status) => {
     setFoldVaga(!foldVaga);
