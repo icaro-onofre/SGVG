@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden h-screen pt-20 dark:bg-dark_black">
       {foldVaga ? <ModalVaga /> : <div></div>}
-      {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar /> : <div></div>}
+      {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar agendamento={true}/> : <div></div>}
       {foldClienteAdicionar ? <ModalClienteAdicionar /> : <div></div>}
 
       <p className="mx-32 my-5 font-bold text-black dark:text-dark_white">STATUS DAS VAGAS</p>
@@ -86,7 +86,7 @@ export default function Home() {
                 nome={vagas[vaga].nome}
                 status={vagas[vaga].status}
                 onClick={() => {
-                  handleSetVagaClose(vagas[vaga].id, vagas[vaga].status);
+                  handleSetVagaClose(vagas[vaga].nome, vagas[vaga].status);
                 }}
               />
             );

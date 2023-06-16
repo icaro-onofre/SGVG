@@ -1,7 +1,7 @@
 import React, { useState, Component, useEffect } from 'react';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { colapsedVaga, vagaIdHome, vagaSelectedStatus } from 'store.js';
+import { colapsedVaga, vagaIdHome, vagaSelectedStatus, ocupacao } from 'store.js';
 import { vagaId } from 'store.js';
 import { vagaDataFiltered } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -13,9 +13,12 @@ import Button from 'components/Button';
 
 export default function ModalVagaLivre(props) {
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
+  const [ocupacaos, setOcupacaos] = useAtom(ocupacao);
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
-  const [vagas, setVagas] = useState([]);
+  const [vagas, setVagas] = useAtom(vagaDataFiltered);
+  const [dataLocacao, setDataLocacao] = useState(null);
+  const [dataLocacaoFim, setDataLocacaoFim] = useState(null);
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
 
   const handleSubmit = () => {
@@ -25,10 +28,9 @@ export default function ModalVagaLivre(props) {
     setFoldVaga(!foldVaga);
     setSelectedId('');
     setSelectedStatus('');
+    setOcupacaos([]);
   };
-  useEffect(() => {
-    axiosInstance.post('/ocupacao/filter', { id: selectedId }).catch((err) => console.log(err));
-  }, []);
+  console.log(ocupacaos);
 
   return (
     <div className={' inset-0' + foldVaga ? 'bg-opacity-40' : ''}>
@@ -43,25 +45,34 @@ export default function ModalVagaLivre(props) {
             }}
           />
           <div className="flex flex-col items-center justify-center w-1/2 bg-white dark:bg-dark_grey dark:text-dark_white rounded-xl z-20 pt-5 pb-5">
-            <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Editar vaga</h1>
+            <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Finalizar ocupação</h1>
+            <h2 className="text-2xl ml-16 mt-9 font-bold self-start">{vagas[0].nome}</h2>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex flex-row space-x-5">
                 <Input placeholder="CPF" />
                 <Input placeholder="Tipo" />
               </div>
-              <button onClick={() => {}}>
-                <p className="text-sm ml-5 mt-1 text-green">Cadastrar cliente</p>
-              </button>
               <div className="flex justify-between">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="Inicio da locação"
+                    onChange={(e) => {
+                      setDataLocacao(e);
+                    }}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="Fim do período de locação"
+                    onChange={(e) => {
+                      setDataLocacaoFim(e);
+                    }}
+                  />
+                </LocalizationProvider>
+              </div>
+              <div className="flex self-end">
                 <Button
-                  value="Criar vaga"
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                />
-
-                <Button
-                  value="Criar vaga"
+                  value="Finalizar ocupação"
                   onClick={() => {
                     handleSubmit();
                   }}

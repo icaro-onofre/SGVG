@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { colapsedVaga, vagaIdHome } from 'store.js';
 import { useAtom } from 'jotai';
 
 export default function VagaCard(props) {
-  const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
-  const [selectedId, setSelectedId] = useAtom(vagaIdHome);
-
 
   let cor = '';
 

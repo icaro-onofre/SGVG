@@ -52,20 +52,15 @@ export default function ModalOcupacao(props) {
             </h1>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder="CPF"
-                  onChange={(e) => setCpf(e.target.value)}
-                />
-                <Input
-                  placeholder="Vaga"
-                  onChange={(e) => setVaga(e.target.value)}
-                />
+                <Input placeholder="CPF" onChange={(e) => setCpf(e.target.value)} />
+                <Input placeholder="Placa" onChange={(e) => setPlaca(e.target.value)} />
               </div>
               <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder="Placa"
-                  onChange={(e) => setPlaca(e.target.value)}
-                />
+                {!props.agendamento ? (
+                  <Input placeholder="Vaga" onChange={(e) => setVaga(e.target.value)} />
+                ) : (
+                  <div></div>
+                )}
               </div>
 
               <div className="flex justify-between">

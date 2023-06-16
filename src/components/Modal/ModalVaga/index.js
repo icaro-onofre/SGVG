@@ -1,7 +1,7 @@
 import React, { useState, Component, useEffect } from 'react';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { colapsedVaga, vagaIdHome, vagaDataFiltered, vagaSelectedStatus } from 'store.js';
+import { colapsedVaga, vagaIdHome, vagaDataFiltered, vagaSelectedStatus, ocupacao } from 'store.js';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import ModalVagaLivre from 'components/Modal/ModalVagaHome/Livre';
@@ -11,7 +11,7 @@ import ModalVagaAgendada from 'components/Modal/ModalVagaHome/Agendada';
 export default function ModalVaga(props) {
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
   const handleSetFoldVaga = () => setFoldVaga(!foldVaga);
-
+  const [ocupacaos, setOcupacaos] = useAtom(ocupacao);
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
   const [vagas, setVagas] = useAtom(vagaDataFiltered);
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
@@ -20,11 +20,15 @@ export default function ModalVaga(props) {
 
   useEffect(() => {
     axiosInstance
-      .post('/vaga/filter', { id: selectedId })
+      .post('/vaga/filter', { nome: selectedId })
       .then((res) => {
         setVagas(res.data);
         setLoading(false);
       })
+      .catch((err) => console.log(err));
+    axiosInstance
+      .post('/ocupacao/filter', { vaga: selectedId })
+      .then((res) => setOcupacaos(res.data))
       .catch((err) => console.log(err));
   }, []);
 

@@ -61,7 +61,7 @@ export default function ModalVagaLivre(props) {
             >
               <div className="flex flex-row space-x-5">
                 <Input placeholder="CPF" />
-                <Input placeholder="Vaga" />
+                <Input placeholder="Placa" />
               </div>
               <button
                 className="flex self-end "
@@ -72,10 +72,6 @@ export default function ModalVagaLivre(props) {
               >
                 <p className="text-sm text-green">Cadastrar cliente</p>
               </button>
-              <div className="flex flex-row space-x-5">
-                <Input placeholder="Veiculo" />
-              </div>
-
               <div className="flex justify-between mt-10">
                 <Button
                   value="Agendar"
