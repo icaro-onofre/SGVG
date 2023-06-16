@@ -10,6 +10,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import calculateAge from 'utils/calculateAge';
+import formatPhone from 'utils/formatPhone';
 
 export default function TableFuncionario(props) {
   const getFuncionario = () => {
@@ -35,32 +37,29 @@ export default function TableFuncionario(props) {
   console.log(funcionarios);
   return (
     <>
-      <TableContainer component={Paper} style={{ maxHeight: 500 }} className="bg-white dark:bg-dark_grey">
+      <TableContainer component={Paper} style={{ maxHeight: 430 }} className="bg-white dark:bg-dark_grey">
         <Table stickyHeader sx={{ minWidth: 750 }} size="small" aria-label="a dense table">
           <TableHead>
-            <TableRow>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                ID
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+            <TableRow className="cursor-default">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Nome
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Telefone
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Email
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 CPF
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Senha
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Email
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Telefone
+              </TableCell>
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Idade
+              </TableCell>
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Data Nasc
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Cargo
               </TableCell>
             </TableRow>
@@ -68,7 +67,7 @@ export default function TableFuncionario(props) {
           <TableBody>
             {funcionarios.map((dados) => (
               <TableRow
-                className="dark:hover:bg-dark_blue duration-75"
+                className="dark:hover:bg-dark_blue duration-75 opacity-70 hover:opacity-100 cursor-default"
                 onClick={() => {
                   handleSetFoldFuncioario(dados.id);
                   setSelectedFuncionarioId(dados.id);
@@ -82,32 +81,25 @@ export default function TableFuncionario(props) {
                   },
                 }}
               >
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.id}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.nome}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.telefone}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.email}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.cpf}
                 </TableCell>
-                <TableCell
-                  align="right"
-                  className="text-black dark:text-dark_white"
-                  sx={{ maxWidth: 50, overflow: 'hidden' }}
-                >
-                  {dados.senha}
+                <TableCell align="left" className="text-black dark:text-dark_white">
+                  {dados.email}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.data_nasc}
+                <TableCell align="left" className="text-black dark:text-dark_white">
+                  {formatPhone(dados.telefone)}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="center" className="text-black dark:text-dark_white">
+                  {calculateAge(new Date(dados.data_nasc))} anos
+                </TableCell>
+                <TableCell align="center" className="text-black dark:text-dark_white">
+                  {new Date(dados.data_nasc).toLocaleDateString()}
+                </TableCell>
+                <TableCell align="center" className="text-black dark:text-dark_white">
                   {dados.cargo}
                 </TableCell>
               </TableRow>
