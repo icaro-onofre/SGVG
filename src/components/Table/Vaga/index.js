@@ -33,43 +33,28 @@ export default function TableVaga(props) {
 
   return (
     <>
-      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey" style={{ maxHeight: 500 }}>
+      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey" style={{ maxHeight: 430 }}>
         <Table stickyHeader sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
-            <TableRow>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                ID
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+            <TableRow className="cursor-default">
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Nome
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Preço
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Setor
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Estado da vaga
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Tipo
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Inicio da locação
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Fim da locação
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Cliente
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Estado da vaga
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {vagas.map((dados) => (
               <TableRow
-                className="dark:hover:bg-dark_blue duration-75"
+                className="dark:hover:bg-dark_blue duration-75 opacity-70 hover:opacity-100 cursor-default"
                 onClick={() => {
                   handleSetFoldVaga();
                   setSelectedVagaId(dados.id);
@@ -83,36 +68,21 @@ export default function TableVaga(props) {
                   },
                 }}
               >
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.id}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="center" className="text-black dark:text-dark_white">
                   {dados.nome}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.preco}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="center" className="text-black dark:text-dark_white">
                   {dados.setor}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.vaga_ocupada}
-                </TableCell>
                 <TableCell
-                  align="right"
+                  align="center"
                   className="text-black dark:text-dark_white"
                   sx={{ maxWidth: 50, overflow: 'hidden' }}
                 >
                   {dados.tipo}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.dataLocacao}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.dataLocacaoFim}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.clienteId}
+                <TableCell align="center" className="text-black dark:text-dark_white">
+                  {dados.vaga_ocupada}
                 </TableCell>
               </TableRow>
             ))}

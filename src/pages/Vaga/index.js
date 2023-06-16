@@ -29,7 +29,7 @@ export default function Vaga() {
         )}
       </div>
       <div className="col-start-2 col-end-12">
-        <h1 className="text-2xl text-black font-bold mb-8">Vagas</h1>
+        <h1 className="text-2xl text-black font-bold mb-8 dark:text-dark_white">Vagas</h1>
         <Table />
         <div className="self-end mt-5">
           <Button

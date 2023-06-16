@@ -35,31 +35,31 @@ export default function TableVeiculo(props) {
   console.log(veiculos);
   return (
     <>
-      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey" style={{ maxHeight: 500 }}>
+      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey" style={{ maxHeight: 430 }}>
         <Table stickyHeader sx={{ minWidth: 750 }} size="small" aria-label="a dense table">
           <TableHead>
-            <TableRow>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                CPF
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+            <TableRow className="cursor-default">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Placa
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Categoria
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Cor
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Modelo
+              </TableCell>
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Cliente
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {veiculos.map((dados) => (
               <TableRow
-                className="dark:hover:bg-dark_blue duration-75"
+                className="dark:hover:bg-dark_blue duration-75 opacity-70 hover:opacity-100 cursor-default"
                 onClick={() => {
                   handleSetFoldFuncioario(dados.id);
                   setSelectedVeiculoId(dados.id);
@@ -73,20 +73,20 @@ export default function TableVeiculo(props) {
                   },
                 }}
               >
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.cpf}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.placa}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.categoria}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.cor}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.modelo}
+                </TableCell>
+                <TableCell align="left" className="text-black dark:text-dark_white">
+                  {dados.cpf}
                 </TableCell>
               </TableRow>
             ))}

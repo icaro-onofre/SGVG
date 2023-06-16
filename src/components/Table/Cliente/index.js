@@ -27,20 +27,20 @@ export default function TableCliente(props) {
 
   return (
     <>
-      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey">
+      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey" style={{ maxHeight: 430 }}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
-            <TableRow>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                CPF
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+            <TableRow className="cursor-default">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Nome
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                CPF
+              </TableCell>
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 E-mail
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Telefone
               </TableCell>
             </TableRow>
@@ -48,7 +48,7 @@ export default function TableCliente(props) {
           <TableBody>
             {clientes.map((dados) => (
               <TableRow
-                className="dark:hover:bg-dark_blue duration-75"
+                className="dark:hover:bg-dark_blue duration-75 opacity-70 hover:opacity-100 cursor-default"
                 key={dados.name}
                 onClick={() => {
                   setFoldClienteAlterar(!foldClienteAlterar);
@@ -62,16 +62,16 @@ export default function TableCliente(props) {
                   },
                 }}
               >
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.cpf}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.nome}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
+                  {dados.cpf}
+                </TableCell>
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.email}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.telefone}
                 </TableCell>
               </TableRow>

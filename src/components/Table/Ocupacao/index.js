@@ -27,31 +27,31 @@ export default function TableOcupacao(props) {
 
   return (
     <>
-      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey">
+      <TableContainer component={Paper} className="bg-white dark:bg-dark_grey" style={{ maxHeight: 430 }}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
-            <TableRow>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                CPF
+            <TableRow className="cursor-default">
+              <TableCell align="left" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Cliente
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Vaga
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Placa
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Data Locação
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Início da Locação
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Data Locação Fim
+              <TableCell align="center" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
+                Fim da Locação
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {ocupacacaos.map((dados) => (
               <TableRow
-                className="dark:hover:bg-dark_blue duration-75"
+                className="dark:hover:bg-dark_blue duration-75 opacity-70 hover:opacity-100 cursor-default"
                 key={dados.name}
                 onClick={() => {
                   setFoldOcupacaoAlterar(!foldOcupacaoAlterar);
@@ -65,20 +65,28 @@ export default function TableOcupacao(props) {
                   },
                 }}
               >
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="left" className="text-black dark:text-dark_white">
                   {dados.cpf}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="center" className="text-black dark:text-dark_white">
                   {dados.vaga}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
+                <TableCell align="center" className="text-black dark:text-dark_white">
                   {dados.placa}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.dataLocacao}
+                <TableCell align="center" className="text-black dark:text-dark_white">
+                  {dados.dataLocacao
+                    ? new Date(dados.dataLocacao).toLocaleTimeString().substring(0, 5) +
+                      ' - ' +
+                      new Date(dados.dataLocacao).toLocaleDateString()
+                    : '--/--'}
                 </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.dataLocacaoFim}
+                <TableCell align="center" className="text-black dark:text-dark_white">
+                  {dados.dataLocacaoFim
+                    ? new Date(dados.dataLocacaoFim).toLocaleTimeString().substring(0, 5) +
+                      ' - ' +
+                      new Date(dados.dataLocacaoFim).toLocaleDateString()
+                    : '--/--'}
                 </TableCell>
               </TableRow>
             ))}
