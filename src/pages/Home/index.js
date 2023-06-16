@@ -16,6 +16,8 @@ import {
   colapsedClienteAdicionar,
 } from 'store.js';
 import { useAtom } from 'jotai';
+import { Fade } from 'react-reveal';
+import { Alert } from '@mui/material';
 
 export default function Home() {
   const [vagas, setVagas] = useAtom(vagaData);
@@ -25,6 +27,7 @@ export default function Home() {
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
   const [foldOcupacaoAdicionar, setFoldOcupacaoAdicionar] = useAtom(colapsedOcupacaoAdicionar);
   const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAdicionar);
+  const [success, setSuccess] = useState(false);
 
   const handleSetVagaClose = (id, status) => {
     setFoldVaga(!foldVaga);
@@ -67,17 +70,28 @@ export default function Home() {
     if (vagasOcupadas.includes(vagas[b].nome)) vagas[b].status = 'ocupada';
     if (vagasAgendadas.includes(vagas[b].nome)) vagas[b].status = 'agendada';
     if (vagasLivres.includes(vagas[b].nome)) vagas[b].status = 'livre';
-    if (vagas[b].status == undefined) vagas[b].status = 'livre';
+    if (vagas[b].status === undefined) vagas[b].status = 'livre';
   });
+
+  useEffect(() => {
+    if (success) setTimeout(() => setSuccess(false), 4000);
+  }, [success]);
 
   return (
     <div className="overflow-hidden h-screen pt-20 dark:bg-dark_black">
       {foldVaga ? <ModalVaga /> : <div></div>}
       {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar /> : <div></div>}
       {foldClienteAdicionar ? <ModalClienteAdicionar /> : <div></div>}
-
+      <Fade right when={success}>
+        <Alert
+          className="absolute top-0 right-5 cursor-default dark:bg-dark_red/25 dark:text-dark_white"
+          severity="success"
+        >
+          <strong>Legal!</strong> operação concluida com sucesso!
+        </Alert>
+      </Fade>
       <p className="mx-32 my-5 font-bold text-black dark:text-dark_white">STATUS DAS VAGAS</p>
-      <div className="grid grid-cols-12 ">
+      <div className="grid grid-cols-12 h-full">
         <div className="flex flex-wrap col-start-2 col-end-12 gap-6">
           {vagas.map((key, vaga) => {
             return (

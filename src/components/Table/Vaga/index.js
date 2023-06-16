@@ -82,9 +82,8 @@ export default function TableVaga(props) {
                   {dados.tipo}
                 </TableCell>
                 <TableCell align="center" className="text-black dark:text-dark_white">
-                  {dados.vaga_ocupada}
+                  {dados.status}
                 </TableCell>
-
               </TableRow>
             ))}
           </TableBody>
