@@ -54,7 +54,7 @@ export default function ModalFuncionario(props) {
         cargo: cargo,
         cpf: cpf,
         data_nasc: datanasc,
-        senha: null,
+        senha: senha,
         root: null,
       })
       .catch((err) => console.log(err));
@@ -118,7 +118,12 @@ export default function ModalFuncionario(props) {
                 />
               </div>
               <div className="flex flex-row space-x-5">
-                <Input placeholder="Senha" value={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].senha} />
+                <Input
+                  placeholder={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].senha}
+                  onChange={(e) => {
+                    setSenha(e.target.value);
+                  }}
+                />
               </div>
               <div className="flex flex-row space-x-5 ">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>

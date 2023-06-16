@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import { moment } from 'moment';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { clienteId, clienteDataFiltered, colapsedClienteAdicionar } from 'store.js';
+import { clienteId, clienteDataFiltered, colapsedClienteAdicionar, colapsedVaga } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -13,11 +13,11 @@ import Button from 'components/Button';
 
 export default function ModalCliente(props) {
   const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAdicionar);
-
   const [nome, setNome] = useState(null);
   const [email, setEmail] = useState(null);
   const [cpf, setCpf] = useState(null);
   const [telefone, setTelefone] = useState(null);
+  const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
 
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +36,13 @@ export default function ModalCliente(props) {
         telefone: telefone,
       })
       .catch((err) => console.log(err));
-    setFoldClienteAdicionar(!foldClienteAdicionar);
+
+    if (props.agendamento) {
+      setFoldClienteAdicionar(!foldClienteAdicionar);
+      setFoldVaga(!foldVaga);
+    } else {
+      setFoldClienteAdicionar(!foldClienteAdicionar);
+    }
   };
 
   return (
@@ -44,7 +50,12 @@ export default function ModalCliente(props) {
       {!foldClienteAdicionar ? (
         <div></div>
       ) : (
-        <div className=" absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in">
+        <form
+          className=" absolute w-screen h-screen bg-black/[0.85] z-20 inset-0 flex items-center justify-center transition duration-100 ease-in"
+          onSubmit={() => {
+            handleSubmit();
+          }}
+        >
           <button className="absolute w-screen h-screen z-0 bg-black/[0.85]" onClick={handleSetFoldCliente} />
           <div className="flex flex-col items-center justify-center w-1/2 bg-white dark:bg-dark_grey rounded-xl z-20 pt-5 pb-5">
             <h1 className="text-2xl font-bold ml-5 mt-1 self-start text-black dark:text-dark_white">Criar cliente</h1>
@@ -54,21 +65,16 @@ export default function ModalCliente(props) {
                 <Input placeholder="Tipo" onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="flex flex-row space-x-5">
-                <Input placeholder="Setor" onChange={(e) => setCpf(e.target.value)} />
-                <Input placeholder="Cliente Ocupada" onChange={(e) => setTelefone(e.target.value)} />
+                <Input placeholder="CPF" onChange={(e) => setCpf(e.target.value)} />
+                <Input placeholder="Telefone" onChange={(e) => setTelefone(e.target.value)} />
               </div>
 
               <div className="self-end">
-                <Button
-                  value="Criar cliente"
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                />
+                <Button value="Criar cliente" />
               </div>
             </div>
           </div>
-        </div>
+        </form>
       )}
     </div>
   );

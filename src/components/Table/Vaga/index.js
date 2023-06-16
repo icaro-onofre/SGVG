@@ -55,15 +55,6 @@ export default function TableVaga(props) {
               <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
                 Tipo
               </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Inicio da locação
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Fim da locação
-              </TableCell>
-              <TableCell align="right" className="bg-white dark:bg-dark_grey text-black dark:text-dark_white">
-                Cliente
-              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -104,15 +95,6 @@ export default function TableVaga(props) {
                   sx={{ maxWidth: 50, overflow: 'hidden' }}
                 >
                   {dados.tipo}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.dataLocacao}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.dataLocacaoFim}
-                </TableCell>
-                <TableCell align="right" className="text-black dark:text-dark_white">
-                  {dados.clienteId}
                 </TableCell>
               </TableRow>
             ))}

@@ -52,19 +52,44 @@ export default function ModalOcupacao(props) {
             </h1>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex flex-row space-x-5">
-                <Input placeholder="CPF" onChange={(e) => setCpf(e.target.value)} />
-                <Input placeholder="Vaga" onChange={(e) => setVaga(e.target.value)} />
+                <Input
+                  placeholder="CPF"
+                  onChange={(e) => setCpf(e.target.value)}
+                />
+                <Input
+                  placeholder="Vaga"
+                  onChange={(e) => setVaga(e.target.value)}
+                />
               </div>
               <div className="flex flex-row space-x-5">
-                <Input placeholder="Placa" onChange={(e) => setPlaca(e.target.value)} />
-                <Input placeholder="Data Locação " onChange={(e) => setDataLocacao(e.target.value)} />
+                <Input
+                  placeholder="Placa"
+                  onChange={(e) => setPlaca(e.target.value)}
+                />
               </div>
-              <div className="flex flex-row space-x-5">
-                <Input placeholder="Data Locação Fim" onChange={(e) => setDataLocacaoFim(e.target.value)} />
+
+              <div className="flex justify-between">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="Inicio da locação"
+                    onChange={(e) => {
+                      setDataLocacao(e);
+                    }}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="Fim do período de locação"
+                    onChange={(e) => {
+                      setDataLocacaoFim(e);
+                    }}
+                  />
+                </LocalizationProvider>
               </div>
+
               <div className="flex flex-row space-x-5 self-end">
                 <Button
-                  value="Novo agendamento"
+                  value="Adicionar agendamento"
                   onClick={() => {
                     handleSubmit();
                   }}

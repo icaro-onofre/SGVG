@@ -18,13 +18,8 @@ export default function ModalVaga(props) {
   const [selectedVagaDataFiltered, setSelectedVagaDataFiltered] = useAtom(vagaDataFiltered);
 
   const [nome, setNome] = useState(null);
-  const [preco, setPreco] = useState(null);
   const [setor, setSetor] = useState(null);
   const [tipo, setTipo] = useState(null);
-  const [vagaOcupada, setVagaOcupada] = useState(null);
-  const [dataLocacao, setDataLocacao] = useState(null);
-  const [dataLocacaoFim, setDataLocacaoFim] = useState(null);
-  const [clienteId, setClienteId] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const [vagas, setVagas] = useState([]);
@@ -39,7 +34,7 @@ export default function ModalVaga(props) {
       .post('/vaga/delete', {
         id: selectedVagaId,
       })
-      .catch((err) => console.log(err));
+    .catch((err) => console.log(err));
     setSelectedVagaDataFiltered([]);
     setFoldVagaAlterar(!foldVagaAlterar);
   };
@@ -49,11 +44,7 @@ export default function ModalVaga(props) {
         id: selectedVagaId,
         nome: nome,
         setor: setor,
-        dataLocacao: dataLocacao,
-        dataLocacaoFim: dataLocacaoFim,
-        preco: 16.6,
         tipo: tipo,
-        vaga_ocupada: vagaOcupada,
       })
       .catch((err) => console.log(err));
 
@@ -67,12 +58,9 @@ export default function ModalVaga(props) {
       .post('/vaga/filter', {
         id: selectedVagaId,
         nome: null,
-        clienteId: null,
         dataLocacao: null,
         dataLocacaoFim: null,
-        preco: null,
         tipo: null,
-        vaga_ocupada: null,
       })
       .then((res) => {
         setSelectedVagaDataFiltered(res.data);
@@ -108,43 +96,6 @@ export default function ModalVaga(props) {
                   placeholder="Setor"
                   value={loading ? 'Loading...' : selectedVagaDataFiltered[0].setor}
                   onChange={(e) => setSetor(e.target.value)}
-                />
-                <Input
-                  placeholder="Status"
-                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].vaga_ocupada}
-                  onChange={(e) => setVagaOcupada(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-row space-x-5">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={['DatePicker']}>
-                    <DatePicker
-                      label="Data Início"
-                      defaultValue={loading ? 'Loading...' : selectedVagaDataFiltered[0].dataLocacao}
-                      onChange={(e) => setDataLocacao(e)}
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={['DatePicker']}>
-                    <DatePicker
-                      label="Data Fim"
-                      defaultValue={loading ? 'Loading...' : selectedVagaDataFiltered[0].dataLocacaoFim}
-                      onChange={(e) => setDataLocacaoFim(e)}
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>{' '}
-              </div>
-              <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder="Preço"
-                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].preco}
-                  onChange={(e) => setPreco(e.target.value)}
-                />
-                <Input
-                  placeholder="Cliente"
-                  value={loading ? 'Loading...' : selectedVagaDataFiltered[0].clienteId}
-                  onChange={(e) => setClienteId(e.target.value)}
                 />
               </div>
               <div className="flex flex-row space-x-5 self-end">

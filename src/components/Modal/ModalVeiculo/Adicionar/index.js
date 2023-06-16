@@ -20,7 +20,7 @@ export default function ModalVeiculo(props) {
   const [cor, setCor] = useState(null);
   const [modelo, setModelo] = useState(null);
   const [placa, setPlaca] = useState(null);
-  const [cliente, setCliente] = useState(null);
+  const [cliente,setCliente] =useState(null);
   const [loading, setLoading] = useState(true);
 
   const handleSubmit = () => {
@@ -30,7 +30,6 @@ export default function ModalVeiculo(props) {
         cor: cor,
         modelo: modelo,
         placa: placa,
-        clienteId: cliente,
       })
       .catch((err) => console.log(err));
     setFoldVeiculoAdicionar(!foldVeiculoAdicionar);
