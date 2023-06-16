@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAtom, atom } from 'jotai';
-import { colapsedOcupacaoAlterar, ocupacaoId, cliente } from 'store.js';
+import { colapsedOcupacaoAlterar, ocupacaoId, ocupacao, cliente } from 'store.js';
 import axiosInstance from 'services/axios.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -17,7 +17,7 @@ export default function TableOcupacao(props) {
       .then((res) => setOcupacaos(res.data))
       .catch((err) => console.log(err));
   };
-  const [ocupacacaos, setOcupacaos] = useAtom(cliente);
+  const [ocupacacaos, setOcupacaos] = useAtom(ocupacao);
   const [selectedOcupacaoId, setSelectedOcupacaoId] = useAtom(ocupacaoId);
   const [foldOcupacaoAlterar, setFoldOcupacaoAlterar] = useAtom(colapsedOcupacaoAlterar);
 

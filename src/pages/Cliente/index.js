@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAtom, atom } from 'jotai';
-import { colapsedClienteAlterar, clienteId, cliente } from 'store.js';
+import { colapsedClienteAlterar, clienteId, cliente, colapsedClienteAdicionar } from 'store.js';
 import ModalClienteAlterar from 'components/Modal/ModalCliente/Alterar/';
 import ModalClienteAdicionar from 'components/Modal/ModalCliente/Adicionar/';
 import Table from 'components/Table/Cliente/';
@@ -9,7 +9,7 @@ import axiosInstance from 'services/axios';
 
 export default function Cliente() {
   const [foldClienteAlterar, setFoldClienteAlterar] = useAtom(colapsedClienteAlterar);
-  const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAlterar);
+  const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAdicionar);
 
   return (
     <div className="overflow-hidden h-screen grid grid-cols-12 pt-20 dark:bg-dark_black">

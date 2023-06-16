@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Input from 'components/Input';
+import Button from 'components/Button';
 
-// console.log(Funcionario.find({}))
+const handleSubmit = () => {
+  //axiosInstance.post('/ocupacao/create', {}).catch((err) => console.log(err));
+  console.log('On submit');
+};
 
 export default function Cadastro() {
   return (
@@ -9,7 +13,7 @@ export default function Cadastro() {
       {' '}
       <main class="mx-auto flex min-h-screen w-full items-center justify-center bg-white text-green-900">
         {/*fundo branco e cor do texto verde escuro*/}
-        <section class="flex w-[30rem] flex-col space-y-10">
+        <form class="flex w-[30rem] flex-col space-y-10 " onSubmit={() => {handleSubmit()}}>
           {' '}
           {/*seção de cadastro*/}
           <img class="mx-auto h-40 w-auto" src="logo.jpg" /> {/*logo do aplicativo escrito cadastro e alinhado*/}
@@ -107,23 +111,21 @@ export default function Cadastro() {
             </span>
           </div>
           <div class="grid grid-cols-2 gap-4">
-            <a
+            <Button
               href="http://localhost:3000/Login"
               class=" bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
               type="submit"
-            >
-              <i class="ri-arrow-left-line"></i>VOLTAR
-            </a>
-            <a
+              value="VOLTAR"
+            ></Button>
+            <Button
               href="#"
               class=" bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
               type="submit"
-            >
-              <i class="ri-user-add-line"></i> CADASTRAR
-            </a>
+              value="CADASTRAR"
+            ></Button>
           </div>
           <br></br>
-        </section>
+        </form>
       </main>
     </div>
   );

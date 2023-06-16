@@ -18,12 +18,7 @@ export default function ModalVaga(props) {
 
   const [nome, setNome] = useState(null);
   const [setor, setSetor] = useState(null);
-  const [clienteId, setClienteId] = useState(null);
-  const [dataLocacao, setDataLocacao] = useState(null);
-  const [dataLocacaoFim, setDataLocacaoFim] = useState(null);
-  const [preco, setPreco] = useState(null);
   const [tipo, setTipo] = useState(null);
-  const [vagaOcupada, setVagaOcupada] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
@@ -37,13 +32,8 @@ export default function ModalVaga(props) {
     axiosInstance
       .post('/vaga/create', {
         nome: nome,
-        preco: 16.6,
         setor: setor,
         tipo: tipo,
-        vaga_ocupada: vagaOcupada,
-        dataLocacao: dataLocacao,
-        dataLocacaoFim: dataLocacaoFim,
-        clienteId: '646e3ea6316fcbdeef05c570',
       })
       .catch((err) => console.log(err));
     setFoldVagaAdicionar(!foldVagaAdicionar);
@@ -65,23 +55,6 @@ export default function ModalVaga(props) {
               </div>
               <div className="flex flex-row space-x-5">
                 <Input placeholder="Setor" onChange={(e) => setSetor(e.target.value)} />
-                <Input placeholder="Vaga Ocupada" onChange={(e) => setVagaOcupada(e.target.value)} />
-              </div>
-              <div className="flex flex-row space-x-5">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={['DatePicker']}>
-                    <DatePicker label="Inicio da locação" onChange={(e) => setDataLocacao(e)} />
-                  </DemoContainer>
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={['DatePicker']}>
-                    <DatePicker label="Fim da locação" onChange={(e) => setDataLocacaoFim(e)} />
-                  </DemoContainer>
-                </LocalizationProvider>{' '}
-              </div>
-              <div className="flex flex-row space-x-5">
-                <Input placeholder="Preço" onChange={(e) => setPreco(e.target.value)} />
-                <Input placeholder="Cliente" onChange={(e) => setClienteId(e.target.value)} />
               </div>
               <div className="self-end">
                 <Button

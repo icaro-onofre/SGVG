@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { colapsedVaga } from 'store.js';
+import { colapsedVaga, vagaIdHome } from 'store.js';
 import { useAtom } from 'jotai';
 
 export default function VagaCard(props) {
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
-  const handleSetFoldVaga = () => setFoldVaga(!foldVaga);
+  const [selectedId, setSelectedId] = useAtom(vagaIdHome);
+
 
   let cor = '';
 
-  switch (props.vaga_ocupada) {
+  switch (props.status) {
     case 'ocupada':
       cor = 'bg-red dark:bg-dark_red';
       break;
@@ -27,8 +28,8 @@ export default function VagaCard(props) {
   }
   return (
     <button
-      className={`bg-grey dark:bg-dark_grey ${cor} h-16 w-16 rounded-lg hover:border-2 hover:border-black dark:hover:border-dark_white duration-75`}
-      onClick={handleSetFoldVaga}
+      className={` ${cor} h-16 w-16 rounded-lg hover:border-2 hover:border-black dark:hover:border-dark_white duration-75`}
+      onClick={props.onClick}
     >
       <div className={'flex items-center justify-center m-5 text-center text-white '}>{props.nome}</div>
     </button>
