@@ -52,8 +52,9 @@ export default function Home() {
 
   ocupacaos.map((e, i) => {
     if (
-      (currentDay.toISOString() >= ocupacaos[i].dataLocacao) &
-      (currentDay.toISOString() <= ocupacaos[i].dataLocacaoFim)
+      ((currentDay.toISOString() >= ocupacaos[i].dataLocacao) &
+        (currentDay.toISOString() <= ocupacaos[i].dataLocacaoFim)) |
+      ((currentDay.toISOString() >= ocupacaos[i].dataLocacao) & (ocupacaos[i].dataLocacaoFim == undefined))
     ) {
       vagasOcupadas.push(ocupacaos[i].vaga);
     } else if (currentDay.toISOString() <= ocupacaos[i].dataLocacao) {
@@ -73,7 +74,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden h-screen pt-20 dark:bg-dark_black">
       {foldVaga ? <ModalVaga /> : <div></div>}
-      {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar agendamento={true}/> : <div></div>}
+      {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar agendamento={true} /> : <div></div>}
       {foldClienteAdicionar ? <ModalClienteAdicionar /> : <div></div>}
 
       <p className="mx-32 my-5 font-bold text-black dark:text-dark_white">STATUS DAS VAGAS</p>

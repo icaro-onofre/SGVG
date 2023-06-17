@@ -1,10 +1,25 @@
 import signIn from 'services/funcionario';
 import Input from 'components/Input';
 import React, { useState } from 'react';
+import { useAtom } from 'jotai';
+import { email, name, root } from 'store.js';
 
 export default function Login() {
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
+
+  const [userEmail, setUserEmail] = useAtom(email);
+  const [userName, setUserName] = useAtom(name);
+  const [userRoot, setUserRoot] = useAtom(root);
+
+  function setToken() {
+    let token = localStorage.getItem('token');
+    let decodedToken = JSON.parse(atob(token.split('.')[1]));
+
+    setUserEmail(decodedToken.email);
+    setUserName(decodedToken.nome);
+    setUserRoot(decodedToken.root);
+  }
 
   function handleSetNome(e) {
     e.preventDefault();
@@ -19,8 +34,8 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signIn(nome, senha);
-      window.location.pathname = "/"
+      await signIn(nome, senha).then(setToken());
+      window.location.pathname = '/';
     } catch (error) {
       console.log(error);
     }
@@ -34,8 +49,7 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="flex w-[30rem] flex-col space-y-10">
           {' '}
           {/*seção de login*/}
-          <img className="mx-auto w-60" src="Logo.png" alt="Logo" />{' '}
-          {/*logo do aplicativo escrito login e alinhado*/}
+          <img className="mx-auto w-60" src="Logo.png" alt="Logo" /> {/*logo do aplicativo escrito login e alinhado*/}
           <div className="relative">
             <Input icon="user-line" type="text" placeholder="Usuário" onChange={handleSetNome} />
           </div>

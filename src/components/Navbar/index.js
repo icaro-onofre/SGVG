@@ -2,17 +2,26 @@ import React, { useState, Component } from 'react';
 import Slide from 'react-reveal/Slide';
 import { useAtom } from 'jotai';
 import { colapsed } from 'store.js';
+
+import { email, name, root } from 'store.js';
 import Icon from 'components/Atoms/Icon';
 import AvatarIcon from 'components/Atoms/AvatarIcon';
 import NavLink from 'components/Atoms/NavLink';
 
 export default function Navbar(props) {
+  const [userEmail, setUserEmail] = useAtom(email);
+  const [userName, setUserName] = useAtom(name);
+  const [userRoot, setUserRoot] = useAtom(root);
+
   const [fold, setFold] = useAtom(colapsed);
   const handleSetFold = () => setFold(!fold);
 
   return (
     <div>
-      <div className={`absolute z-40 opacity-40 bg-black dark:opacity-75 h-full w-full ${!fold ? 'hidden' : ''}`} onClick={handleSetFold} />
+      <div
+        className={`absolute z-40 opacity-40 bg-black dark:opacity-75 h-full w-full ${!fold ? 'hidden' : ''}`}
+        onClick={handleSetFold}
+      />
       <Slide left when={fold}>
         <div className={`absolute z-50 h-full w-80 bg-white dark:bg-dark_grey ${!fold ? 'hidden' : ''}`}>
           <div className="relative w-full">
@@ -30,7 +39,7 @@ export default function Navbar(props) {
                 <span className="font-body text-xs text-black dark:text-dark_white">{props.email}</span>
               </div>
             </div>
-            <div className='px-4 mt-6'>
+            <div className="px-4 mt-6">
               <NavLink icon="home-3" category="Página Inicial" route="" line />
             </div>
 

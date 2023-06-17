@@ -39,7 +39,7 @@ export default function ModalVagaAgendada(props) {
               handleSetClose();
             }}
           />
-          <div className="flex flex-col items-center justify-center w-1/2 bg-white rounded-xl z-20 pt-5 pb-5">
+          <div className="flex flex-col items-center justify-center dark:bg-dark_grey dark:text-dark_white w-1/2 bg-white rounded-xl z-20 pt-5 pb-5">
             <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Agendar vaga</h1>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex justify-between">
@@ -50,7 +50,7 @@ export default function ModalVagaAgendada(props) {
                   <DatePicker label="Fim da ocupação" />
                 </LocalizationProvider>
               </div>
-              <div className="flex justify-between">
+              <div className="flex self-end">
                 <Button
                   value="Agendar"
                   onClick={() => {

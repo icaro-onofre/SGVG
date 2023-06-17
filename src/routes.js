@@ -16,6 +16,8 @@ import Cliente from './pages/Cliente';
 import Ocupacao from './pages/Ocupacao';
 import Recuperacao from './pages/Recuperacao';
 import Config from 'pages/Config';
+import { useAtom } from 'jotai';
+import { email, name, root } from 'store.js';
 
 let token = JSON.parse(localStorage.getItem('token'));
 
@@ -29,9 +31,9 @@ export default function Router() {
     return flag;
   }
 
-  // fazer uma func pra pegar os dados do usuario
-  const userName = 'Icaro Onofre';
-  const userEmail = 'icarolindo@gmail.com';
+  const [userEmail, setUserEmail] = useAtom(email);
+  const [userName, setUserName] = useAtom(name);
+  const [userRoot, setUserRoot] = useAtom(root);
   const userImage = 'https://picsum.photos/id/155/64';
 
   return (

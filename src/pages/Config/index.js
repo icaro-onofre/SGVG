@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { useAtom } from 'jotai';
-import { darkModeAtom } from 'store';
+import { darkModeAtom, configGlobal } from 'store';
+import axiosInstance from 'services/axios';
 
 function Config() {
   const [darkMode, setDarkMode] = useAtom(darkModeAtom);
 
+  const [config, setConfig] = useAtom(configGlobal);
+  const [primeiraHora, setPrimeiraHora] = useState(null);
+  const [valorHora, setValorHora] = useState(null);
+  const [diaria, setDiaria] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axiosInstance
+      .get('/config')
+      .then((res) => {
+        setConfig(res.data);
+        console.log(res.status);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   function handleDarkMode() {
     setDarkMode(!darkMode);
+  }
+
+  function handleSubmit() {
+    axiosInstance
+      .post('/config/update', {
+        primeiraHora: primeiraHora,
+        valorHora: valorHora,
+        diaria: diaria,
+      })
+      .then((res) => setConfig(res.data))
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -28,12 +57,38 @@ function Config() {
 
         <form action="/" method="POST" className="flex flex-col gap-8">
           <div className="mt-4 gap-8 columns-3">
-            <Input type="text" placeholder="1ª hora" icon="money-dollar-box-line" />
-            <Input type="text" placeholder="Por hora" icon="money-dollar-box-line" />
-            <Input type="text" placeholder="Diária" icon="money-dollar-box-line" />
+            <Input
+              type="text"
+              placeholder={loading ? `Loading...` : `1ª hora R$${config[0].primeiraHora}`}
+              icon="money-dollar-box-line"
+              onChange={(e) => {
+                setPrimeiraHora(e);
+              }}
+            />
+            <Input
+              type="text"
+              placeholder={loading ? `Loading...` : `Por hora  R$${config[0].valorHora}`}
+              icon="money-dollar-box-line"
+              onChange={(e) => {
+                setValorHora(e);
+              }}
+            />
+            <Input
+              type="text"
+              placeholder={loading ? `Loading...` : `Diária R$${config[0].diaria} `}
+              icon="money-dollar-box-line"
+              onChange={(e) => {
+                setDiaria(e);
+              }}
+            />
           </div>
           <div className="self-end">
-            <Button value="Atualizar valores" />
+            <Button
+              value="Atualizar valores"
+              onClick={() => {
+                handleSubmit();
+              }}
+            />
           </div>
         </form>
       </div>

@@ -14,6 +14,9 @@ import Button from 'components/Button';
 export default function ModalVagaLivre(props) {
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
   const [ocupacaos, setOcupacaos] = useAtom(ocupacao);
+  const [cpf, setCpf] = useState(null);
+  const [placa, setPlaca] = useState(null);
+  const [vaga, setVaga] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useAtom(vagaIdHome);
   const [vagas, setVagas] = useAtom(vagaDataFiltered);
@@ -22,7 +25,18 @@ export default function ModalVagaLivre(props) {
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
 
   const handleSubmit = () => {
-    axiosInstance.post('/ocupacao/filter', {}).catch((err) => console.log(err));
+    axiosInstance
+      .post('/ocupacao/update', {
+        id: ocupacaoAtual.id,
+        dataLocacaoFim: currentDay,
+      })
+      .then((res) => console.log(res.status))
+      .catch((err) => console.log(err));
+
+    setFoldVaga(!foldVaga);
+    setSelectedId('');
+    setSelectedStatus('');
+    setOcupacaos([]);
   };
   const handleSetClose = () => {
     setFoldVaga(!foldVaga);
@@ -30,7 +44,22 @@ export default function ModalVagaLivre(props) {
     setSelectedStatus('');
     setOcupacaos([]);
   };
-  console.log(ocupacaos);
+
+  let currentDay = new Date();
+  let ocupacaoAtual = [];
+
+  ocupacaos.map((a, b) => {
+    if (
+      (currentDay.toISOString() >= ocupacaos[b].dataLocacao) &
+      (currentDay.toISOString() <= ocupacaos[b].dataLocacaoFim)
+    ) {
+      ocupacaoAtual.id = ocupacaos[b].id;
+      ocupacaoAtual.cpf = ocupacaos[b].cpf;
+      ocupacaoAtual.dataLocacao = ocupacaos[b].dataLocacao;
+      ocupacaoAtual.dataLocacaoFim = ocupacaos[b].dataLocacaoFim;
+      ocupacaoAtual.placa = ocupacaos[b].placa;
+    }
+  });
 
   return (
     <div className={' inset-0' + foldVaga ? 'bg-opacity-40' : ''}>
@@ -49,13 +78,23 @@ export default function ModalVagaLivre(props) {
             <h2 className="text-2xl ml-16 mt-9 font-bold self-start">{vagas[0].nome}</h2>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex flex-row space-x-5">
-                <Input placeholder="CPF" />
-                <Input placeholder="Tipo" />
+                <Input
+                  placeholder={ocupacaoAtual.cpf}
+                  onChange={(e) => {
+                    setCpf(e);
+                  }}
+                />
+                <Input
+                  placeholder={ocupacaoAtual.placa}
+                  onChange={(e) => {
+                    setPlaca(e);
+                  }}
+                />
               </div>
               <div className="flex justify-between">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
-                    label="Inicio da locação"
+                    label={ocupacaoAtual.dataLocacao}
                     onChange={(e) => {
                       setDataLocacao(e);
                     }}
@@ -63,7 +102,7 @@ export default function ModalVagaLivre(props) {
                 </LocalizationProvider>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
-                    label="Fim do período de locação"
+                    label={currentDay.toISOString()}
                     onChange={(e) => {
                       setDataLocacaoFim(e);
                     }}
