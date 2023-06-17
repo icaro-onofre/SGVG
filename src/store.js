@@ -4,7 +4,7 @@ import { atomWithStorage } from 'jotai/utils';
 // Dados do token to usuario
 export const email =  atomWithStorage('Email','');
 export const name =  atomWithStorage('Name','');
-export const root  =  atomWithStorage('Root','');
+export const root  =  atomWithStorage('Root',false);
 // Export config global
 export const configGlobal = atom([]);
 // Estado que controla o dark mode do sistema

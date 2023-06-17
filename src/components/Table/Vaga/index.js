@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAtom, atom } from 'jotai';
-import { vagaId, colapsedVagaAlterar, colapsedVagaAdicionar, vagaData } from 'store.js';
+import { vagaId, colapsedVagaAlterar, colapsedVagaAdicionar, vagaData,ocupacao } from 'store.js';
 import axiosInstance from 'services/axios.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,24 +12,53 @@ import Paper from '@mui/material/Paper';
 
 const vaga = atom([]);
 export default function TableVaga(props) {
-  //const getVaga = () => {
-  //axiosInstance
-  //.get('/vaga')
-  //.then((res) => setVaga(res.data))
-  //.catch((err) => console.log(err));
-  //};
-  //
-  //useEffect(() => {
-  //getVaga();
-  //}, []);
-
-  const [vagas, setVaga] = useAtom(vagaData);
+  const [vagas, setVagas] = useAtom(vagaData);
   const [selectedVagaId, setSelectedVagaId] = useAtom(vagaId);
+  const [ocupacaos, setOcupacaos] = useAtom(ocupacao);
   const [foldVagaAlterar, setFoldVagaAlterar] = useAtom(colapsedVagaAlterar);
 
   const handleSetFoldVaga = () => {
     setFoldVagaAlterar(!foldVagaAlterar);
   };
+
+  useEffect(() => {
+    axiosInstance
+      .get('/vaga')
+      .then((res) => setVagas(res.data))
+      .catch((err) => console.log(err));
+
+    axiosInstance
+      .get('/ocupacao')
+      .then((res) => setOcupacaos(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  let currentDay = new Date();
+
+  let vagasOcupadas = [];
+  let vagasAgendadas = [];
+  let vagasLivres = [];
+
+  ocupacaos.map((e, i) => {
+    if (
+      ((currentDay.toISOString() >= ocupacaos[i].dataLocacao) &
+        (currentDay.toISOString() <= ocupacaos[i].dataLocacaoFim)) |
+      ((currentDay.toISOString() >= ocupacaos[i].dataLocacao) & (ocupacaos[i].dataLocacaoFim == undefined))
+    ) {
+      vagasOcupadas.push(ocupacaos[i].vaga);
+    } else if (currentDay.toISOString() <= ocupacaos[i].dataLocacao) {
+      vagasAgendadas.push(ocupacaos[i].vaga);
+    } else {
+      vagasLivres.push(ocupacaos[i].vaga);
+    }
+  });
+
+  vagas.map((a, b) => {
+    if (vagasOcupadas.includes(vagas[b].nome)) vagas[b].status = 'ocupada';
+    if (vagasAgendadas.includes(vagas[b].nome)) vagas[b].status = 'agendada';
+    if (vagasLivres.includes(vagas[b].nome)) vagas[b].status = 'livre';
+    if (vagas[b].status == undefined) vagas[b].status = 'livre';
+  });
 
   return (
     <>
