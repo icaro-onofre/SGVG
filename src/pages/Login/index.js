@@ -12,15 +12,6 @@ export default function Login() {
   const [userName, setUserName] = useAtom(name);
   const [userRoot, setUserRoot] = useAtom(root);
 
-  function setToken() {
-    let token = localStorage.getItem('token');
-    let decodedToken = JSON.parse(atob(token.split('.')[1]));
-
-    setUserEmail(decodedToken.email);
-    setUserName(decodedToken.nome);
-    setUserRoot(decodedToken.root);
-  }
-
   function handleSetNome(e) {
     e.preventDefault();
     setNome(e.target.value);
@@ -29,6 +20,15 @@ export default function Login() {
   function handleSetSenha(e) {
     e.preventDefault();
     setSenha(e.target.value);
+  }
+
+  function setToken() {
+    let token = localStorage.getItem('token');
+    let decodedToken = JSON.parse(atob(token.split('.')[1]));
+
+    setUserEmail(decodedToken.email);
+    setUserName(decodedToken.nome);
+    setUserRoot(decodedToken.root);
   }
 
   async function handleSubmit(e) {

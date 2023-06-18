@@ -3,9 +3,7 @@ import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
 import { ocupacaoDataFiltered, colapsedOcupacaoAlterar, ocupacaoId } from 'store.js';
 import Input from 'components/Input';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CustomDatePicker from 'components/DatePicker';
 import Button from 'components/Button';
 
 export default function ModalOcupacao(props) {
@@ -89,31 +87,20 @@ export default function ModalOcupacao(props) {
                 />
               </div>
 
-              <div className="flex justify-between">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao}
-                    onChange={(e) => {
-                      setDataLocacao(e);
-                    }}
-                  />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao}
-                    onChange={(e) => {
-                      setDataLocacaoFim(e);
-                    }}
-                  />
-                </LocalizationProvider>
+              <div className="flex justify-between space-x-5">
+                <CustomDatePicker label={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao} />
+                <CustomDatePicker label={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao} />
               </div>
 
               <div className="flex flex-row space-x-5 self-end">
-                <Button value="Deletar" outlined/>
+                <Button value="Deletar" outlined />
                 <Button
                   value="Editar Agendamento"
                   onClick={() => {
                     handleSubmit();
+                  }}
+                  onChange={(e) => {
+                    setDataLocacao(e);
                   }}
                 />
               </div>

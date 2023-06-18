@@ -36,6 +36,9 @@ export default function Router() {
   const [userRoot, setUserRoot] = useAtom(root);
   const userImage = 'https://picsum.photos/id/155/64';
 
+  console.log(userRoot);
+  console.log(userName);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -51,26 +54,30 @@ export default function Router() {
             </RouteGuard>
           }
         />
-        <Route
-          path="/funcionario"
-          element={
-            <RouteGuard token={hasJWT()}>
-              <Navbar name={userName} email={userEmail} image={userImage} />
-              <Header />
-              <Funcionario />
-            </RouteGuard>
-          }
-        />
-        <Route
-          path="/vaga"
-          element={
-            <RouteGuard token={hasJWT()}>
-              <Navbar name={userName} email={userEmail} image={userImage} />
-              <Header />
-              <Vaga />
-            </RouteGuard>
-          }
-        />
+        {userRoot && (
+          <Route
+            path="/funcionario"
+            element={
+              <RouteGuard token={hasJWT()}>
+                <Navbar name={userName} email={userEmail} image={userImage} />
+                <Header />
+                <Funcionario />
+              </RouteGuard>
+            }
+          />
+        )}
+        {userRoot && (
+          <Route
+            path="/vaga"
+            element={
+              <RouteGuard token={hasJWT()}>
+                <Navbar name={userName} email={userEmail} image={userImage} />
+                <Header />
+                <Vaga />
+              </RouteGuard>
+            }
+          />
+        )}
         <Route
           path="/veiculo"
           element={

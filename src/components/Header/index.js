@@ -9,6 +9,9 @@ export default function Header(props) {
 
   function logout() {
     if (window.localStorage.getItem('token')) window.localStorage.removeItem('token');
+    if (window.localStorage.getItem('Email')) window.localStorage.removeItem('Email');
+    if (window.localStorage.getItem('Name')) window.localStorage.removeItem('Name');
+    if (window.localStorage.getItem('Root')) window.localStorage.removeItem('Root');
     window.location.pathname = '/login';
   }
 

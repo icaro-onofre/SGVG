@@ -2,19 +2,16 @@ import React, { useState, Component } from 'react';
 import Slide from 'react-reveal/Slide';
 import { useAtom } from 'jotai';
 import { colapsed } from 'store.js';
-
 import { email, name, root } from 'store.js';
+
 import Icon from 'components/Atoms/Icon';
 import AvatarIcon from 'components/Atoms/AvatarIcon';
 import NavLink from 'components/Atoms/NavLink';
 
 export default function Navbar(props) {
-  const [userEmail, setUserEmail] = useAtom(email);
-  const [userName, setUserName] = useAtom(name);
-  const [userRoot, setUserRoot] = useAtom(root);
-
   const [fold, setFold] = useAtom(colapsed);
   const handleSetFold = () => setFold(!fold);
+  const [userRoot, setUserRoot] = useAtom(root);
 
   return (
     <div>
@@ -44,10 +41,10 @@ export default function Navbar(props) {
             </div>
 
             <div className="px-4">
-              <NavLink icon="group" category="Funcionários" route="funcionario" line />
+              {userRoot ? <NavLink icon="group" category="Funcionários" route="funcionario" line /> : <div></div>}
               <NavLink icon="group" category="Clientes" route="cliente" line />
               <NavLink icon="car" category="Veículos" route="veiculo" line />
-              <NavLink icon="parking-box" category="Vagas" route="vaga" line />
+              {userRoot ? <NavLink icon="parking-box" category="Vagas" route="vaga" line /> : <div></div>}
               <NavLink icon="calendar-todo" category="Agendamentos" route="agendamento" line />
             </div>
           </div>
