@@ -1,13 +1,13 @@
-import React, { useState, Component, useEffect } from 'react';
+import React, { useState, Component } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { moment } from 'moment';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { colapsedOcupacaoAdicionar, ocupacaoId, ocupacaoDataFiltered } from 'store.js';
+import { colapsedOcupacaoAdicionar, ocupacaoId, ocupacaoDataFiltered, vagaDataFiltered } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CustomDatePicker from 'components/DatePicker';
 import Input from 'components/Input';
 import Button from 'components/Button';
 
@@ -17,9 +17,9 @@ export default function ModalOcupacao(props) {
   const [cpf, setCpf] = useState(null);
   const [vaga, setVaga] = useState(null);
   const [placa, setPlaca] = useState(null);
+  const [vagas, setVagas] = useAtom(vagaDataFiltered);
   const [dataLocacao, setDataLocacao] = useState(null);
   const [dataLocacaoFim, setDataLocacaoFim] = useState(null);
-
   const [loading, setLoading] = useState(true);
 
   const handleSetFoldOcupacao = () => {
@@ -27,15 +27,27 @@ export default function ModalOcupacao(props) {
   };
 
   const handleSubmit = () => {
-    axiosInstance
-      .post('/ocupacao/create', {
-        cpf: cpf,
-        vaga: vaga,
-        placa: placa,
-        dataLocacao: dataLocacao,
-        dataLocacaoFim: dataLocacaoFim,
-      })
-      .catch((err) => console.log(err));
+    if (props.agendamento == true) {
+      axiosInstance
+        .post('/ocupacao/create', {
+          cpf: cpf,
+          vaga: vagas[0].nome,
+          placa: placa,
+          dataLocacao: dataLocacao,
+          dataLocacaoFim: dataLocacaoFim,
+        })
+        .catch((err) => console.log(err));
+    } else {
+      axiosInstance
+        .post('/ocupacao/create', {
+          cpf: cpf,
+          vaga: vaga,
+          placa: placa,
+          dataLocacao: dataLocacao,
+          dataLocacaoFim: dataLocacaoFim,
+        })
+        .catch((err) => console.log(err));
+    }
     setFoldOcupacaoAdicionar(!foldOcupacaoAdicionar);
   };
 
@@ -64,22 +76,18 @@ export default function ModalOcupacao(props) {
               </div>
 
               <div className="flex justify-between">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label="Inicio da locação"
-                    onChange={(e) => {
-                      setDataLocacao(e);
-                    }}
-                  />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label="Fim do período de locação"
-                    onChange={(e) => {
-                      setDataLocacaoFim(e);
-                    }}
-                  />
-                </LocalizationProvider>
+                <CustomDatePicker
+                  label="Inicio da ocupação"
+                  onChange={(e) => {
+                    setDataLocacao(e);
+                  }}
+                />
+                <CustomDatePicker
+                  label="Fim da ocupação"
+                  onChange={(e) => {
+                    setDataLocacaoFim(e);
+                  }}
+                />
               </div>
 
               <div className="flex flex-row space-x-5 self-end">

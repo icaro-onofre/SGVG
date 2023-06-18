@@ -5,9 +5,7 @@ import { colapsedVaga, vagaIdHome } from 'store.js';
 import { vagaId } from 'store.js';
 import { vagaDataFiltered, vagaSelectedStatus } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CustomDatePicker from 'components/DatePicker';
 import Input from 'components/Input';
 import Button from 'components/Button';
 
@@ -56,12 +54,8 @@ export default function ModalVagaAgendada(props) {
             <h1 className="text-2xl font-bold ml-5 mt-1 self-start">Agendar vaga</h1>
             <div className="flex flex-col space-y-5 h-90 mt-8 ">
               <div className="flex justify-between">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker label="Inicio da ocupação" sx={{ maxHeight: 10 }} />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker label="Fim da ocupação" />
-                </LocalizationProvider>
+                <CustomDatePicker label="Inicio da ocupação" />
+                <CustomDatePicker label="Fim da ocupação" />
               </div>
               <div className="flex self-end">
                 <Button
