@@ -30,21 +30,22 @@ export default function ModalVagaLivre(props) {
   const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAdicionar);
   const [loading, setLoading] = useState(true);
 
-  let currentDay = new Date();
 
-  const [cpfSelecionado, setCpf] = useState(null);
+  const [cpf, setCpf] = useState(null);
   const [placa, setPlaca] = useState(null);
   const [dataLocacao, setDataLocacao] = useState(null);
   const [dataLocacaoFim, setDataLocacaoFim] = useState(null);
 
+
+  let currentDay = new Date();
+
   const handleSubmit = () => {
     axiosInstance
       .post('/ocupacao/create', {
-        cpf: '028.183.820-84',
         vaga: vagas[0].nome,
-        placa: 'JUJ-0380',
-        dataLocacao: dataLocacao,
-        dataLocacaoFim: dataLocacaoFim,
+        dataLocacao: currentDay,
+        placa:'MZP-5785',
+        cpf: '075.475.810-99',
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));

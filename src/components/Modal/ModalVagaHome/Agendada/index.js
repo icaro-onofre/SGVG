@@ -18,8 +18,21 @@ export default function ModalVagaAgendada(props) {
   const [vagas, setVagas] = useState([]);
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
 
+  const [cpf, setCpf] = useState(null);
+  const [placa, setPlaca] = useState(null);
+  const [dataLocacao, setDataLocacao] = useState(null);
+  const [dataLocacaoFim, setDataLocacaoFim] = useState(null);
+
   const handleSubmit = () => {
-    axiosInstance.post('/ocupacao/create', {}).catch((err) => console.log(err));
+    axiosInstance
+      .post('/ocupacao/create', {
+        vaga: vagas[0].nome,
+        dataLocacao: dataLocacao,
+        dataLocacoFim: dataLocacaoFim,
+        placa: placa,
+        cpf: cpf,
+      })
+      .catch((err) => console.log(err));
   };
   const handleSetClose = () => {
     setFoldVaga(!foldVaga);

@@ -4,10 +4,7 @@ import { useAtom } from 'jotai';
 import { colapsedVaga, vagaIdHome, vagaSelectedStatus, ocupacao } from 'store.js';
 import { vagaId } from 'store.js';
 import { vagaDataFiltered } from 'store.js';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CustomDatePicker from 'components/DatePicker';
 import Input from 'components/Input';
 import Button from 'components/Button';
 
@@ -50,8 +47,9 @@ export default function ModalVagaLivre(props) {
 
   ocupacaos.map((a, b) => {
     if (
-      (currentDay.toISOString() >= ocupacaos[b].dataLocacao) &
-      (currentDay.toISOString() <= ocupacaos[b].dataLocacaoFim)
+      ((currentDay.toISOString() >= ocupacaos[b].dataLocacao) &
+        (currentDay.toISOString() <= ocupacaos[b].dataLocacaoFim)) |
+      ((currentDay.toISOString() >= ocupacaos[b].dataLocacao) & (ocupacaos[b].dataLocacaoFim == undefined))
     ) {
       ocupacaoAtual.id = ocupacaos[b].id;
       ocupacaoAtual.cpf = ocupacaos[b].cpf;
@@ -92,22 +90,8 @@ export default function ModalVagaLivre(props) {
                 />
               </div>
               <div className="flex justify-between">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label={ocupacaoAtual.dataLocacao}
-                    onChange={(e) => {
-                      setDataLocacao(e);
-                    }}
-                  />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label={currentDay.toISOString()}
-                    onChange={(e) => {
-                      setDataLocacaoFim(e);
-                    }}
-                  />
-                </LocalizationProvider>
+                <CustomDatePicker label={ocupacaoAtual.dataLocacao} />
+                <CustomDatePicker label={currentDay.toISOString()} />
               </div>
               <div className="flex self-end">
                 <Button

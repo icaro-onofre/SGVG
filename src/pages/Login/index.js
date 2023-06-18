@@ -24,7 +24,7 @@ export default function Login() {
 
   function setToken() {
     let token = localStorage.getItem('token');
-    let decodedToken = JSON.parse(atob(token.split('.')[1]));
+    let decodedToken = JSON.parse(window.atob(token.split('.')[1]));
 
     setUserEmail(decodedToken.email);
     setUserName(decodedToken.nome);

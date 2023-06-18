@@ -19,15 +19,11 @@ import Config from 'pages/Config';
 import { useAtom } from 'jotai';
 import { email, name, root } from 'store.js';
 
-let token = JSON.parse(localStorage.getItem('token'));
-
 export default function Router() {
   function hasJWT() {
     let flag = false;
-
     //Checa a existência do JWT token
     localStorage.getItem('token') ? (flag = true) : (flag = false);
-
     return flag;
   }
 
@@ -36,8 +32,17 @@ export default function Router() {
   const [userRoot, setUserRoot] = useAtom(root);
   const userImage = 'https://picsum.photos/id/155/64';
 
-  console.log(userRoot);
-  console.log(userName);
+  function setToken() {
+    let token = localStorage.getItem('token');
+    let decodedToken = JSON.parse(window.atob(token.split('.')[1]));
+
+    setUserEmail(decodedToken.email);
+    setUserName(decodedToken.nome);
+    setUserRoot(decodedToken.root);
+  }
+  if (localStorage.getItem('token') != undefined) {
+    setToken();
+  }
 
   return (
     <BrowserRouter>

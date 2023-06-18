@@ -5,6 +5,7 @@ import ModalOcupacaoAdicionar from 'components/Modal/ModalOcupacao/Adicionar';
 import ModalClienteAdicionar from 'components/Modal/ModalCliente/Adicionar';
 import Legenda from 'components/VagaCard/Legenda';
 import { getVagas } from 'services/vaga.js';
+import { email, name, root } from 'store.js';
 import axiosInstance from 'services/axios';
 import {
   colapsedVaga,
@@ -25,12 +26,18 @@ export default function Home() {
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
   const [foldOcupacaoAdicionar, setFoldOcupacaoAdicionar] = useAtom(colapsedOcupacaoAdicionar);
   const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAdicionar);
+  const [userEmail, setUserEmail] = useAtom(email);
+  const [userName, setUserName] = useAtom(name);
+  const [userRoot, setUserRoot] = useAtom(root);
 
   const handleSetVagaClose = (id, status) => {
     setFoldVaga(!foldVaga);
     setSelectedId(id);
     setSelectedStatus(status);
   };
+
+  let token = localStorage.getItem('token');
+  let decodedToken = JSON.parse(window.atob(token.split('.')[1]));
 
   useEffect(() => {
     axiosInstance
@@ -74,7 +81,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden h-screen pt-20 dark:bg-dark_black">
       {foldVaga ? <ModalVaga /> : <div></div>}
-      {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar agendamento={true} /> : <div></div>}
+      {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar vaga={vagas[0].nome} agendamento={true} /> : <div></div>}
       {foldClienteAdicionar ? <ModalClienteAdicionar /> : <div></div>}
 
       <p className="mx-32 my-5 font-bold text-black dark:text-dark_white">STATUS DAS VAGAS</p>
