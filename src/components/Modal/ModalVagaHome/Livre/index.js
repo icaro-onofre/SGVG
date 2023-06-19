@@ -1,53 +1,56 @@
-import React, { useState, Component, useEffect } from 'react';
+import React, { useState, Component } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import { moment } from 'moment';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
 import {
-  colapsedVaga,
-  vagaIdHome,
-  vagaSelectedStatus,
-  vagaId,
-  vagaDataFiltered,
   colapsedOcupacaoAdicionar,
+  colapsedVaga,
+  ocupacaoId,
+  ocupacaoDataFiltered,
+  vagaDataFiltered,
   colapsedClienteAdicionar,
+  vagaIdHome,
+  ocupacao,
+  vagaSelectedStatus,
 } from 'store.js';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import ModalOcupacaoAdicionar from 'components/Modal/ModalOcupacao/Adicionar';
+import CustomDatePicker from 'components/DatePicker';
 import Input from 'components/Input';
 import Button from 'components/Button';
 
-export default function ModalVagaLivre(props) {
+export default function ModalOcupacao(props) {
   const [foldVaga, setFoldVaga] = useAtom(colapsedVaga);
-  const [foldOcupacacao, setOcupacacao] = useAtom(colapsedVaga);
-  const [selectedId, setSelectedId] = useAtom(vagaIdHome);
-
-  const [vagas, setVagas] = useAtom(vagaDataFiltered);
-
-  const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
   const [foldOcupacaoAdicionar, setFoldOcupacaoAdicionar] = useAtom(colapsedOcupacaoAdicionar);
   const [foldClienteAdicionar, setFoldClienteAdicionar] = useAtom(colapsedClienteAdicionar);
-  const [loading, setLoading] = useState(true);
+  const [selectedId, setSelectedId] = useAtom(vagaIdHome);
 
-
-  const [cpf, setCpf] = useState(null);
-  const [placa, setPlaca] = useState(null);
+  const [cpfPessoa, setCpf] = useState(null);
+  const [ocupacaos, setOcupacaos] = useAtom(ocupacao);
+  const [vaga, setVaga] = useState(null);
+  const [placaPessoa, setPlaca] = useState(null);
+  const [vagas, setVagas] = useAtom(vagaDataFiltered);
   const [dataLocacao, setDataLocacao] = useState(null);
   const [dataLocacaoFim, setDataLocacaoFim] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
 
+  const handleSetFoldOcupacao = () => {
+    setFoldVaga(!foldOcupacaoAdicionar);
+  };
 
   let currentDay = new Date();
 
   const handleSubmit = () => {
     axiosInstance
       .post('/ocupacao/create', {
+        cpf: cpfPessoa,
         vaga: vagas[0].nome,
+        placa: placaPessoa,
         dataLocacao: currentDay,
-        placa:'MZP-5785',
-        cpf: '075.475.810-99',
       })
-      .then((res) => console.log(res))
       .catch((err) => console.log(err));
     handleSetClose();
   };
@@ -56,6 +59,7 @@ export default function ModalVagaLivre(props) {
     setFoldVaga(!foldVaga);
     setSelectedId('');
     setSelectedStatus('');
+    setOcupacaos([]);
   };
 
   return (
@@ -78,13 +82,13 @@ export default function ModalVagaLivre(props) {
                 <Input
                   placeholder="CPF"
                   onChange={(e) => {
-                    setCpf(e);
+                    setCpf(e.target.value);
                   }}
                 />
                 <Input
                   placeholder="Placa"
                   onChange={(e) => {
-                    setPlaca(e);
+                    setPlaca(e.target.value);
                   }}
                 />
               </div>
