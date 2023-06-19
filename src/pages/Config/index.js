@@ -56,32 +56,32 @@ function Config() {
         <h2 className="mt-10 text-black dark:text-dark_white">Valores do Estacionamento</h2>
 
         <form action="/" method="POST" className="flex flex-col gap-8">
-          <div className="mt-4 gap-8 columns-3">
-            <Input
-              type="text"
-              placeholder={loading ? `Loading...` : `1ª hora R$${config[0].primeiraHora}`}
-              icon="money-dollar-box-line"
-              onChange={(e) => {
-                setPrimeiraHora(e);
-              }}
-            />
-            <Input
-              type="text"
-              placeholder={loading ? `Loading...` : `Por hora  R$${config[0].valorHora}`}
-              icon="money-dollar-box-line"
-              onChange={(e) => {
-                setValorHora(e);
-              }}
-            />
-            <Input
-              type="text"
-              placeholder={loading ? `Loading...` : `Diária R$${config[0].diaria} `}
-              icon="money-dollar-box-line"
-              onChange={(e) => {
-                setDiaria(e);
-              }}
-            />
-          </div>
+	  {!loading && <div className="mt-4 gap-8 columns-3">
+		  <Input
+		  type="text"
+		  placeholder={ `1ª hora R$${config[0].primeiraHora}`}
+		  icon="money-dollar-box-line"
+		  onChange={(e) => {
+			  setPrimeiraHora(e);
+		  }}
+		  />
+		  <Input
+		  type="text"
+		  placeholder={ `Por hora  R$${config[0].valorHora}`}
+		  icon="money-dollar-box-line"
+		  onChange={(e) => {
+			  setValorHora(e);
+		  }}
+		  />
+		  <Input
+		  type="text"
+		  placeholder={ `Diária R$${config[0].diaria} `}
+		  icon="money-dollar-box-line"
+		  onChange={(e) => {
+			  setDiaria(e);
+		  }}
+		  />
+		  </div> }
           <div className="self-end">
             <Button
               value="Atualizar valores"
