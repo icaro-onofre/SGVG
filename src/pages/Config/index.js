@@ -59,7 +59,8 @@ function Config() {
 	  {!loading && <div className="mt-4 gap-8 columns-3">
 		  <Input
 		  type="text"
-		  placeholder={ `1ª hora R$${config[0].primeiraHora}`}
+      placeholder="1ª hora"
+		  value={ `R$${config[0].primeiraHora}`}
 		  icon="money-dollar-box-line"
 		  onChange={(e) => {
 			  setPrimeiraHora(e);
@@ -67,7 +68,8 @@ function Config() {
 		  />
 		  <Input
 		  type="text"
-		  placeholder={ `Por hora  R$${config[0].valorHora}`}
+      placeholder="Por hora"
+		  value={ `R$${config[0].valorHora}`}
 		  icon="money-dollar-box-line"
 		  onChange={(e) => {
 			  setValorHora(e);
@@ -75,7 +77,8 @@ function Config() {
 		  />
 		  <Input
 		  type="text"
-		  placeholder={ `Diária R$${config[0].diaria} `}
+      placeholder="Diária"
+		  value={ `R$${config[0].diaria} `}
 		  icon="money-dollar-box-line"
 		  onChange={(e) => {
 			  setDiaria(e);
