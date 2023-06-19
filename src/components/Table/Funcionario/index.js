@@ -34,7 +34,6 @@ export default function TableFuncionario(props) {
     setFoldFuncionarioAlterar(!foldFuncioarioAlterar);
   };
 
-  console.log(funcionarios);
   return (
     <>
       <TableContainer component={Paper} style={{ maxHeight: 430 }} className="bg-white dark:bg-dark_grey">

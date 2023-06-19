@@ -1,7 +1,7 @@
 import React, { useState, Component, useEffect } from 'react';
 import axiosInstance from 'services/axios';
 import { useAtom } from 'jotai';
-import { colapsedVaga, vagaIdHome, vagaSelectedStatus, ocupacao } from 'store.js';
+import { colapsedVaga, vagaIdHome, vagaSelectedStatus, ocupacao, serverResponse, colapsedRecibo } from 'store.js';
 import { vagaId } from 'store.js';
 import { vagaDataFiltered } from 'store.js';
 import CustomDatePicker from 'components/DatePicker';
@@ -20,6 +20,8 @@ export default function ModalVagaLivre(props) {
   const [dataLocacao, setDataLocacao] = useState(null);
   const [dataLocacaoFim, setDataLocacaoFim] = useState(null);
   const [selectedStatus, setSelectedStatus] = useAtom(vagaSelectedStatus);
+  const [response, setResponse] = useAtom(serverResponse);
+  const [foldRecibo, setFoldRecibo] = useAtom(colapsedRecibo);
 
   const handleSubmit = () => {
     axiosInstance
@@ -27,19 +29,19 @@ export default function ModalVagaLivre(props) {
         id: ocupacaoAtual.id,
         dataLocacaoFim: currentDay,
       })
-      .then((res) => console.log(res.status))
+      .then((res) => {
+        console.log(res.status);
+      })
       .catch((err) => console.log(err));
 
-    setFoldVaga(!foldVaga);
-    setSelectedId('');
-    setSelectedStatus('');
-    setOcupacaos([]);
+    handleSetClose();
   };
   const handleSetClose = () => {
     setFoldVaga(!foldVaga);
     setSelectedId('');
     setSelectedStatus('');
     setOcupacaos([]);
+    setFoldRecibo(!foldRecibo);
   };
 
   let currentDay = new Date();
@@ -58,6 +60,11 @@ export default function ModalVagaLivre(props) {
       ocupacaoAtual.placa = ocupacaos[b].placa;
     }
   });
+
+  let data1 = new Date(ocupacaoAtual.dataLocacao);
+  let data2 = new Date(ocupacaoAtual.dataLocacaoFim);
+  let horas = Math.abs(data1 - data2) / 36e5;
+  console.log(horas);
 
   return (
     <div className={' inset-0' + foldVaga ? 'bg-opacity-40' : ''}>
@@ -89,9 +96,23 @@ export default function ModalVagaLivre(props) {
                   }}
                 />
               </div>
-              <div className="flex justify-between">
-                <CustomDatePicker label={ocupacaoAtual.dataLocacao} />
-                <CustomDatePicker label={currentDay.toISOString()} />
+              <div className="flex justify-between space-x-5">
+                <div className="w-64">
+                  <CustomDatePicker
+                    label={
+                      ocupacaoAtual.dataLocacao
+                        ? new Date(ocupacaoAtual.dataLocacao).toLocaleTimeString().substring(0, 5) +
+                          ' - ' +
+                          new Date(ocupacaoAtual.dataLocacao).toLocaleDateString()
+                        : '--/--'
+                    }
+                  />
+                </div>
+                <div className="w-64">
+                  <CustomDatePicker
+                    label={new Date().toLocaleTimeString().substring(0, 5) + ' - ' + new Date().toLocaleDateString()}
+                  />
+                </div>
               </div>
               <div className="flex self-end">
                 <Button

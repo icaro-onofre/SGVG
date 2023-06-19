@@ -37,11 +37,9 @@ export default function ModalOcupacao(props) {
         dataLocacao: dataLocacao,
         dataLocacaoFim: dataLocacaoFim,
       })
-      .then(() => {
-        setFoldOcupacaoAlterar(!foldOcupacaoAlterar);
-        setSelectedOcupacaoDataFiltered('');
-      })
       .catch((err) => console.log(err));
+    setFoldOcupacaoAlterar(!foldOcupacaoAlterar);
+    setSelectedOcupacaoDataFiltered('');
   };
 
   useEffect(() => {
@@ -66,45 +64,61 @@ export default function ModalOcupacao(props) {
             <h1 className="text-2xl font-bold ml-5 mt-1 self-start text-black dark:text-dark_white">
               Editar Agendamento
             </h1>
-            <div className="flex flex-col space-y-5 h-90 mt-8 ">
-              <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder="Cliente"
-                  value={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].cpf}
-                  onChange={(e) => setCpf(e.target.value)}
-                />
-                <Input
-                  placeholder="Vaga"
-                  value={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].vaga}
-                  onChange={(e) => setVaga(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder="Veículo"
-                  value={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].placa}
-                  onChange={(e) => setPlaca(e.target.value)}
-                />
-              </div>
+            {!loading && (
+              <div className="flex flex-col space-y-5 h-90 mt-8 ">
+                <div className="flex flex-row space-x-5">
+                  <Input
+                    placeholder="Cliente"
+                    value={selectedOcupacaoDataFiltered[0].cpf}
+                    onChange={(e) => setCpf(e.target.value)}
+                  />
+                  <Input
+                    placeholder="Vaga"
+                    value={selectedOcupacaoDataFiltered[0].vaga}
+                    onChange={(e) => setVaga(e.target.value)}
+                  />
+                </div>
+                <div className="flex flex-row space-x-5">
+                  <Input
+                    placeholder="Veículo"
+                    value={selectedOcupacaoDataFiltered[0].placa}
+                    onChange={(e) => setPlaca(e.target.value)}
+                  />
+                </div>
 
-              <div className="flex justify-between space-x-5">
-                <CustomDatePicker label={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao} />
-                <CustomDatePicker label={loading ? 'Loading...' : selectedOcupacaoDataFiltered[0].dataLocacao} />
-              </div>
+                <div className="flex justify-between space-x-5">
+                  <div className="w-64">
+                    <CustomDatePicker
+                      label={selectedOcupacaoDataFiltered[0].dataLocacao}
+                      onChange={(e) => {
+                        setDataLocacao(e);
+                      }}
+                    />
+                  </div>
+                  <div className="w-64">
+                    <CustomDatePicker
+                      label={selectedOcupacaoDataFiltered[0].dataLocacaoFim}
+                      onChange={(e) => {
+                        setDataLocacaoFim(e);
+                      }}
+                    />
+                  </div>
+                </div>
 
-              <div className="flex flex-row space-x-5 self-end">
-                <Button value="Deletar" outlined />
-                <Button
-                  value="Editar Agendamento"
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                  onChange={(e) => {
-                    setDataLocacao(e);
-                  }}
-                />
+                <div className="flex flex-row space-x-5 self-end">
+                  <Button value="Deletar" outlined />
+                  <Button
+                    value="Editar Agendamento"
+                    onClick={() => {
+                      handleSubmit();
+                    }}
+                    onChange={(e) => {
+                      setDataLocacao(e);
+                    }}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       )}

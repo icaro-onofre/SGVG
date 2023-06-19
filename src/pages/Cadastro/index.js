@@ -13,10 +13,15 @@ export default function Cadastro() {
       {' '}
       <main class="mx-auto flex min-h-screen w-full items-center justify-center bg-white text-green-900">
         {/*fundo branco e cor do texto verde escuro*/}
-        <form class="flex w-[30rem] flex-col space-y-10 " onSubmit={() => {handleSubmit()}}>
+        <form
+          class="flex w-[30rem] flex-col space-y-10 "
+          onSubmit={() => {
+            handleSubmit();
+          }}
+        >
           {' '}
           {/*seção de cadastro*/}
-          <img class="mx-auto h-40 w-auto" src="logo.jpg" /> {/*logo do aplicativo escrito cadastro e alinhado*/}
+          <img className="mx-auto w-60" src="Logo.png" alt="Logo" /> {/*logo do aplicativo escrito login e alinhado*/}
           {/*caixa de texto, / mais efeito mudando de cor quando clicar no campo*/}
           <div class="flex justify-between gap-3">
             <span class="w-1/2">
@@ -120,8 +125,10 @@ export default function Cadastro() {
             <Button
               href="#"
               class=" bg-jade py-2 font-bold duration-300 hover:bg-dark_green text-white text-center"
-              type="submit"
               value="CADASTRAR"
+              onClick={() => {
+                window.location.pathname = '/login';
+              }}
             ></Button>
           </div>
           <br></br>

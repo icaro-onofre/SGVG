@@ -6,10 +6,6 @@ import { useAtom } from 'jotai';
 import { colapsedVagaAdicionar } from 'store.js';
 import { vagaId } from 'store.js';
 import { vagaDataFiltered } from 'store.js';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Input from 'components/Input';
 import Button from 'components/Button';
 

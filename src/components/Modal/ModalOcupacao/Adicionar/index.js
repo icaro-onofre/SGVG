@@ -76,18 +76,22 @@ export default function ModalOcupacao(props) {
               </div>
 
               <div className="flex justify-between">
-                <CustomDatePicker
-                  label="Inicio da ocupação"
-                  onChange={(e) => {
-                    setDataLocacao(e);
-                  }}
-                />
-                <CustomDatePicker
-                  label="Fim da ocupação"
-                  onChange={(e) => {
-                    setDataLocacaoFim(e);
-                  }}
-                />
+                <div className="w-64">
+                  <CustomDatePicker
+                    label="Inicio da ocupação"
+                    onChange={(e) => {
+                      setDataLocacao(e);
+                    }}
+                  />
+                </div>
+                <div className="w-64">
+                  <CustomDatePicker
+                    label="Fim da ocupação"
+                    onChange={(e) => {
+                      setDataLocacaoFim(e);
+                    }}
+                  />
+                </div>
               </div>
 
               <div className="flex flex-row space-x-5 self-end">

@@ -2,9 +2,9 @@ import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
 // Dados do token to usuario
-export const email =  atomWithStorage('Email','');
-export const name =  atomWithStorage('Name','');
-export const root  =  atomWithStorage('Root',false);
+export const email = atomWithStorage('Email', '');
+export const name = atomWithStorage('Name', '');
+export const root = atomWithStorage('Root', false);
 // Export config global
 export const configGlobal = atom([]);
 // Estado que controla o dark mode do sistema
@@ -12,6 +12,12 @@ export const darkModeAtom = atomWithStorage('darkMode', false);
 
 // Estado do modal do modal do menu colapsável da home.
 export const colapsed = atom(false);
+
+// Resposta do servidor
+export const serverResponse = atom('');
+
+// Modal recibo
+export const colapsedRecibo = atom(false);
 
 // Id da vaga selecionada
 export const vagaId = atom('');

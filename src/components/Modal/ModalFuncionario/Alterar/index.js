@@ -9,6 +9,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CustomDatePicker from 'components/DatePicker';
 import Input from 'components/Input';
 import Button from 'components/Button';
 
@@ -92,74 +93,69 @@ export default function ModalFuncionario(props) {
             <h1 className="text-2xl font-bold ml-5 mt-1 self-start text-black dark:text-dark_white">
               {loading ? <Skeleton /> : 'Editar funcionario'}
             </h1>
-            <div className="flex flex-col space-y-5 h-90 mt-8 ">
-              <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder="Nome"
-                  value={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].nome}
-                  onChange={(e) => setNome(e.target.value)}
-                />
-                <Input
-                  placeholder="Telefone"
-                  value={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].telefone}
-                  onChange={(e) => setTelefone(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder="E-mail"
-                  value={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Input
-                  placeholder="CPF"
-                  value={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].cpf}
-                  onChange={(e) => setCpf(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-row space-x-5">
-                <Input
-                  placeholder={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].senha}
-                  onChange={(e) => {
-                    setSenha(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="flex flex-row space-x-5 ">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={['DatePicker']}>
-                    <DatePicker
-                      defaultValue={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].data_nasc}
-                      label={loading ? 'Loading...' : 'Data Nasc'}
-                      onChange={(e) => setDataNasc(e)}
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
+	      {!loading && <div className="flex flex-col space-y-5 h-90 mt-8 ">
+		      <div className="flex flex-row space-x-5">
+		      <Input
+		      placeholder="Nome"
+		      value={ selectedFuncionarioDataFiltered[0].nome}
+		      onChange={(e) => setNome(e.target.value)}
+		      />
+		      <Input
+		      placeholder="Telefone"
+		      value={ selectedFuncionarioDataFiltered[0].telefone}
+		      onChange={(e) => setTelefone(e.target.value)}
+		      />
+		      </div>
+		      <div className="flex flex-row space-x-5">
+		      <Input
+		      placeholder="E-mail"
+		      value={ selectedFuncionarioDataFiltered[0].email}
+		      onChange={(e) => setEmail(e.target.value)}
+		      />
+		      <Input
+		      placeholder="CPF"
+		      value={ selectedFuncionarioDataFiltered[0].cpf}
+		      onChange={(e) => setCpf(e.target.value)}
+		      />
+		      </div>
+		      <div className="flex flex-row space-x-5">
+		      <Input
+		      placeholder={'Senha'}
+		      value={ selectedFuncionarioDataFiltered[0].senha}
+		      onChange={(e) => {
+			      setSenha(e.target.value);
+		      }}
+		      />
 
-                <Input
-                  placeholder="Cargo"
-                  value={loading ? 'Loading...' : selectedFuncionarioDataFiltered[0].cargo}
-                  onChange={(e) => setCargo(e.target.value)}
-                />
-              </div>
+		      <Input
+		      placeholder="Cargo"
+		      value={ selectedFuncionarioDataFiltered[0].cargo}
+		      onChange={(e) => setCargo(e.target.value)}
+		      />
+		      </div>
+		      <div className="flex flex-row space-x-5 ">
+		      <div className="w-1/2">
+		      <CustomDatePicker onChange={(e)=>{setDataNasc(e)}} />
+		      </div>
+		      </div>
 
-              <div className="flex flex-row space-x-5 self-end">
-                <Button
-                  value="Deletar"
-                  outlined
-                  onClick={() => {
-                    handleDelete();
-                  }}
-                />
+		      <div className="flex flex-row space-x-5 self-end">
+		      <Button
+		      value="Deletar"
+		      outlined
+		      onClick={() => {
+			      handleDelete();
+		      }}
+		      />
 
-                <Button
-                  value="Editar funcionario"
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                />
-              </div>
-            </div>
+		      <Button
+		      value="Editar funcionario"
+		      onClick={() => {
+			      handleSubmit();
+		      }}
+		      />
+		      </div>
+		      </div> }
           </div>
         </div>
       )}

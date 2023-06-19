@@ -51,6 +51,7 @@ export default function ModalOcupacao(props) {
         placa: placaPessoa,
         dataLocacao: currentDay,
       })
+      .then((res) => console.log(res.status))
       .catch((err) => console.log(err));
     handleSetClose();
   };

@@ -3,6 +3,9 @@ import VagaCard from 'components/VagaCard';
 import ModalVaga from 'components/Modal/ModalVaga/';
 import ModalOcupacaoAdicionar from 'components/Modal/ModalOcupacao/Adicionar';
 import ModalClienteAdicionar from 'components/Modal/ModalCliente/Adicionar';
+import ModalRecibo from 'components/Modal/ModalRecibo';
+import { Alert } from '@mui/material';
+import { Fade, Zoom } from 'react-reveal';
 import Legenda from 'components/VagaCard/Legenda';
 import { getVagas } from 'services/vaga.js';
 import { email, name, root } from 'store.js';
@@ -15,6 +18,8 @@ import {
   vagaSelectedStatus,
   colapsedOcupacaoAdicionar,
   colapsedClienteAdicionar,
+  serverResponse,
+  colapsedRecibo,
 } from 'store.js';
 import { useAtom } from 'jotai';
 
@@ -29,6 +34,9 @@ export default function Home() {
   const [userEmail, setUserEmail] = useAtom(email);
   const [userName, setUserName] = useAtom(name);
   const [userRoot, setUserRoot] = useAtom(root);
+  const [success, setSuccess] = useState(false);
+  const [response, setResponse] = useAtom(serverResponse);
+  const [foldRecibo, setFoldRecibo] = useAtom(colapsedRecibo);
 
   const handleSetVagaClose = (id, status) => {
     setFoldVaga(!foldVaga);
@@ -77,12 +85,26 @@ export default function Home() {
     if (vagasLivres.includes(vagas[b].nome)) vagas[b].status = 'livre';
     if (vagas[b].status == undefined) vagas[b].status = 'livre';
   });
+  console.log(vagasOcupadas);
+
+  if ((response != '') & (response == '200')) setSuccess(true);
+
+  console.log(response);
 
   return (
     <div className="overflow-hidden h-screen pt-20 dark:bg-dark_black">
       {foldVaga ? <ModalVaga /> : <div></div>}
       {foldOcupacaoAdicionar ? <ModalOcupacaoAdicionar vaga={vagas[0].nome} agendamento={true} /> : <div></div>}
       {foldClienteAdicionar ? <ModalClienteAdicionar /> : <div></div>}
+      {foldRecibo ? <ModalRecibo /> : <div></div>}
+      <Fade right when={success}>
+        <Alert
+          className="absolute right-4 top-4 cursor-default dark:bg-dark_red/25 dark:text-dark_white"
+          severity="error"
+        >
+          <strong>Ocupação finalizada com sucesso</strong>
+        </Alert>
+      </Fade>
 
       <p className="mx-32 my-5 font-bold text-black dark:text-dark_white">STATUS DAS VAGAS</p>
       <div className="grid grid-cols-12 ">

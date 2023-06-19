@@ -3,6 +3,8 @@ import Input from 'components/Input';
 import React, { useState } from 'react';
 import { useAtom } from 'jotai';
 import { email, name, root } from 'store.js';
+import { Alert } from '@mui/material';
+import { Fade, Zoom } from 'react-reveal';
 
 export default function Login() {
   const [nome, setNome] = useState('');
@@ -11,6 +13,7 @@ export default function Login() {
   const [userEmail, setUserEmail] = useAtom(email);
   const [userName, setUserName] = useAtom(name);
   const [userRoot, setUserRoot] = useAtom(root);
+  const [success, setSuccess] = useState(false);
 
   function handleSetNome(e) {
     e.preventDefault();
@@ -45,6 +48,15 @@ export default function Login() {
     <div>
       {' '}
       <main className="mx-auto flex min-h-screen w-full items-center justify-center dark:bg-dark_black text-jade dark:text-dark_jade">
+        {/*Alert de estado*/}
+        <Fade right when={success}>
+          <Alert
+            className="absolute right-4 top-4 cursor-default dark:bg-dark_red/25 dark:text-dark_white"
+            severity="error"
+          >
+            <strong>Ocupação finalizada com sucesso</strong>
+          </Alert>
+        </Fade>
         {/*fundo branco e cor do texto verde escuro*/}
         <form onSubmit={handleSubmit} className="flex w-[30rem] flex-col space-y-10">
           {' '}
@@ -72,7 +84,12 @@ export default function Login() {
 
             <a href="/cadastro">
               {' '}
-              <button className="bg-jade dark:bg-dark_jade text-white rounded-md px-4 py-2 m-2 transition ease select-none duration-75 hover:brightness-125 focus:outline-none focus:shadow-outline">
+              <button
+                className="bg-jade dark:bg-dark_jade text-white rounded-md px-4 py-2 m-2 transition ease select-none duration-75 hover:brightness-125 focus:outline-none focus:shadow-outline"
+                onClick={() => {
+                  window.location.pathname = '/cadastro';
+                }}
+              >
                 Cadastrar
               </button>
             </a>
